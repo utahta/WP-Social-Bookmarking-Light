@@ -1,0 +1,196 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: wp-social-bookmarking-light\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2010-12-23 17:23+0900\n"
+"PO-Revision-Date: 2010-12-23 17:51+0900\n"
+"Last-Translator: utahta <labs.ninxit@gmail.com>\n"
+"Language-Team: utahta <labs.ninxit@gmail.com>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"X-Poedit-KeywordsList: __;_e\n"
+"X-Poedit-Basepath: \\\\172.16.61.128\\utahta\\repos\\\n"
+"X-Poedit-Language: Japanese\n"
+"X-Poedit-Country: JAPAN\n"
+"X-Poedit-SearchPath-0: wp-social-bookmarking-light\\trunk\n"
+
+#: wp-social-bookmarking-light\trunk/wp-social-bookmarking-light.php:80
+#: wp-social-bookmarking-light\trunk/wp-social-bookmarking-light.php:96
+msgid "Bookmark this on Hatena Bookmark"
+msgstr "このエントリーをはてなブックマークに追加"
+
+#: wp-social-bookmarking-light\trunk/wp-social-bookmarking-light.php:87
+#, php-format
+msgid "Hatena Bookmark - %s"
+msgstr "はてなブックマーク - %s"
+
+#: wp-social-bookmarking-light\trunk/wp-social-bookmarking-light.php:113
+msgid "Post to Twitter"
+msgstr ""
+
+#: wp-social-bookmarking-light\trunk/wp-social-bookmarking-light.php:120
+#, php-format
+msgid "Tweets - %s"
+msgstr ""
+
+#: wp-social-bookmarking-light\trunk/wp-social-bookmarking-light.php:162
+msgid "Bookmark this on Livedoor Clip"
+msgstr ""
+
+#: wp-social-bookmarking-light\trunk/wp-social-bookmarking-light.php:169
+#, php-format
+msgid "Livedoor Clip - %s"
+msgstr ""
+
+#: wp-social-bookmarking-light\trunk/wp-social-bookmarking-light.php:180
+msgid "Bookmark this on Yahoo Bookmark"
+msgstr ""
+
+#: wp-social-bookmarking-light\trunk/wp-social-bookmarking-light.php:195
+msgid "Buzz This"
+msgstr ""
+
+#: wp-social-bookmarking-light\trunk/wp-social-bookmarking-light.php:206
+msgid "Bookmark this on BuzzURL"
+msgstr ""
+
+#: wp-social-bookmarking-light\trunk/wp-social-bookmarking-light.php:213
+#, php-format
+msgid "BuzzURL - %s"
+msgstr ""
+
+#: wp-social-bookmarking-light\trunk/wp-social-bookmarking-light.php:224
+msgid "Bookmark this on @nifty clip"
+msgstr ""
+
+#: wp-social-bookmarking-light\trunk/wp-social-bookmarking-light.php:231
+#, php-format
+msgid "@nifty clip - %s"
+msgstr ""
+
+#: wp-social-bookmarking-light\trunk/wp-social-bookmarking-light.php:242
+msgid "Share on Tumblr"
+msgstr ""
+
+#: wp-social-bookmarking-light\trunk/wp-social-bookmarking-light.php:253
+msgid "Bookmark this on FC2 Bookmark"
+msgstr ""
+
+#: wp-social-bookmarking-light\trunk/wp-social-bookmarking-light.php:260
+#, php-format
+msgid "FC2 Bookmark - %s"
+msgstr ""
+
+#: wp-social-bookmarking-light\trunk/wp-social-bookmarking-light.php:271
+msgid "Newsing it!"
+msgstr ""
+
+#: wp-social-bookmarking-light\trunk/wp-social-bookmarking-light.php:282
+msgid "Choix it!"
+msgstr ""
+
+#: wp-social-bookmarking-light\trunk/wp-social-bookmarking-light.php:293
+msgid "Bookmark this on Google Bookmarks"
+msgstr ""
+
+#: wp-social-bookmarking-light\trunk/wp-social-bookmarking-light.php:304
+msgid "Post to Google Buzz"
+msgstr ""
+
+#: wp-social-bookmarking-light\trunk/wp-social-bookmarking-light.php:315
+msgid "Bookmark this on Delicious"
+msgstr ""
+
+#: wp-social-bookmarking-light\trunk/wp-social-bookmarking-light.php:326
+msgid "Bookmark this on Digg"
+msgstr ""
+
+#: wp-social-bookmarking-light\trunk/wp-social-bookmarking-light.php:337
+msgid "Share on FriendFeed"
+msgstr ""
+
+#: wp-social-bookmarking-light\trunk/wp-social-bookmarking-light.php:348
+msgid "Share on Facebook"
+msgstr ""
+
+#: wp-social-bookmarking-light\trunk/wp-social-bookmarking-light.php:380
+msgid "Share on reddit"
+msgstr ""
+
+#: wp-social-bookmarking-light\trunk/wp-social-bookmarking-light.php:391
+msgid "Share on LinkedIn"
+msgstr ""
+
+#: wp-social-bookmarking-light\trunk/wp-social-bookmarking-light.php:422
+msgid "Share on StumbleUpon"
+msgstr ""
+
+#: wp-social-bookmarking-light\trunk/wp-social-bookmarking-light.php:449
+msgid "Share on GREE"
+msgstr ""
+
+#: wp-social-bookmarking-light\trunk/wp-social-bookmarking-light.php:757
+msgid "Options saved."
+msgstr ""
+
+#: wp-social-bookmarking-light\trunk/wp-social-bookmarking-light.php:762
+msgid "Reset options."
+msgstr ""
+
+#: wp-social-bookmarking-light\trunk/wp-social-bookmarking-light.php:775
+msgid "General Settings"
+msgstr ""
+
+#: wp-social-bookmarking-light\trunk/wp-social-bookmarking-light.php:776
+msgid "mixi"
+msgstr ""
+
+#: wp-social-bookmarking-light\trunk/wp-social-bookmarking-light.php:777
+msgid "twitter"
+msgstr ""
+
+#: wp-social-bookmarking-light\trunk/wp-social-bookmarking-light.php:778
+msgid "hatena_button"
+msgstr ""
+
+#: wp-social-bookmarking-light\trunk/wp-social-bookmarking-light.php:779
+msgid "facebook_like"
+msgstr ""
+
+#: wp-social-bookmarking-light\trunk/wp-social-bookmarking-light.php:780
+msgid "Donate"
+msgstr "寄付"
+
+#: wp-social-bookmarking-light\trunk/wp-social-bookmarking-light.php:785
+msgid "Position"
+msgstr "位置"
+
+#: wp-social-bookmarking-light\trunk/wp-social-bookmarking-light.php:795
+msgid "Singular"
+msgstr "個別記事のみ"
+
+#: wp-social-bookmarking-light\trunk/wp-social-bookmarking-light.php:804
+msgid "Page"
+msgstr "ページ"
+
+#: wp-social-bookmarking-light\trunk/wp-social-bookmarking-light.php:813
+msgid "Services"
+msgstr "サービス"
+
+#: wp-social-bookmarking-light\trunk/wp-social-bookmarking-light.php:938
+msgid "Save Changes"
+msgstr ""
+
+#: wp-social-bookmarking-light\trunk/wp-social-bookmarking-light.php:939
+msgid "Reset"
+msgstr ""
+
+#: wp-social-bookmarking-light\trunk/wp-social-bookmarking-light.php:944
+msgid "Service Code"
+msgstr "サービス一覧"
+
+#: wp-social-bookmarking-light\trunk/wp-social-bookmarking-light.php:944
+msgid "Explain"
+msgstr "説明"
+

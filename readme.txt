@@ -1,0 +1,112 @@
+=== WP Social Bookmarking Light ===
+Contributors: utahvich
+Donate link: http://pledgie.com/campaigns/14051
+Tags: links, social, bookmarks, bookmarking, Hatena, Livedoor Clip, BuzzURL, @nifty clip, Twitter, Tumblr, FC2 Bookmark, newsing, Choix, Yahoo!JAPAN Bookmark, Yahoo!Buzz, Google Bookmark, Delicious, Digg, FriendFeed, Google Buzz, Facebook, reddit, LinkedIn, Evernote, Instapaper, StumbleUpon, mixi, gree
+Requires at least: 2.9.0
+Tested up to: 3.0.3
+Stable tag: 1.6.4
+
+This plugin inserts social share links at the top or bottom of each post.
+
+== Description ==
+
+This plugin inserts social share links at the top or bottom of each post.
+
+This is the list of used social sites:
+
+*  Hatena
+*  Facebook
+*  Facebook Like Button
+*  Twitter
+*  Livedoor Clip
+*  BuzzURL
+*  @nifty clip
+*  Tumblr
+*  FC2 Bookmark
+*  newsing
+*  Choix
+*  Yahoo!JAPAN Bookmark
+*  Yahoo!Buzz
+*  Google Bookmark
+*  Google Buzz
+*  Delicious
+*  Digg
+*  FriendFeed
+*  reddit
+*  LinkedIn
+*  Evernote
+*  Instapaper
+*  StumbleUpon
+*  mixi Check
+*  GREE Social Feedback
+
+== Installation ==
+
+1. Upload this directory to the 'wp-content/plugins/' directory
+2. Activate the plugin through the 'Plugins' menu in WordPress
+3. Open 'WP Social Bookmarking Light Options' control panel through the 'Settings' menu and change configurations (This step is not required, the plugin has default settings)
+
+== Screenshots ==
+
+1. This is how the plugin looks in your blog.
+2. This is how the plugin looks in settings.
+3. This is how the plugin looks in manually inside your template.
+
+== Changelog ==
+
+= 1.6.4 =
+* Updated: Administration Page.
+
+= 1.6.3 =
+* Bug fixed: The style was broken on some themes.
+
+= 1.6.2 =
+* Bug fixed: Parser error on PHP4. milligramme++ and rik_wuts++.
+
+= 1.6.1 =
+* Added: Service code check function.
+
+= 1.6.0 =
+* Added: Hatena Bookmark Button.
+* Updated: Administration Page.
+* Bug fixed: Twitter button did not work on the top page. [yuya-takeyama](https://gist.github.com/675159)++
+* Bug fixed: Mixi button did not work on the top page.
+
+= 1.5.2 =
+* Added Facebook Like Button.
+
+= 1.5.1 =
+* Alter &lt;style&gt; to &lt;style type="text/css"&gt;
+
+= 1.5.0 =
+* Added mixi Check, GREE Social Feedback.
+
+= 1.4.3 =
+* Bug fix: img style.
+
+= 1.4.2 =
+* Bug fix: the icon for evernote not displayed on IE.
+
+= 1.4.1 =
+* Bug fix: some unable to clip to Evernote.
+
+= 1.4.0 =
+* Added Evernote, Instapaper and StumbleUpon.
+
+= 1.3.0 =
+* Added Yahoo!Buzz, reddit, LinkedIn and TwitterButton. 
+
+= 1.2.0 =
+* Added "Is Page" option.
+* The name of the option was changed from "Single Page" to "Is Singular". 
+
+= 1.1.0 =
+* Bug fix: li style.
+* Added wp_social_bookmarking_light_output_e function. It can position the social-links manually inside your template.
+
+= 1.0.1 =
+* Bug fix: img style.
+
+= 1.0.0 =
+* First Release
+
