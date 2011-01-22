@@ -844,7 +844,6 @@ function wp_social_bookmarking_light_options_page()
             <li id='twitter_settings'><a href="#tabs-3"><span><?php _e("twitter") ?></span></a></li>
             <li id='hatena_button_settings'><a href="#tabs-4"><span><?php _e("hatena_button") ?></span></a></li>
             <li id='facebook_like_settings'><a href="#tabs-5"><span><?php _e("facebook_like") ?></span></a></li>
-            <li><a href="#tabs-10"><span><?php _e("Donate", WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN) ?></span></a></li>
         </ul>
         <div id="tabs-1">
             <table class='form-table'>
@@ -1023,12 +1022,6 @@ function wp_social_bookmarking_light_options_page()
             </td>
             </tr>
             </table>
-        </div>
-        
-        <div id="tabs-10">
-        	<p>Your donation will help the development of "WP Social Bookmarking Light".</p>
-        	<p>If you find it useful for you, feel free to lend your support.</p>
-            <a href='http://www.pledgie.com/campaigns/14051' target=_blank><img alt='Click here to lend your support to: WP Social Bookmarking Light and make a donation at www.pledgie.com !' src='http://www.pledgie.com/campaigns/14051.png?skin_name=chrome' border='0' /></a>
         </div>
     </div>
     <p class="submit">
