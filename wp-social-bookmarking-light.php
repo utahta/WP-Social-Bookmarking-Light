@@ -33,7 +33,7 @@ define( "WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN", "wp-social-bookmarking-light" );
 
 // _e() local domain
 function _el($val){
-	_e($val, WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN);
+    _e($val, WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN);
 }
 
 // load modules
