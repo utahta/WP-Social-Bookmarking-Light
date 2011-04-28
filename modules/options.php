@@ -33,7 +33,10 @@ function wp_social_bookmarking_light_default_options()
                                       'height' => '20'),
                   "hatena_button" => array('layout' => 'standard'),
                   'facebook_like' => array('action' => 'like',
-                                            'colorscheme' => 'light'),
+                                            'colorscheme' => 'light',
+                                            'send' => false,
+                                            'width' => '100',
+                                            'font' => ''),
     );
 }
 
