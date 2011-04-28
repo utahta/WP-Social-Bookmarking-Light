@@ -207,33 +207,11 @@ jQuery(document).ready(function(){
 function wp_social_bookmarking_light_options_page()
 {
     if( isset( $_POST['save'] ) ){
-        $options = array("services" => $_POST["services"],
-                          "position" => $_POST["position"],
-                          "single_page" => $_POST["single_page"] == 'true',
-                          "is_page" => $_POST["is_page"] == 'true',
-                          "mixi" => array('check_key' => $_POST["mixi_check_key"],
-                                           'check_robots' => $_POST["mixi_check_robots"],
-                                           'button' => $_POST['mixi_button']),
-                          "twitter" => array('via' => $_POST['twitter_via'],
-                                              'lang' => $_POST['twitter_lang'],
-                                              'count' => $_POST['twitter_count'],
-                                              'width' => $_POST['twitter_width'],
-                                              'height' => $_POST['twitter_height']),
-                          'hatena_button' => array('layout' => $_POST['hatena_button_layout']),
-                          'facebook_like' => array('action' => $_POST['facebook_like_action'],
-                                                    'colorscheme' => $_POST['facebook_like_colorscheme'],
-                                                    'send' => $_POST['facebook_like_send'] == 'true',
-                                                    'width' => $_POST['facebook_like_width'],
-                                                    'font' => $_POST['facebook_like_font']),
-                          'gree' => array('button_type' => $_POST['gree_button_type'],
-                                            'button_size' => $_POST['gree_button_size']),
-        );
-        update_option( 'wp_social_bookmarking_light_options', $options );
+    	$options = wp_social_bookmarking_light_save_options($_POST);
         echo '<div class="updated"><p><strong>'.__( 'Options saved.', WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN ).'</strong></p></div>';
     }
     else if( isset( $_POST['restore'] ) ){
-        $options = wp_social_bookmarking_light_default_options();
-        update_option( 'wp_social_bookmarking_light_options', $options );
+        $options = wp_social_bookmarking_light_restore_default_options();
         echo '<div class="updated"><p><strong>'.__( 'Restore defaults.', WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN ).'</strong></p></div>';
     }
     else{
