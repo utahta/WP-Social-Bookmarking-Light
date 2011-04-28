@@ -40,6 +40,8 @@ function wp_social_bookmarking_light_default_options()
                                             'send' => false,
                                             'width' => '100',
                                             'font' => ''),
+                  'facebook_send' => array('colorscheme' => 'light',
+                                             'font' => ''),
                   'gree' => array('button_type' => '4',
                                     'button_size' => '16'),
     );
@@ -90,6 +92,8 @@ function wp_social_bookmarking_light_save_options($data)
                                                 'send' => $data['facebook_like_send'] == 'true',
                                                 'width' => $data['facebook_like_width'],
                                                 'font' => $data['facebook_like_font']),
+                      'facebook_send' => array('colorscheme' => $data['facebook_send_colorscheme'],
+                                                 'font' => $data['facebook_send_font']),
                       'gree' => array('button_type' => $data['gree_button_type'],
                                         'button_size' => $data['gree_button_size']),
     );

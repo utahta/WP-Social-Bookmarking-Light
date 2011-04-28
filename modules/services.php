@@ -365,6 +365,20 @@ class WpSocialBookmarkingLight
                                 .' style="border:none; overflow:hidden; width:'.$width.'px; height:21px;"'
                                 .' allowTransparency="true"></iframe>');
     }
+    
+    /**
+     * @brief Facebook Send
+     */
+    function facebook_send()
+    {
+    	$options = wp_social_bookmarking_light_options();
+    	$url = $this->encode_url;
+    	$font = $options['facebook_send']['font'];
+    	$colorscheme = $options['facebook_send']['colorscheme'];
+    	
+    	return $this->link_raw('<script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script>'
+    	                        .'<fb:send href="'.$url.'" font="'.$font.'" colorscheme="'.$colorscheme.'"></fb:send>');
+    }
 
    /**
     * @brief reddit
