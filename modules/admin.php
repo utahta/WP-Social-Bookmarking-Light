@@ -225,14 +225,16 @@ function wp_social_bookmarking_light_options_page()
                                                     'send' => $_POST['facebook_like_send'] == 'true',
                                                     'width' => $_POST['facebook_like_width'],
                                                     'font' => $_POST['facebook_like_font']),
+                          'gree' => array('button_type' => $_POST['gree_button_type'],
+                                            'button_size' => $_POST['gree_button_size']),
         );
         update_option( 'wp_social_bookmarking_light_options', $options );
         echo '<div class="updated"><p><strong>'.__( 'Options saved.', WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN ).'</strong></p></div>';
     }
-    else if( isset( $_POST['reset'] ) ){
+    else if( isset( $_POST['restore'] ) ){
         $options = wp_social_bookmarking_light_default_options();
         update_option( 'wp_social_bookmarking_light_options', $options );
-        echo '<div class="updated"><p><strong>'.__( 'Reset options.', WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN ).'</strong></p></div>';
+        echo '<div class="updated"><p><strong>'.__( 'Restore defaults.', WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN ).'</strong></p></div>';
     }
     else{
         $options = wp_social_bookmarking_light_options();
@@ -249,16 +251,17 @@ function wp_social_bookmarking_light_options_page()
     <div id="tabs">
         <ul>
             <li><a href="#tabs-1"><span><?php _e("General Settings") ?></span></a></li>
-            <li id='mixi_settings'><a href="#tabs-2"><span><?php _e("mixi") ?></span></a></li>
-            <li id='twitter_settings'><a href="#tabs-3"><span><?php _e("twitter") ?></span></a></li>
-            <li id='hatena_button_settings'><a href="#tabs-4"><span><?php _e("hatena_button") ?></span></a></li>
-            <li id='facebook_like_settings'><a href="#tabs-5"><span><?php _e("facebook_like") ?></span></a></li>
-            <li><a href="#tabs-10"><span><?php _e("Donate", WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN) ?></span></a></li>
+            <li id='mixi_settings'><a href="#tabs-2"><span><?php _el("mixi") ?></span></a></li>
+            <li id='twitter_settings'><a href="#tabs-3"><span><?php _el("twitter") ?></span></a></li>
+            <li id='hatena_button_settings'><a href="#tabs-4"><span><?php _el("hatena_button") ?></span></a></li>
+            <li id='facebook_like_settings'><a href="#tabs-5"><span><?php _el("facebook_like") ?></span></a></li>
+            <li id='gree_settings'><a href="#tabs-6"><span><?php _el("gree") ?></span></a></li>
+            <li><a href="#tabs-10"><span><?php _el("Donate") ?></span></a></li>
         </ul>
         <div id="tabs-1">
             <table class='form-table'>
             <tr>
-                <th scope="row"><?php _e('Position', WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN) ?>:</th>
+                <th scope="row"><?php _el('Position') ?>:</th>
                 <td>
                 <select name='position'>
                 <option value='top' <?php if( $options['position'] == 'top' ) echo 'selected'; ?>>Top</option>
@@ -268,7 +271,7 @@ function wp_social_bookmarking_light_options_page()
                 </td>
             </tr>
             <tr>
-                <th scope="row"><?php _e('Singular', WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN) ?>:</th>
+                <th scope="row"><?php _el('Singular') ?>:</th>
                 <td>
                 <select name='single_page'>
                 <option value='true' <?php if( $options['single_page'] == true ) echo 'selected'; ?>>Enabled</option>
@@ -277,7 +280,7 @@ function wp_social_bookmarking_light_options_page()
                 </td>
             </tr>
             <tr>
-                <th scope="row"><?php _e('Page', WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN) ?>:</th>
+                <th scope="row"><?php _el('Page') ?>:</th>
                 <td>
                 <select name='is_page'>
                 <option value='true' <?php if( $options['is_page'] == true ) echo 'selected'; ?>>Enabled</option>
@@ -286,7 +289,7 @@ function wp_social_bookmarking_light_options_page()
                 </td>
             </tr>
             <tr>
-                <th scope="row"><?php _e('Services', WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN) ?>: <br/> <span style="font-size:10px">(drag-and-drop)</span></th>
+                <th scope="row"><?php _el('Services') ?>: <br/> <span style="font-size:10px">(drag-and-drop)</span></th>
                 <td>
                     <input type="text" id='services_id' name='services' value="<?php echo $options['services'] ?>"size=120 style="font-size:12px;" onclick="this.select(0, this.value.length)" readonly/>
                     <br />
@@ -465,6 +468,33 @@ function wp_social_bookmarking_light_options_page()
             </tr>
             </table>
         </div>
+
+        <!-- gree -->
+        <div id="tabs-6">
+            <table class='form-table'>
+            <tr>
+                <th scope="row">Button type:</th>
+                <td>
+                <select name='gree_button_type'>
+                <option value='0' <?php if( $options['gree']['button_type'] == '0' ) echo 'selected'; ?>><?php _el("iine") ?></option>
+                <option value='1' <?php if( $options['gree']['button_type'] == '1' ) echo 'selected'; ?>><?php _el("kininaru") ?></option>
+                <option value='2' <?php if( $options['gree']['button_type'] == '2' ) echo 'selected'; ?>><?php _el("osusume") ?></option>
+                <option value='3' <?php if( $options['gree']['button_type'] == '3' ) echo 'selected'; ?>><?php _el("share") ?></option>
+                <option value='4' <?php if( $options['gree']['button_type'] == '4' ) echo 'selected'; ?>><?php _el("logo") ?></option>
+                </select>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">Button size:</th>
+                <td>
+                <select name='gree_button_size'>
+                <option value='16' <?php if( $options['gree']['button_size'] == '16' ) echo 'selected'; ?>>16</option>
+                <option value='20' <?php if( $options['gree']['button_size'] == '20' ) echo 'selected'; ?>>20</option>
+                </select>
+                </td>
+            </tr>
+            </table>
+        </div>
         
         <div id="tabs-10">
             <p>Your donation will help the development of "WP Social Bookmarking Light".</p>
@@ -475,12 +505,12 @@ function wp_social_bookmarking_light_options_page()
     </div>
     <p class="submit">
     <input class="button-primary" type="submit" name='save' value='<?php _e('Save Changes') ?>' />
-    <input type="submit" name='reset' value='<?php _e('Reset') ?>' />
+    <input type="submit" name='restore' value='<?php _e('Restore defaults') ?>' />
     </p>
     </form>
     
     <table class='wsbl_options'>
-    <tr><th><?php _e("Service Code", WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN) ?></th><th><?php _e("Explain", WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN) ?></th></tr>
+    <tr><th><?php _el("Service Code") ?></th><th><?php _el("Explain") ?></th></tr>
     <tr><td>hatena</td><td>Hatena Bookmark</td></tr>
     <tr><td>hatena_users</td><td>Hatena Bookmark Users</td></tr>
     <tr><td>hatena_button</td><td>Hatena Bookmark Button</td></tr>

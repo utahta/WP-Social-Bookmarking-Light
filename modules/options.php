@@ -17,6 +17,9 @@ along with this program; if not, write to the Free Software
 Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
+/**
+ * default option
+ */
 function wp_social_bookmarking_light_default_options()
 {
     return array( "services" => "hatena, hatena_users, facebook, google_buzz, yahoo, livedoor, friendfeed, tweetmeme",
@@ -37,9 +40,14 @@ function wp_social_bookmarking_light_default_options()
                                             'send' => false,
                                             'width' => '100',
                                             'font' => ''),
+                  'gree' => array('button_type' => '4',
+                                    'button_size' => '16'),
     );
 }
 
+/**
+ * option
+ */
 function wp_social_bookmarking_light_options()
 {
     $options = get_option("wp_social_bookmarking_light_options", array());
@@ -48,7 +56,7 @@ function wp_social_bookmarking_light_options()
     $default_options = wp_social_bookmarking_light_default_options();
     foreach( $default_options as $key => $val ){
         if(is_array($default_options[$key])){
-            if(!is_array($options[$key])){
+            if(!array_key_exists($key, $options) || !is_array($options[$key])){
                 $options[$key] = array();
             }
             $options[$key] = array_merge($default_options[$key], $options[$key]);
