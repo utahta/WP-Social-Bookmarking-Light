@@ -585,7 +585,7 @@ function wp_social_bookmarking_light_the_content( $content )
     if( !$options['is_page'] && is_page() ){
         return $content;
     }
-
+    
     $out = wp_social_bookmarking_light_output( $options['services'], get_permalink(), get_the_title() );
     if( $out == '' ){
        return $content;
@@ -1030,6 +1030,7 @@ function wp_social_bookmarking_light_options_page()
         	<p>If you find it useful for you, feel free to lend your support.</p>
             <a href='http://www.pledgie.com/campaigns/14051' target=_blank><img alt='Click here to lend your support to: WP Social Bookmarking Light and make a donation at www.pledgie.com !' src='http://www.pledgie.com/campaigns/14051.png?skin_name=chrome' border='0' /></a>
         </div>
+
     </div>
     <p class="submit">
     <input class="button-primary" type="submit" name='save' value='<?php _e('Save Changes') ?>' />
