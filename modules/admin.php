@@ -64,46 +64,46 @@ function wp_social_bookmarking_light_admin_head()
 }
 
 #wsbl_sortable, #wsbl_draggable {
-	list-style-type: none;
-	margin: 0;
-	padding: 5px;
-	overflow: auto;
-	width: 160px;
-	height: 240px;
-	float: left;
-	border: 1px solid #999;
-	background-color: #FFF;
+    list-style-type: none;
+    margin: 0;
+    padding: 5px;
+    overflow: auto;
+    width: 160px;
+    height: 240px;
+    float: left;
+    border: 1px solid #999;
+    background-color: #FFF;
 }
 #wsbl_sortable li, #wsbl_draggable li{
-	width: 120px;
-	height: 20px;
-	font-size: 12px;
-	margin: 0px auto;
-	padding: 3px;
-	border: 1px solid #999;
-	background-color: #F8F8EB;
-	cursor: pointer;
+    width: 120px;
+    height: 20px;
+    font-size: 12px;
+    margin: 0px auto;
+    padding: 3px;
+    border: 1px solid #999;
+    background-color: #F8F8EB;
+    cursor: pointer;
 }
 .wsbl_sortable_highlight {
-	border: 1px dashed #333 !important;
-	background-color: transparent !important;
+    border: 1px dashed #333 !important;
+    background-color: transparent !important;
 }
 .wsbl_txt_draggable{
-	float:left;
+    float:left;
 }
 .wsbl_img_draggable{
-	margin-left: auto;
-	margin-right: 0;
-	text-align: right;
-	display: none;
+    margin-left: auto;
+    margin-right: 0;
+    text-align: right;
+    display: none;
 }
 .wsbl_point_left{
-	float: left;
-	height : 240px ;
-	margin: 0 20px;
+    float: left;
+    height : 240px ;
+    margin: 0 20px;
 }
 .wsbl_point_left img{
-	margin-top: 90px;
+    margin-top: 90px;
 }
 </style>
 
@@ -133,15 +133,15 @@ function wsbl_options_toggle(service_id, is_simply)
 
 function wsbl_update_services(is_simply)
 {
-	var vals = "";
-	var service = jQuery("#wsbl_sortable .wsbl_txt_draggable");
-	service.each(function(){
-		vals += vals == "" ? "" : ",";
-		vals += jQuery(this).text();
-	});
-	jQuery("#services_id").val(vals);
-	
-	is_simply = is_simply || false;
+    var vals = "";
+    var service = jQuery("#wsbl_sortable .wsbl_txt_draggable");
+    service.each(function(){
+        vals += vals == "" ? "" : ",";
+        vals += jQuery(this).text();
+    });
+    jQuery("#services_id").val(vals);
+    
+    is_simply = is_simply || false;
     wsbl_options_toggle("mixi", is_simply);
     wsbl_options_toggle("twitter", is_simply);
     wsbl_options_toggle("hatena_button", is_simply);
@@ -150,49 +150,49 @@ function wsbl_update_services(is_simply)
 
 function wsbl_update_sortable()
 {
-	jQuery("#wsbl_sortable .wsbl_img_draggable").each(function(){
-		var button = jQuery(this);
-		button.css("display", "block"); // show delete button.
-    	var img = jQuery("img", button);
-    	img.mousedown(function(){
-    		var p = jQuery(this).parents("li");
-    		p.slideUp("fast", function(){
-    			p.remove();
-    			wsbl_update_services();
-    		});
-    	});
-    	img.attr('src', '<?php echo WP_SOCIAL_BOOKMARKING_LIGHT_IMAGES_URL."/close_button.png"?>');
-    	img.hover(
-        	function(){
-        		jQuery(this).attr('src', '<?php echo WP_SOCIAL_BOOKMARKING_LIGHT_IMAGES_URL."/close_button2.png"?>');
-        	},
-        	function(){
-        		jQuery(this).attr('src', '<?php echo WP_SOCIAL_BOOKMARKING_LIGHT_IMAGES_URL."/close_button.png"?>');
-        	}
-    	);
+    jQuery("#wsbl_sortable .wsbl_img_draggable").each(function(){
+        var button = jQuery(this);
+        button.css("display", "block"); // show delete button.
+        var img = jQuery("img", button);
+        img.mousedown(function(){
+            var p = jQuery(this).parents("li");
+            p.slideUp("fast", function(){
+                p.remove();
+                wsbl_update_services();
+            });
+        });
+        img.attr('src', '<?php echo WP_SOCIAL_BOOKMARKING_LIGHT_IMAGES_URL."/close_button.png"?>');
+        img.hover(
+            function(){
+                jQuery(this).attr('src', '<?php echo WP_SOCIAL_BOOKMARKING_LIGHT_IMAGES_URL."/close_button2.png"?>');
+            },
+            function(){
+                jQuery(this).attr('src', '<?php echo WP_SOCIAL_BOOKMARKING_LIGHT_IMAGES_URL."/close_button.png"?>');
+            }
+        );
     });
 }
 
 // read onece
 jQuery(document).ready(function(){
     jQuery("#wsbl_sortable").sortable({
-    	placeholder: "wsbl_sortable_highlight",
-    	update:function(e, ui){
-    		wsbl_update_sortable();
-    		wsbl_update_services();
-    	}
+        placeholder: "wsbl_sortable_highlight",
+        update:function(e, ui){
+            wsbl_update_sortable();
+            wsbl_update_services();
+        }
     });
     
     jQuery("#wsbl_draggable li").draggable({
-    	connectToSortable:"#wsbl_sortable",
-    	helper:'clone',
-    	revert:"invalid"
+        connectToSortable:"#wsbl_sortable",
+        helper:'clone',
+        revert:"invalid"
     });
     jQuery("#wsbl_draggable, #wsbl_sortable").disableSelection();
 
-	wsbl_update_sortable();
+    wsbl_update_sortable();
     wsbl_update_services(true);
-	
+    
     jQuery("#tabs").tabs();
 });
 //]]>
@@ -212,7 +212,7 @@ function wp_social_bookmarking_light_options_page()
                           "single_page" => $_POST["single_page"] == 'true',
                           "is_page" => $_POST["is_page"] == 'true',
                           "mixi" => array('check_key' => $_POST["mixi_check_key"],
-                          				   'check_robots' => $_POST["mixi_check_robots"],
+                                           'check_robots' => $_POST["mixi_check_robots"],
                                            'button' => $_POST['mixi_button']),
                           "twitter" => array('via' => $_POST['twitter_via'],
                                               'lang' => $_POST['twitter_lang'],
@@ -221,7 +221,10 @@ function wp_social_bookmarking_light_options_page()
                                               'height' => $_POST['twitter_height']),
                           'hatena_button' => array('layout' => $_POST['hatena_button_layout']),
                           'facebook_like' => array('action' => $_POST['facebook_like_action'],
-                                                    'colorscheme' => $_POST['facebook_like_colorscheme']),
+                                                    'colorscheme' => $_POST['facebook_like_colorscheme'],
+                                                    'send' => $_POST['facebook_like_send'] == 'true',
+                                                    'width' => $_POST['facebook_like_width'],
+                                                    'font' => $_POST['facebook_like_font']),
         );
         update_option( 'wp_social_bookmarking_light_options', $options );
         echo '<div class="updated"><p><strong>'.__( 'Options saved.', WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN ).'</strong></p></div>';
@@ -241,6 +244,8 @@ function wp_social_bookmarking_light_options_page()
     <h2>WP Social Bookmarking Light</h2>
 
     <form method='POST' action="<?php echo $_SERVER['REQUEST_URI'] ?>">
+    
+    <!-- General -->
     <div id="tabs">
         <ul>
             <li><a href="#tabs-1"><span><?php _e("General Settings") ?></span></a></li>
@@ -253,185 +258,217 @@ function wp_social_bookmarking_light_options_page()
         <div id="tabs-1">
             <table class='form-table'>
             <tr>
-            <th scope="row"><?php _e('Position', WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN) ?>:</th>
-            <td>
-            <select name='position'>
-            <option value='top' <?php if( $options['position'] == 'top' ) echo 'selected'; ?>>Top</option>
-            <option value='bottom' <?php if( $options['position'] == 'bottom' ) echo 'selected'; ?>>Bottom</option>
-            <option value='none' <?php if( $options['position'] == 'none' ) echo 'selected'; ?>>None</option>
-            </select>
-            </td>
+                <th scope="row"><?php _e('Position', WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN) ?>:</th>
+                <td>
+                <select name='position'>
+                <option value='top' <?php if( $options['position'] == 'top' ) echo 'selected'; ?>>Top</option>
+                <option value='bottom' <?php if( $options['position'] == 'bottom' ) echo 'selected'; ?>>Bottom</option>
+                <option value='none' <?php if( $options['position'] == 'none' ) echo 'selected'; ?>>None</option>
+                </select>
+                </td>
             </tr>
             <tr>
-            <th scope="row"><?php _e('Singular', WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN) ?>:</th>
-            <td>
-            <select name='single_page'>
-            <option value='true' <?php if( $options['single_page'] == true ) echo 'selected'; ?>>Enabled</option>
-            <option value='false' <?php if( $options['single_page'] == false ) echo 'selected'; ?>>Disabled</option>
-            </select>
-            </td>
+                <th scope="row"><?php _e('Singular', WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN) ?>:</th>
+                <td>
+                <select name='single_page'>
+                <option value='true' <?php if( $options['single_page'] == true ) echo 'selected'; ?>>Enabled</option>
+                <option value='false' <?php if( $options['single_page'] == false ) echo 'selected'; ?>>Disabled</option>
+                </select>
+                </td>
             </tr>
             <tr>
-            <th scope="row"><?php _e('Page', WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN) ?>:</th>
-            <td>
-            <select name='is_page'>
-            <option value='true' <?php if( $options['is_page'] == true ) echo 'selected'; ?>>Enabled</option>
-            <option value='false' <?php if( $options['is_page'] == false ) echo 'selected'; ?>>Disabled</option>
-            </select>
-            </td>
+                <th scope="row"><?php _e('Page', WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN) ?>:</th>
+                <td>
+                <select name='is_page'>
+                <option value='true' <?php if( $options['is_page'] == true ) echo 'selected'; ?>>Enabled</option>
+                <option value='false' <?php if( $options['is_page'] == false ) echo 'selected'; ?>>Disabled</option>
+                </select>
+                </td>
             </tr>
             <tr>
-            <th scope="row"><?php _e('Services', WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN) ?>: <br/> <span style="font-size:10px">(drag-and-drop)</span></th>
-            <td>
-            	<input type="text" id='services_id' name='services' value="<?php echo $options['services'] ?>"size=120 style="font-size:12px;" onclick="this.select(0, this.value.length)" readonly/>
-            	<br />
-            	<br />
-            	<ul id="wsbl_sortable">
-            	<?php
-            	foreach( explode(",", $options['services']) as $service ){
-                    $service = trim($service);
-                    if($service != ''){
-                        if(in_array($service, $class_methods)){
-                            echo "<li>"
-                            	 ."<div class='wsbl_txt_draggable'>$service</div>"
-                            	 ."<div class='wsbl_img_draggable'><img src=''></div>"
-                            	 ."<br clear='both'>"
-                            	 ."</li>\n";
+                <th scope="row"><?php _e('Services', WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN) ?>: <br/> <span style="font-size:10px">(drag-and-drop)</span></th>
+                <td>
+                    <input type="text" id='services_id' name='services' value="<?php echo $options['services'] ?>"size=120 style="font-size:12px;" onclick="this.select(0, this.value.length)" readonly/>
+                    <br />
+                    <br />
+                    <ul id="wsbl_sortable">
+                    <?php
+                    foreach( explode(",", $options['services']) as $service ){
+                        $service = trim($service);
+                        if($service != ''){
+                            if(in_array($service, $class_methods)){
+                                echo "<li>"
+                                     ."<div class='wsbl_txt_draggable'>$service</div>"
+                                     ."<div class='wsbl_img_draggable'><img src=''></div>"
+                                     ."<br clear='both'>"
+                                     ."</li>\n";
+                            }
                         }
                     }
-            	}
-            	?>
-            	</ul>
-            	<div class="wsbl_point_left"><img src='<?php echo WP_SOCIAL_BOOKMARKING_LIGHT_IMAGES_URL."/point_left.png"?>'></div>
-            	<ul id="wsbl_draggable">
-            	<?php
-            	foreach($class_methods as $method){
-            	    echo "<li>"
-            	    	 ."<div class='wsbl_txt_draggable'>$method</div>"
-            	    	 ."<div class='wsbl_img_draggable'><img src=''></div>"
-            	    	 ."<br clear='both'>"
-            	    	 ."</li>\n";
-            	}
-            	?>
-            	</ul>
-            	<br clear="both"/>
-            </td>
+                    ?>
+                    </ul>
+                    <div class="wsbl_point_left"><img src='<?php echo WP_SOCIAL_BOOKMARKING_LIGHT_IMAGES_URL."/point_left.png"?>'></div>
+                    <ul id="wsbl_draggable">
+                    <?php
+                    foreach($class_methods as $method){
+                        echo "<li>"
+                             ."<div class='wsbl_txt_draggable'>$method</div>"
+                             ."<div class='wsbl_img_draggable'><img src=''></div>"
+                             ."<br clear='both'>"
+                             ."</li>\n";
+                    }
+                    ?>
+                    </ul>
+                    <br clear="both"/>
+                </td>
             </tr>
             </table>
         </div>
         
+        <!-- mixi -->
         <div id="tabs-2">
             <table class='form-table'>
             <tr>
-            <th scope="row">Check Key:</th>
-            <td>
-            <input type="text" name='mixi_check_key' value="<?php echo $options['mixi']["check_key"] ?>" size=50 />
-            </td>
+                <th scope="row">Check Key:</th>
+                <td>
+                <input type="text" name='mixi_check_key' value="<?php echo $options['mixi']["check_key"] ?>" size=50 />
+                </td>
             </tr>
             <tr>
-            <th scope="row">Check Robots:</th>
-            <td>
-            <input type="text" name='mixi_check_robots' value="<?php echo $options['mixi']["check_robots"] ?>" size=50 />
-            </td>
+                <th scope="row">Check Robots:</th>
+                <td>
+                <input type="text" name='mixi_check_robots' value="<?php echo $options['mixi']["check_robots"] ?>" size=50 />
+                </td>
             </tr>
             <tr>
-            <th scope="row">Layout:</th>
-            <td>
-            <select name='mixi_button'>
-            <option value='button-1' <?php if( $options['mixi']['button'] == 'button-1' ) echo 'selected'; ?>>button-1</option>
-            <option value='button-2' <?php if( $options['mixi']['button'] == 'button-2' ) echo 'selected'; ?>>button-2</option>
-            <option value='button-3' <?php if( $options['mixi']['button'] == 'button-3' ) echo 'selected'; ?>>button-3</option>
-            <option value='button-4' <?php if( $options['mixi']['button'] == 'button-4' ) echo 'selected'; ?>>button-4</option>
-            </select>
-            </td>
+                <th scope="row">Layout:</th>
+                <td>
+                <select name='mixi_button'>
+                <option value='button-1' <?php if( $options['mixi']['button'] == 'button-1' ) echo 'selected'; ?>>button-1</option>
+                <option value='button-2' <?php if( $options['mixi']['button'] == 'button-2' ) echo 'selected'; ?>>button-2</option>
+                <option value='button-3' <?php if( $options['mixi']['button'] == 'button-3' ) echo 'selected'; ?>>button-3</option>
+                <option value='button-4' <?php if( $options['mixi']['button'] == 'button-4' ) echo 'selected'; ?>>button-4</option>
+                </select>
+                </td>
             </tr>
             </table>
         </div>
 
+        <!-- Twitter -->
         <div id="tabs-3">
             <table class='form-table'>
             <tr>
-            <th scope="row">Via: <br> <span style="font-size:10px">(your twitter account)</span></th>
-            <td>
-            <input type="text" name='twitter_via' value="<?php echo $options['twitter']['via'] ?>" size=50 />
-            </td>
+                <th scope="row">Via: <br> <span style="font-size:10px">(your twitter account)</span></th>
+                <td>
+                <input type="text" name='twitter_via' value="<?php echo $options['twitter']['via'] ?>" size=50 />
+                </td>
             </tr>
             <tr>
-            <th scope="row">Language:</th>
-            <td>
-            <select name='twitter_lang'>
-            <option value='en' <?php if( $options['twitter']['lang'] == 'en' ) echo 'selected'; ?>>English</option>
-            <option value='fr' <?php if( $options['twitter']['lang'] == 'fr' ) echo 'selected'; ?>>French</option>
-            <option value='de' <?php if( $options['twitter']['lang'] == 'de' ) echo 'selected'; ?>>German</option>
-            <option value='es' <?php if( $options['twitter']['lang'] == 'es' ) echo 'selected'; ?>>Spanish</option>
-            <option value='ja' <?php if( $options['twitter']['lang'] == 'ja' ) echo 'selected'; ?>>Japanese</option>
-            </select>
-            </td>
+                <th scope="row">Language:</th>
+                <td>
+                <select name='twitter_lang'>
+                <option value='en' <?php if( $options['twitter']['lang'] == 'en' ) echo 'selected'; ?>>English</option>
+                <option value='fr' <?php if( $options['twitter']['lang'] == 'fr' ) echo 'selected'; ?>>French</option>
+                <option value='de' <?php if( $options['twitter']['lang'] == 'de' ) echo 'selected'; ?>>German</option>
+                <option value='es' <?php if( $options['twitter']['lang'] == 'es' ) echo 'selected'; ?>>Spanish</option>
+                <option value='ja' <?php if( $options['twitter']['lang'] == 'ja' ) echo 'selected'; ?>>Japanese</option>
+                </select>
+                </td>
             </tr>
             <tr>
-            <th scope="row">Count:</th>
-            <td>
-            <select name='twitter_count'>
-            <option value='none' <?php if( $options['twitter']['count'] == 'none' ) echo 'selected'; ?>>none</option>
-            <option value='horizontal' <?php if( $options['twitter']['count'] == 'horizontal' ) echo 'selected'; ?>>horizontal</option>
-            </select>
-            </td>
+                <th scope="row">Count:</th>
+                <td>
+                <select name='twitter_count'>
+                <option value='none' <?php if( $options['twitter']['count'] == 'none' ) echo 'selected'; ?>>none</option>
+                <option value='horizontal' <?php if( $options['twitter']['count'] == 'horizontal' ) echo 'selected'; ?>>horizontal</option>
+                </select>
+                </td>
             </tr>
             <tr>
-            <th scope="row">Width:</th>
-            <td>
-            <input type="text" name='twitter_width' value="<?php echo $options['twitter']['width'] ?>" size=20 />
-            </td>
+                <th scope="row">Width:</th>
+                <td>
+                <input type="text" name='twitter_width' value="<?php echo $options['twitter']['width'] ?>" size=20 />
+                </td>
             </tr>
             <tr>
-            <th scope="row">Height:</th>
-            <td>
-            <input type="text" name='twitter_height' value="<?php echo $options['twitter']['height'] ?>" size=20 />
-            </td>
+                <th scope="row">Height:</th>
+                <td>
+                <input type="text" name='twitter_height' value="<?php echo $options['twitter']['height'] ?>" size=20 />
+                </td>
             </tr>
             </table>
         </div>
 
+        <!-- hatena button -->
         <div id="tabs-4">
             <table class='form-table'>
             <tr>
-            <th scope="row">Layout:</th>
-            <td>
-            <select name='hatena_button_layout'>
-            <option value='standard' <?php if( $options['hatena_button']['layout'] == 'standard' ) echo 'selected'; ?>>standard</option>
-            <option value='simple' <?php if( $options['hatena_button']['layout'] == 'simple' ) echo 'selected'; ?>>simple</option>
-            </select>
-            </td>
+                <th scope="row">Layout:</th>
+                <td>
+                <select name='hatena_button_layout'>
+                <option value='standard' <?php if( $options['hatena_button']['layout'] == 'standard' ) echo 'selected'; ?>>standard</option>
+                <option value='simple' <?php if( $options['hatena_button']['layout'] == 'simple' ) echo 'selected'; ?>>simple</option>
+                </select>
+                </td>
             </tr>
             </table>
         </div>
 
+        <!-- facebook like -->
         <div id="tabs-5">
             <table class='form-table'>
             <tr>
-            <th scope="row">Action:</th>
-            <td>
-            <select name='facebook_like_action'>
-            <option value='like' <?php if( $options['facebook_like']['action'] == 'like' ) echo 'selected'; ?>>like</option>
-            <option value='recommend' <?php if( $options['facebook_like']['action'] == 'recommend' ) echo 'selected'; ?>>recommend</option>
-            </select>
-            </td>
+                <th scope="row">Action:</th>
+                <td>
+                <select name='facebook_like_action'>
+                <option value='like' <?php if( $options['facebook_like']['action'] == 'like' ) echo 'selected'; ?>>like</option>
+                <option value='recommend' <?php if( $options['facebook_like']['action'] == 'recommend' ) echo 'selected'; ?>>recommend</option>
+                </select>
+                </td>
             </tr>
             <tr>
-            <th scope="row">Color Scheme:</th>
-            <td>
-            <select name='facebook_like_colorscheme'>
-            <option value='light' <?php if( $options['facebook_like']['colorscheme'] == 'light' ) echo 'selected'; ?>>light</option>
-            <option value='dark' <?php if( $options['facebook_like']['colorscheme'] == 'dark' ) echo 'selected'; ?>>dark</option>
-            </select>
-            </td>
+                <th scope="row">Color Scheme:</th>
+                <td>
+                <select name='facebook_like_colorscheme'>
+                <option value='light' <?php if( $options['facebook_like']['colorscheme'] == 'light' ) echo 'selected'; ?>>light</option>
+                <option value='dark' <?php if( $options['facebook_like']['colorscheme'] == 'dark' ) echo 'selected'; ?>>dark</option>
+                </select>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">Send button:<br> <span style="font-size:10px">(confirm width size)</span></th>
+                <td>
+                <select name='facebook_like_send'>
+                <option value='true' <?php if( $options['facebook_like']['send'] == true ) echo 'selected'; ?>>Enable</option>
+                <option value='false' <?php if( $options['facebook_like']['send'] == false ) echo 'selected'; ?>>Disable</option>
+                </select>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">Width:</th>
+                <td>
+                <input type="text" name='facebook_like_width' value="<?php echo $options['facebook_like']['width'] ?>" size=20 />
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">Font:</th>
+                <td>
+                <select name='facebook_like_font'>
+                <option value='' <?php if( $options['facebook_like']['font'] == '' ) echo 'selected'; ?>></option>
+                <option value='arial' <?php if( $options['facebook_like']['font'] == 'arial' ) echo 'selected'; ?>>arial</option>
+                <option value='lucida+grande' <?php if( $options['facebook_like']['font'] == 'lucida+grande' ) echo 'selected'; ?>>lucida grande</option>
+                <option value='tahoma' <?php if( $options['facebook_like']['font'] == 'tahoma' ) echo 'selected'; ?>>tahoma</option>
+                <option value='trebuchet+ms' <?php if( $options['facebook_like']['font'] == 'trebuchet+ms' ) echo 'selected'; ?>>trebuchet ms</option>
+                <option value='verdana' <?php if( $options['facebook_like']['font'] == 'verdana' ) echo 'selected'; ?>>verdana</option>
+                </select>
+                </td>
             </tr>
             </table>
         </div>
         
         <div id="tabs-10">
-        	<p>Your donation will help the development of "WP Social Bookmarking Light".</p>
-        	<p>If you find it useful for you, feel free to lend your support.</p>
+            <p>Your donation will help the development of "WP Social Bookmarking Light".</p>
+            <p>If you find it useful for you, feel free to lend your support.</p>
             <a href='http://www.pledgie.com/campaigns/14051' target=_blank><img alt='Click here to lend your support to: WP Social Bookmarking Light and make a donation at www.pledgie.com !' src='http://www.pledgie.com/campaigns/14051.png?skin_name=chrome' border='0' /></a>
         </div>
 

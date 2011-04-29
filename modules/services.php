@@ -83,13 +83,13 @@ class WpSocialBookmarkingLight
         $title = $this->title;
         $alt = __( "Bookmark this on Hatena Bookmark", WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN );
         return $this->link_raw('<a href="'.$url.'"'
-        						.' class="hatena-bookmark-button"'
-        						.' data-hatena-bookmark-title="'.$title.'"'
-        						.' data-hatena-bookmark-layout="'.$options['hatena_button']['layout'].'"'
-        						.' title="'.$alt.'">'
-        						.' <img src="http://b.st-hatena.com/images/entry-button/button-only.gif"'
-        						.' alt="'.$alt.'" width="20" height="20" style="border: none;" /></a>'
-        						.'<script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>');
+                                .' class="hatena-bookmark-button"'
+                                .' data-hatena-bookmark-title="'.$title.'"'
+                                .' data-hatena-bookmark-layout="'.$options['hatena_button']['layout'].'"'
+                                .' title="'.$alt.'">'
+                                .' <img src="http://b.st-hatena.com/images/entry-button/button-only.gif"'
+                                .' alt="'.$alt.'" width="20" height="20" style="border: none;" /></a>'
+                                .'<script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>');
     }
     
     /**
@@ -132,15 +132,15 @@ class WpSocialBookmarkingLight
         $width = $twitter['width'] != '' ? $twitter['width'] : '120';
         $height = $twitter['height'] != '' ? $twitter['height'] : '20';
         return $this->link_raw('<iframe allowtransparency="true" frameborder="0" scrolling="no"'
-        						.' src="http://platform.twitter.com/widgets/tweet_button.html'
-        						.'?url='.$this->encode_url
-        						.'&amp;text='.$this->encode_title
-        						.($twitter['via'] != '' ? '&amp;via='.$twitter['via'] : '')
-        						.'&amp;lang='.$twitter['lang']
-        						.'&amp;count='.$twitter['count']
-        						.'"'
-        						.' style="width:'.$width.'px; height:'.$twitter['height'].'px;">'
-        						.'</iframe>');
+                                .' src="http://platform.twitter.com/widgets/tweet_button.html'
+                                .'?url='.$this->encode_url
+                                .'&amp;text='.$this->encode_title
+                                .($twitter['via'] != '' ? '&amp;via='.$twitter['via'] : '')
+                                .'&amp;lang='.$twitter['lang']
+                                .'&amp;count='.$twitter['count']
+                                .'"'
+                                .' style="width:'.$width.'px; height:'.$twitter['height'].'px;">'
+                                .'</iframe>');
     }
 
     /**
@@ -348,17 +348,22 @@ class WpSocialBookmarkingLight
         $options = wp_social_bookmarking_light_options();
         $action = $options['facebook_like']['action'];
         $colorscheme = $options['facebook_like']['colorscheme'];
+        $send = $options['facebook_like']['send'] ? 'true' : 'false';
+        $width = $options['facebook_like']['width'];
+        $font = $options['facebook_like']['font'];
         
         return $this->link_raw('<iframe src="http://www.facebook.com/plugins/like.php?href='.$this->encode_url
-        						.'&amp;layout=button_count'
-        						.'&amp;show_faces=false'
-        						.'&amp;width=80'
-        						.'&amp;action='.$action
-        						.'&amp;colorscheme='.$colorscheme
-        						.'&amp;height=20"'
-        						.' scrolling="no" frameborder="0"'
-        						.' style="border:none; overflow:hidden; width:100px; height:20px;"'
-        						.' allowTransparency="true"></iframe>');
+                                .'&amp;send='.$send
+                                .'&amp;layout=button_count'
+                                .'&amp;show_faces=false'
+                                .'&amp;width='.$width
+                                .'&amp;action='.$action
+                                .'&amp;colorscheme='.$colorscheme
+                                .'&amp;'.($font == '' ? 'font' : 'font='.$font)
+                                .'&amp;height=21"'
+                                .' scrolling="no" frameborder="0"'
+                                .' style="border:none; overflow:hidden; width:'.$width.'px; height:21px;"'
+                                .' allowTransparency="true"></iframe>');
     }
 
    /**
@@ -424,9 +429,9 @@ class WpSocialBookmarkingLight
         $data_key = $options['mixi']['check_key'];
         
         return $this->link_raw( '<a href="http://mixi.jp/share.pl" class="mixi-check-button"'
-        						 ." data-url='{$this->url}'"
+                                 ." data-url='{$this->url}'"
                                  ." data-button='{$data_button}'"
-        						 ." data-key='{$data_key}'>Check</a>"
+                                 ." data-key='{$data_key}'>Check</a>"
                                  .'<script type="text/javascript" src="http://static.mixi.jp/js/share.js"></script>' );
     }
     

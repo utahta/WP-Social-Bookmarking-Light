@@ -112,10 +112,10 @@ function wp_social_bookmarking_light_wp_head()
 ?>
 <style type="text/css">
 div.wp_social_bookmarking_light{border:0 !important;padding:0 !important;margin:0 !important;}
-div.wp_social_bookmarking_light div{float:left !important;border:0 !important;padding:0 4px 0 0 !important;margin:0 !important;height:20px !important;text-indent:0 !important;}
+div.wp_social_bookmarking_light div{float:left !important;border:0 !important;padding:0 4px 0 0 !important;margin:0 !important;height:21px !important;text-indent:0 !important;}
 div.wp_social_bookmarking_light img{border:0 !important;padding:0;margin:0;vertical-align:top !important;}
 .wp_social_bookmarking_light_clear{clear:both !important;}
-a.wp_social_bookmarking_light_instapaper {display: inline-block;font-family: 'Lucida Grande', Verdana, sans-serif;font-weight: bold;font-size: 11px;-webkit-border-radius: 8px;-moz-border-radius: 8px;color: #fff;background-color: #626262;border: 1px solid #626262;padding: 0px 3px 0px;text-shadow: #3b3b3b 1px 1px 0px;min-width: 62px;text-align: center;vertical-align:top;line-height:20px;}
+a.wp_social_bookmarking_light_instapaper {display: inline-block;font-family: 'Lucida Grande', Verdana, sans-serif;font-weight: bold;font-size: 11px;-webkit-border-radius: 8px;-moz-border-radius: 8px;color: #fff;background-color: #626262;border: 1px solid #626262;padding: 0px 3px 0px;text-shadow: #3b3b3b 1px 1px 0px;min-width: 62px;text-align: center;vertical-align:top;line-height:21px;}
 a.wp_social_bookmarking_light_instapaper, a.wp_social_bookmarking_light_instapaper:hover, a.wp_social_bookmarking_light_instapaper:active, a.wp_social_bookmarking_light_instapaper:visited {color: #fff; text-decoration: none; outline: none;}
 .wp_social_bookmarking_light_instapaper:focus {outline: none;}
 </style>
