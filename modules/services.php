@@ -467,7 +467,7 @@ class WpSocialBookmarkingLight
         	default: $btn_type = 'btn_logo';
         }
         $alt = __( "Share on GREE", WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN );
-        return $this->link_raw('<a href="http://m.gree.jp/?mode=share&act=write'
+        return $this->link_raw('<a href="http://gree.jp/?mode=share&act=write'
                                  .'&url='.$url
                                  .'&button_type='.$type
                                  .'&button_size='.$size
