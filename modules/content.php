@@ -70,14 +70,17 @@ function wp_social_bookmarking_light_wp_head()
 ?>
 <!-- BEGIN: WP Social Bookmarking Light -->
 <?php
-    // mixi-check-robots
+    // load options
     $options = wp_social_bookmarking_light_options();
     $services = explode(",", $options['services']);
+    
+    // mixi-check-robots
     if(in_array('mixi', $services)){
 ?>
 <meta name="mixi-check-robots" content="<?php echo $options['mixi']['check_robots'] ?>" />
 <?php
     }
+    
 ?>
 <style type="text/css">
 div.wp_social_bookmarking_light{border:0 !important;padding:0 !important;margin:0 !important;}

@@ -346,24 +346,43 @@ class WpSocialBookmarkingLight
     function facebook_like()
     {
         $options = wp_social_bookmarking_light_options();
+        $version = $options['facebook_like']['version'];
         $action = $options['facebook_like']['action'];
         $colorscheme = $options['facebook_like']['colorscheme'];
         $send = $options['facebook_like']['send'] ? 'true' : 'false';
         $width = $options['facebook_like']['width'];
         $font = $options['facebook_like']['font'];
+        $locale = $options['facebook']['locale'];
         
-        return $this->link_raw('<iframe src="http://www.facebook.com/plugins/like.php?href='.$this->encode_url
-                                .'&amp;send='.$send
-                                .'&amp;layout=button_count'
-                                .'&amp;show_faces=false'
-                                .'&amp;width='.$width
-                                .'&amp;action='.$action
-                                .'&amp;colorscheme='.$colorscheme
-                                .'&amp;'.($font == '' ? 'font' : 'font='.$font)
-                                .'&amp;height=21"'
-                                .' scrolling="no" frameborder="0"'
-                                .' style="border:none; overflow:hidden; width:'.$width.'px; height:21px;"'
-                                .' allowTransparency="true"></iframe>');
+        if($version == 'iframe'){
+            return $this->link_raw('<iframe src="http://www.facebook.com/plugins/like.php?href='.$this->encode_url
+                                    .'&amp;send='.$send
+                                    .'&amp;layout=button_count'
+                                    .'&amp;show_faces=false'
+                                    .'&amp;width='.$width
+                                    .'&amp;action='.$action
+                                    .'&amp;colorscheme='.$colorscheme
+                                    .($font == '' ? '' : '&amp;font='.$font)
+                                    .($locale == '' ? '' : '$amp;locale='.$locale)
+                                    .'&amp;height=21"'
+                                    .' scrolling="no" frameborder="0"'
+                                    .' style="border:none; overflow:hidden; width:'.$width.'px; height:21px;"'
+                                    .' allowTransparency="true"></iframe>');
+        }
+        else{
+            $locale = ($locale == '' ? 'en_US' : $locale);
+            return $this->link_raw('<script src="http://connect.facebook.net/'.$locale.'/all.js#xfbml=1"></script>'
+                                    .'<fb:like '
+                                    .'href="'.$this->url.'" '
+                                    .'send="'.$send.'" '
+                                    .'layout="button_count" '
+                                    .'width="'.$width.'" '
+                                    .'show_faces="false" '
+                                    .'action="'.$action.'" '
+                                    .'colorscheme="'.$colorscheme.'" '
+                                    .'font="'.$font.'">'
+                                    .'</fb:like>');
+        }
     }
     
     /**
@@ -372,11 +391,13 @@ class WpSocialBookmarkingLight
     function facebook_send()
     {
     	$options = wp_social_bookmarking_light_options();
-    	$url = $this->encode_url;
+    	$url = $this->url;
     	$font = $options['facebook_send']['font'];
     	$colorscheme = $options['facebook_send']['colorscheme'];
-    	
-    	return $this->link_raw('<script src="http://connect.facebook.net/en_US/all.js#xfbml=1"></script>'
+        $locale = $options['facebook']['locale'];
+        $locale = ($locale == '' ? 'en_US' : $locale);
+        
+    	return $this->link_raw('<script src="http://connect.facebook.net/'.$locale.'/all.js#xfbml=1"></script>'
     	                        .'<fb:send href="'.$url.'" font="'.$font.'" colorscheme="'.$colorscheme.'"></fb:send>');
     }
 
