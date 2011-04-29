@@ -31,6 +31,11 @@ define( "WP_SOCIAL_BOOKMARKING_LIGHT_URL", WP_PLUGIN_URL."/wp-social-bookmarking
 define( "WP_SOCIAL_BOOKMARKING_LIGHT_IMAGES_URL", WP_SOCIAL_BOOKMARKING_LIGHT_URL."/images" );
 define( "WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN", "wp-social-bookmarking-light" );
 
+// _e() local domain
+function _el($val){
+	_e($val, WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN);
+}
+
 // load modules
 require_once WP_SOCIAL_BOOKMARKING_LIGHT_DIR.'/modules/options.php';
 require_once WP_SOCIAL_BOOKMARKING_LIGHT_DIR.'/modules/services.php';

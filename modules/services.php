@@ -440,14 +440,35 @@ class WpSocialBookmarkingLight
      */
     function gree()
     {
-        $url = "http://gree.jp/?mode=share&act=write&url={$this->encode_url}&title={$this->encode_title}&site_type=website";
+    	$options = wp_social_bookmarking_light_options();
+        $url = $this->encode_url;
+        $type = $options['gree']['button_type'];
+        $size = $options['gree']['button_size'];
+        switch($type){
+        	case '0': $btn_type = 'btn_iine'; break;
+        	case '1': $btn_type = 'btn_kininaru'; break;
+        	case '2': $btn_type = 'btn_osusume'; break;
+        	case '3': $btn_type = 'btn_share'; break;
+        	case '4': $btn_type = 'btn_logo'; break;
+        	default: $btn_type = 'btn_logo';
+        }
         $alt = __( "Share on GREE", WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN );
-        $icon = WP_SOCIAL_BOOKMARKING_LIGHT_IMAGES_URL."/gree.png";
-        return $this->link( $url, $alt, $icon, 16, 16 );
+        return $this->link_raw('<a href="http://m.gree.jp/?mode=share&act=write'
+                                 .'&url='.$url
+                                 .'&button_type='.$type
+                                 .'&button_size='.$size
+                                 .'&guid=ON" '
+                                 .'title="'.$alt.'" target=_blank>'
+                                 .'<img alt="'.$alt.'" title="'.$alt.'" '
+                                 .'src="http://i.share.gree.jp/img/share/button/'.$btn_type.'_'.$size.'.png">'
+                                 .'</a>');
     }
-    
 }
 
+/**
+ * class method
+ * @return array
+ */
 function wp_social_bookmarking_light_get_class_methods(){
     $all_methods = get_class_methods('WpSocialBookmarkingLight');
     $except_methods = array('WpSocialBookmarkingLight', 'to_utf8', 'link_raw', 'link', 'get_methods');
