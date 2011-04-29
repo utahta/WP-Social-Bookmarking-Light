@@ -110,6 +110,9 @@ function wp_social_bookmarking_light_admin_head()
 <script type="text/javascript" charset="utf-8">
 //<![CDATA[
 
+/**
+ * get services
+ */
 function wsbl_get_service_codes()
 {
     var val = jQuery("#services_id").val();
@@ -118,19 +121,54 @@ function wsbl_get_service_codes()
     });
 }
 
-function wsbl_options_toggle(service_id, is_simply)
+/**
+ * has option
+ */
+function wsbl_has_option(service_id)
 {
-    var has_option = jQuery.inArray(service_id, wsbl_get_service_codes()) >= 0;
+	var services = wsbl_get_service_codes();
+	var facebook_id = ['facebook_like', 'facebook_send'];
+	if(jQuery.inArray(service_id, facebook_id) >= 0){
+		for(var i in facebook_id){
+			if(jQuery.inArray(facebook_id[i], services) >= 0){
+				return true;
+			}
+		}
+	}
+    return jQuery.inArray(service_id, services) >= 0;
+}
+
+/**
+ * get tab id.
+ */
+function wsbl_get_tab_id(service_id)
+{
+	if(service_id == 'facebook_like' || service_id == 'facebook_send'){
+		return 'facebook';
+	}
+	return service_id;
+}
+
+/**
+ * tab toggle
+ */
+function wsbl_tab_toggle(service_id, is_simply)
+{
+	var has_option = wsbl_has_option(service_id);
+	var tab_id = wsbl_get_tab_id(service_id);
     
-    var service_id_settings = "#" + service_id + "_settings";
+    var tab_id_settings = "#" + tab_id + "_settings";
     if(is_simply){
-        has_option ? jQuery(service_id_settings).show() : jQuery(service_id_settings).hide();
+        has_option ? jQuery(tab_id_settings).show() : jQuery(tab_id_settings).hide();
     }
     else{
-        has_option ? jQuery(service_id_settings).slideDown() : jQuery(service_id_settings).slideUp();
+        has_option ? jQuery(tab_id_settings).slideDown() : jQuery(tab_id_settings).slideUp();
     }
 }
 
+/**
+ * update services
+ */
 function wsbl_update_services(is_simply)
 {
     var vals = "";
@@ -144,10 +182,13 @@ function wsbl_update_services(is_simply)
     is_simply = is_simply || false;
     var services = ['mixi', 'twitter', 'hatena_button', 'facebook_like', 'facebook_send', 'gree']
     for(var i in services){
-        wsbl_options_toggle(services[i], is_simply);
+        wsbl_tab_toggle(services[i], is_simply);
     }
 }
 
+/**
+ * set sortable
+ */
 function wsbl_update_sortable()
 {
     jQuery("#wsbl_sortable .wsbl_img_draggable").each(function(){
@@ -173,7 +214,7 @@ function wsbl_update_sortable()
     });
 }
 
-// read onece
+// main
 jQuery(document).ready(function(){
     jQuery("#wsbl_sortable").sortable({
         placeholder: "wsbl_sortable_highlight",
@@ -231,8 +272,7 @@ function wp_social_bookmarking_light_options_page()
             <li id='mixi_settings'><a href="#tabs-2"><span><?php _el("mixi") ?></span></a></li>
             <li id='twitter_settings'><a href="#tabs-3"><span><?php _el("twitter") ?></span></a></li>
             <li id='hatena_button_settings'><a href="#tabs-4"><span><?php _el("hatena_button") ?></span></a></li>
-            <li id='facebook_like_settings'><a href="#tabs-5"><span><?php _el("facebook_like") ?></span></a></li>
-            <li id='facebook_send_settings'><a href="#tabs-6"><span><?php _el("facebook_send") ?></span></a></li>
+            <li id='facebook_settings'><a href="#tabs-5"><span><?php _el("facebook") ?></span></a></li>
             <li id='gree_settings'><a href="#tabs-7"><span><?php _el("gree") ?></span></a></li>
             <li><a href="#tabs-10"><span><?php _el("Donate") ?></span></a></li>
         </ul>
@@ -397,9 +437,33 @@ function wp_social_bookmarking_light_options_page()
             </table>
         </div>
 
-        <!-- facebook like -->
+        <!-- facebook -->
         <div id="tabs-5">
+            <!-- facebook General -->
+            <strong>Facebook General</strong>
             <table class='form-table'>
+            <tr>
+                <th scope="row">Locale:</th>
+                <td>
+                <input type="text" name='facebook_locale' value="<?php echo $options['facebook']["locale"] ?>" /><br/>
+                <span>en_US, ja_JP, fr_FR ...</span> see more <a href='http://developers.facebook.com/docs/internationalization/' target=_blank>facebook docs</a>
+                </td>
+            </tr>
+            </table>
+            <br/>
+
+            <!-- facebook like -->
+            <strong>Facebook Like</strong>
+            <table class='form-table'>
+            <tr>
+                <th scope="row">Version:</th>
+                <td>
+                <select name='facebook_like_version'>
+                <option value='iframe' <?php if( $options['facebook_like']['version'] == 'iframe' ) echo 'selected'; ?>>iframe</option>
+                <option value='xfbml' <?php if( $options['facebook_like']['version'] == 'xfbml' ) echo 'selected'; ?>>xfbml</option>
+                </select>
+                </td>
+            </tr>
             <tr>
                 <th scope="row">Action:</th>
                 <td>
@@ -447,10 +511,10 @@ function wp_social_bookmarking_light_options_page()
                 </td>
             </tr>
             </table>
-        </div>
-        
-        <!-- facebook send -->
-        <div id="tabs-6">
+            <br/>
+            
+            <!-- facebook send -->
+            <strong>Facebook Send</strong>
             <table class='form-table'>
             <tr>
                 <th scope="row">Color Scheme:</th>
@@ -476,7 +540,7 @@ function wp_social_bookmarking_light_options_page()
             </tr>
             </table>
         </div>
-
+        
         <!-- gree -->
         <div id="tabs-7">
             <table class='form-table'>
