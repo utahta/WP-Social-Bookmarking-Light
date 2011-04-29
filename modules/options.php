@@ -64,3 +64,45 @@ function wp_social_bookmarking_light_options()
     }
     return array_merge( wp_social_bookmarking_light_default_options(), $options );
 }
+
+/**
+ * save options
+ * 
+ * @param array $data ($_POST)
+ */
+function wp_social_bookmarking_light_save_options($data)
+{
+    $options = array("services" => $data["services"],
+                      "position" => $data["position"],
+                      "single_page" => $data["single_page"] == 'true',
+                      "is_page" => $data["is_page"] == 'true',
+                      "mixi" => array('check_key' => $data["mixi_check_key"],
+                                       'check_robots' => $data["mixi_check_robots"],
+                                       'button' => $data['mixi_button']),
+                      "twitter" => array('via' => $data['twitter_via'],
+                                          'lang' => $data['twitter_lang'],
+                                          'count' => $data['twitter_count'],
+                                          'width' => $data['twitter_width'],
+                                          'height' => $data['twitter_height']),
+                      'hatena_button' => array('layout' => $data['hatena_button_layout']),
+                      'facebook_like' => array('action' => $data['facebook_like_action'],
+                                                'colorscheme' => $data['facebook_like_colorscheme'],
+                                                'send' => $data['facebook_like_send'] == 'true',
+                                                'width' => $data['facebook_like_width'],
+                                                'font' => $data['facebook_like_font']),
+                      'gree' => array('button_type' => $data['gree_button_type'],
+                                        'button_size' => $data['gree_button_size']),
+    );
+    update_option( 'wp_social_bookmarking_light_options', $options );
+    return $options;
+}
+
+/**
+ * restore default options
+ */
+function wp_social_bookmarking_light_restore_default_options()
+{
+    $options = wp_social_bookmarking_light_default_options();
+    update_option( 'wp_social_bookmarking_light_options', $options );
+    return $options;
+}
