@@ -142,10 +142,10 @@ function wsbl_update_services(is_simply)
     jQuery("#services_id").val(vals);
     
     is_simply = is_simply || false;
-    wsbl_options_toggle("mixi", is_simply);
-    wsbl_options_toggle("twitter", is_simply);
-    wsbl_options_toggle("hatena_button", is_simply);
-    wsbl_options_toggle("facebook_like", is_simply);
+    var services = ['mixi', 'twitter', 'hatena_button', 'facebook_like', 'facebook_send', 'gree']
+    for(var i in services){
+        wsbl_options_toggle(services[i], is_simply);
+    }
 }
 
 function wsbl_update_sortable()
