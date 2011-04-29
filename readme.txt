@@ -58,7 +58,7 @@ This is the list of used social sites:
 = 1.6.5 =
 * Added: Facebook Send Button.
 * Added: Options for gree.
-* Updated: Options for facebook like.
+* Updated: Options for Facebook Like Button.
 
 = 1.6.4 =
 * Updated: Administration Page.
@@ -75,8 +75,8 @@ This is the list of used social sites:
 = 1.6.0 =
 * Added: Hatena Bookmark Button.
 * Updated: Administration Page.
-* Bug fixed: Twitter button did not work on the top page. [yuya-takeyama](https://gist.github.com/675159)++
-* Bug fixed: Mixi button did not work on the top page.
+* Bug fixed: The twitter button did not work on the top page. [yuya-takeyama](https://gist.github.com/675159)++
+* Bug fixed: The mixi button did not work on the top page.
 
 = 1.5.2 =
 * Added Facebook Like Button.
