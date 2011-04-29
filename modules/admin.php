@@ -225,7 +225,6 @@ function wp_social_bookmarking_light_options_page()
 
     <form method='POST' action="<?php echo $_SERVER['REQUEST_URI'] ?>">
     
-    <!-- General -->
     <div id="tabs">
         <ul>
             <li><a href="#tabs-1"><span><?php _e("General Settings") ?></span></a></li>
@@ -237,6 +236,8 @@ function wp_social_bookmarking_light_options_page()
             <li id='gree_settings'><a href="#tabs-7"><span><?php _el("gree") ?></span></a></li>
             <li><a href="#tabs-10"><span><?php _el("Donate") ?></span></a></li>
         </ul>
+
+        <!-- General -->
         <div id="tabs-1">
             <table class='form-table'>
             <tr>
