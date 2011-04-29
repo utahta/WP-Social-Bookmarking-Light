@@ -233,7 +233,8 @@ function wp_social_bookmarking_light_options_page()
             <li id='twitter_settings'><a href="#tabs-3"><span><?php _el("twitter") ?></span></a></li>
             <li id='hatena_button_settings'><a href="#tabs-4"><span><?php _el("hatena_button") ?></span></a></li>
             <li id='facebook_like_settings'><a href="#tabs-5"><span><?php _el("facebook_like") ?></span></a></li>
-            <li id='gree_settings'><a href="#tabs-6"><span><?php _el("gree") ?></span></a></li>
+            <li id='facebook_send_settings'><a href="#tabs-6"><span><?php _el("facebook_send") ?></span></a></li>
+            <li id='gree_settings'><a href="#tabs-7"><span><?php _el("gree") ?></span></a></li>
             <li><a href="#tabs-10"><span><?php _el("Donate") ?></span></a></li>
         </ul>
         <div id="tabs-1">
@@ -446,9 +447,37 @@ function wp_social_bookmarking_light_options_page()
             </tr>
             </table>
         </div>
+        
+        <!-- facebook send -->
+        <div id="tabs-6">
+            <table class='form-table'>
+            <tr>
+                <th scope="row">Color Scheme:</th>
+                <td>
+                <select name='facebook_send_colorscheme'>
+                <option value='light' <?php if( $options['facebook_send']['colorscheme'] == 'light' ) echo 'selected'; ?>>light</option>
+                <option value='dark' <?php if( $options['facebook_send']['colorscheme'] == 'dark' ) echo 'selected'; ?>>dark</option>
+                </select>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">Font:</th>
+                <td>
+                <select name='facebook_send_font'>
+                <option value='' <?php if( $options['facebook_send']['font'] == '' ) echo 'selected'; ?>></option>
+                <option value='arial' <?php if( $options['facebook_send']['font'] == 'arial' ) echo 'selected'; ?>>arial</option>
+                <option value='lucida+grande' <?php if( $options['facebook_send']['font'] == 'lucida+grande' ) echo 'selected'; ?>>lucida grande</option>
+                <option value='tahoma' <?php if( $options['facebook_send']['font'] == 'tahoma' ) echo 'selected'; ?>>tahoma</option>
+                <option value='trebuchet+ms' <?php if( $options['facebook_send']['font'] == 'trebuchet+ms' ) echo 'selected'; ?>>trebuchet ms</option>
+                <option value='verdana' <?php if( $options['facebook_send']['font'] == 'verdana' ) echo 'selected'; ?>>verdana</option>
+                </select>
+                </td>
+            </tr>
+            </table>
+        </div>
 
         <!-- gree -->
-        <div id="tabs-6">
+        <div id="tabs-7">
             <table class='form-table'>
             <tr>
                 <th scope="row">Button type:</th>
@@ -517,6 +546,7 @@ function wp_social_bookmarking_light_options_page()
     <tr><td>friendfeed</td><td>FriendFeed</td></tr>
     <tr><td>facebook</td><td>Facebook Share</td></tr>
     <tr><td>facebook_like</td><td>Facebook Like Button</td></tr>
+    <tr><td>facebook_send</td><td>Facebook Send Button</td></tr>
     <tr><td>reddit</td><td>reddit</td></tr>
     <tr><td>linkedin</td><td>LinkedIn</td></tr>
     <tr><td>evernote</td><td>Evernote</td></tr>
