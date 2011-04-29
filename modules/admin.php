@@ -438,8 +438,8 @@ function wp_social_bookmarking_light_options_page()
 
         <!-- facebook -->
         <div id="tabs-5">
-            <!-- facebook General -->
-            <strong>Facebook General</strong>
+            <!-- General -->
+            <strong>General</strong>
             <table class='form-table'>
             <tr>
                 <th scope="row">Locale:</th>
@@ -451,8 +451,8 @@ function wp_social_bookmarking_light_options_page()
             </table>
             <br/>
 
-            <!-- facebook like -->
-            <strong>Facebook Like</strong>
+            <!-- Like Button -->
+            <strong>Like Button</strong>
             <table class='form-table'>
             <tr>
                 <th scope="row">Version:</th>
@@ -512,8 +512,8 @@ function wp_social_bookmarking_light_options_page()
             </table>
             <br/>
             
-            <!-- facebook send -->
-            <strong>Facebook Send</strong>
+            <!-- Send Button -->
+            <strong>Send Button</strong>
             <table class='form-table'>
             <tr>
                 <th scope="row">Color Scheme:</th>
