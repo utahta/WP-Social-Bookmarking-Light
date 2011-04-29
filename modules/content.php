@@ -67,6 +67,9 @@ function wp_social_bookmarking_light_output_e( $services=null, $link=null, $titl
  */
 function wp_social_bookmarking_light_wp_head()
 {
+?>
+<!-- BEGIN: WP Social Bookmarking Light -->
+<?php
     // mixi-check-robots
     $options = wp_social_bookmarking_light_options();
     $services = explode(",", $options['services']);
@@ -85,6 +88,7 @@ a.wp_social_bookmarking_light_instapaper {display: inline-block;font-family: 'Lu
 a.wp_social_bookmarking_light_instapaper, a.wp_social_bookmarking_light_instapaper:hover, a.wp_social_bookmarking_light_instapaper:active, a.wp_social_bookmarking_light_instapaper:visited {color: #fff; text-decoration: none; outline: none;}
 .wp_social_bookmarking_light_instapaper:focus {outline: none;}
 </style>
+<!-- END: WP Social Bookmarking Light -->
 <?php
 }
 
