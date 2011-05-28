@@ -194,3 +194,6 @@ msgstr "サービス一覧"
 msgid "Explain"
 msgstr "説明"
 
+msgid "Padding"
+msgstr "上下の間隔"
+
