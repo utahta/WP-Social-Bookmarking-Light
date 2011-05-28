@@ -5,7 +5,7 @@ Plugin URI: http://www.ninxit.com/blog/2010/06/13/wp-social-bookmarking-light/
 Description: This plugin inserts social share links at the top or bottom of each post.
 Author: utahta
 Author URI: http://www.ninxit.com/blog/
-Version: 1.6.5
+Version: 1.6.6
 */
 /*
 Copyright 2010 utahta (email : labs.ninxit@gmail.com)
@@ -35,6 +35,9 @@ define( "WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN", "wp-social-bookmarking-light" );
 function _el($val){
     _e($val, WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN);
 }
+function __l($val){
+    __($val, WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN);
+}
 
 // load modules
 require_once WP_SOCIAL_BOOKMARKING_LIGHT_DIR.'/modules/options.php';
@@ -49,9 +52,10 @@ load_plugin_textdomain( WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN, false,
 // initialize
 function wp_social_bookmarking_light_init()
 {
-    add_action( 'wp_head', 'wp_social_bookmarking_light_wp_head' );
-    add_filter( 'the_content', 'wp_social_bookmarking_light_the_content' );
-    add_action( 'admin_menu', 'wp_social_bookmarking_light_admin_menu' );
+    add_action('wp_head', 'wp_social_bookmarking_light_wp_head');
+    add_action('wp_footer', 'wp_social_bookmarking_light_wp_footer');
+    add_filter('the_content', 'wp_social_bookmarking_light_the_content');
+    add_action('admin_menu', 'wp_social_bookmarking_light_admin_menu');
 }
 add_action( 'init', 'wp_social_bookmarking_light_init' );
 

@@ -26,6 +26,8 @@ function wp_social_bookmarking_light_default_options()
                   "position" => "top",
                   "single_page" => true,
                   "is_page" => true,
+                  'style' => array('padding_top' => '0',
+                                    'padding_bottom' => '0'),
                   "mixi" => array('check_key' => '',
                                    'check_robots' => 'noimage',
                                    'button' => 'button-3'),
@@ -35,7 +37,7 @@ function wp_social_bookmarking_light_default_options()
                                       'width' => '130',
                                       'height' => '20'),
                   "hatena_button" => array('layout' => 'standard'),
-                  'facebook' => array('locale' => 'ja_JP'),
+                  'facebook' => array('locale' => 'en_US'),
                   'facebook_like' => array('version' => 'xfbml',
                                             'action' => 'like',
                                             'colorscheme' => 'light',
@@ -48,6 +50,9 @@ function wp_social_bookmarking_light_default_options()
                                              'locale' => ''),
                   'gree' => array('button_type' => '4',
                                     'button_size' => '16'),
+                  'evernote' => array('button_type' => 'article-clipper'),
+                  'tumblr' => array('button_type' => '1'),
+                  'atode' => array('button_type' => 'iconsja'),
     );
 }
 
@@ -82,7 +87,9 @@ function wp_social_bookmarking_light_save_options($data)
                       "position" => $data["position"],
                       "single_page" => $data["single_page"] == 'true',
                       "is_page" => $data["is_page"] == 'true',
-                      "mixi" => array('check_key' => $data["mixi_check_key"],
+                      'style' => array('padding_top' => $data["style_padding_top"],
+                                    	'padding_bottom' => $data["style_padding_bottom"]),
+    				  "mixi" => array('check_key' => $data["mixi_check_key"],
                                        'check_robots' => $data["mixi_check_robots"],
                                        'button' => $data['mixi_button']),
                       "twitter" => array('via' => $data['twitter_via'],
@@ -102,6 +109,9 @@ function wp_social_bookmarking_light_save_options($data)
                                                 'font' => $data['facebook_send_font']),
                       'gree' => array('button_type' => $data['gree_button_type'],
                                         'button_size' => $data['gree_button_size']),
+                      'evernote' => array('button_type' => $data['evernote_button_type']),
+                      'tumblr' => array('button_type' => $data['tumblr_button_type']),
+                      'atode' => array('button_type' => $data['atode_button_type']),
     );
     update_option( 'wp_social_bookmarking_light_options', $options );
     return $options;
