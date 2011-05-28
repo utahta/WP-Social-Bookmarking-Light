@@ -228,10 +228,23 @@ class WpSocialBookmarkingLight
      */
     function tumblr()
     {
-        $url = "http://www.tumblr.com/share?v=3&u={$this->encode_url}&t={$this->encode_title}";
-        $alt = __( "Share on Tumblr", WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN );
-        $icon = WP_SOCIAL_BOOKMARKING_LIGHT_IMAGES_URL."/tumblr.png";
-        return $this->link( $url, $alt, $icon, 16, 16 );
+        $options = wp_social_bookmarking_light_options();
+        $type = $options['tumblr']['button_type'];
+        $width = 'width:81px;';
+        switch($type){
+            case '1' : $width = 'width:81px;'; break;
+            case '2' : $width = 'width:61px;'; break;
+            case '3' : $width = 'width:129px;'; break;
+            case '4' : $width = 'width:20px;'; break;
+        }
+        return $this->link_raw('<a href="http://www.tumblr.com/share?v=3&u='.$this->encode_url.'&t='.$this->encode_title.'" '
+                            .'title="'.__l("Share on Tumblr").'" '
+                            .'style="display:inline-block; text-indent:-9999px; overflow:hidden; '
+                            .$width.' height:20px; '
+                            .'background:url(\'http://platform.tumblr.com/v1/share_'.$type.'.png\')'
+                            .' top left no-repeat transparent;">'
+                            .__l("Share on Tumblr")
+                            .'</a>');
     }
     
     /**
@@ -370,9 +383,7 @@ class WpSocialBookmarkingLight
                                     .' allowTransparency="true"></iframe>');
         }
         else{
-            $locale = ($locale == '' ? 'en_US' : $locale);
-            return $this->link_raw('<script src="http://connect.facebook.net/'.$locale.'/all.js#xfbml=1"></script>'
-                                    .'<fb:like '
+            return $this->link_raw('<fb:like '
                                     .'href="'.$this->url.'" '
                                     .'send="'.$send.'" '
                                     .'layout="button_count" '
@@ -394,11 +405,8 @@ class WpSocialBookmarkingLight
     	$url = $this->url;
     	$font = $options['facebook_send']['font'];
     	$colorscheme = $options['facebook_send']['colorscheme'];
-        $locale = $options['facebook']['locale'];
-        $locale = ($locale == '' ? 'en_US' : $locale);
         
-    	return $this->link_raw('<script src="http://connect.facebook.net/'.$locale.'/all.js#xfbml=1"></script>'
-    	                        .'<fb:send href="'.$url.'" font="'.$font.'" colorscheme="'.$colorscheme.'"></fb:send>');
+    	return $this->link_raw('<fb:send href="'.$url.'" font="'.$font.'" colorscheme="'.$colorscheme.'"></fb:send>');
     }
 
    /**
@@ -428,10 +436,12 @@ class WpSocialBookmarkingLight
      */
     function evernote()
     {
-        $icon = WP_SOCIAL_BOOKMARKING_LIGHT_IMAGES_URL."/evernote.png";
-        $script = "(function(){EN_CLIP_HOST='http://www.evernote.com';try{var x=document.createElement('SCRIPT');x.type='text/javascript';x.src=EN_CLIP_HOST+'/public/bookmarkClipper.js?'+(new Date().getTime()/100000);document.getElementsByTagName('head')[0].appendChild(x);}catch(e){location.href=EN_CLIP_HOST+'/clip.action?url='+encodeURIComponent(location.href)+'&title='+encodeURIComponent(document.title);}})();";
-        $img = "<img src='${icon}' width='16' height='16' />";
-        return $this->link_raw( "<a href='#' title='Clip to Evernote' onclick=\"${script} return false;\">${img}</a>" );
+        $options = wp_social_bookmarking_light_options();
+        $type = $options['evernote']['button_type'];
+        
+        return $this->link_raw('<a href="#" onclick="Evernote.doClip({ title:\''.$this->title.'\', url:\''.$this->url.'\' });return false;">'
+                                .'<img src="http://static.evernote.com/'.$type.'.png" />'
+								.'</a>');
     }
     
     /**
@@ -439,8 +449,10 @@ class WpSocialBookmarkingLight
      */
     function instapaper()
     {
-        $href = "javascript:function iprl5(){var d=document,z=d.createElement(&#039;scr&#039;+&#039;ipt&#039;),b=d.body,l=d.location;try{if(!b)throw(0);d.title=&#039;(Saving...) &#039;+d.title;z.setAttribute(&#039;src&#039;,l.protocol+&#039;//www.instapaper.com/j/GKo8MDzHWjRx?u=&#039;+encodeURIComponent(l.href)+&#039;&amp;t=&#039;+(new Date().getTime()));b.appendChild(z);}catch(e){alert(&#039;Please wait until the page has loaded.&#039;);}}iprl5();void(0)";
-        return $this->link_raw( '<a href="'.$href.'" class="wp_social_bookmarking_light_instapaper" style="line-height:17px !important" title="Read Later">Read Later</a>' );
+        return $this->link_raw('<iframe border="0" scrolling="no" width="78" height="17" allowtransparency="true" frameborder="0" '
+                                .'style="margin-bottom: -3px; z-index: 1338; border: 0px; background-color: transparent; overflow: hidden;" '
+                                .'src="http://www.instapaper.com/e2?url='.$this->encode_url.'&title='.$this->encode_title.'&description="'
+                                .'></iframe>');
     }
     
     /**
@@ -498,6 +510,21 @@ class WpSocialBookmarkingLight
                                  .'src="http://i.share.gree.jp/img/share/button/'.$btn_type.'_'.$size.'.png">'
                                  .'</a>');
     }
+    
+    /**
+     * @brief atode
+     */
+    function atode()
+    {
+    	$options = wp_social_bookmarking_light_options();
+        $type = $options['atode']['button_type'];
+        switch($type){
+            case 'iconsja': return $this->link_raw('<a href=\'http://atode.cc/\' onclick=\'javascript:(function(){var s=document.createElement("scr"+"ipt");s.charset="UTF-8";s.language="javascr"+"ipt";s.type="text/javascr"+"ipt";var d=new Date;s.src="http://atode.cc/bjs.php?d="+d.getMilliseconds();document.body.appendChild(s)})();return false;\'><img src="http://atode.cc/img/iconsja.gif" alt="email this" border="0" align="absmiddle" width="16" height="16"></a>');
+            case 'iconnja': return $this->link_raw('<a href=\'http://atode.cc/\' onclick=\'javascript:(function(){var s=document.createElement("scr"+"ipt");s.charset="UTF-8";s.language="javascr"+"ipt";s.type="text/javascr"+"ipt";var d=new Date;s.src="http://atode.cc/bjs.php?d="+d.getMilliseconds();document.body.appendChild(s)})();return false;\'><img src="http://atode.cc/img/iconnja.gif" alt="email this" border="0" align="absmiddle" width="66" height="20"></a>');
+            case 'iconnen': return $this->link_raw('<a href=\'http://atode.cc/\' onclick=\'javascript:(function(){var s=document.createElement("scr"+"ipt");s.charset="UTF-8";s.language="javascr"+"ipt";s.type="text/javascr"+"ipt";var d=new Date;s.src="http://atode.cc/bjs.php?d="+d.getMilliseconds();document.body.appendChild(s)})();return false;\'><img src="http://atode.cc/img/iconnen.gif" alt="email this" border="0" align="absmiddle" width="66" height="20"></a>');
+        }
+        return '';
+    }
 }
 
 /**
@@ -506,7 +533,7 @@ class WpSocialBookmarkingLight
  */
 function wp_social_bookmarking_light_get_class_methods(){
     $all_methods = get_class_methods('WpSocialBookmarkingLight');
-    $except_methods = array('WpSocialBookmarkingLight', 'to_utf8', 'link_raw', 'link', 'get_methods');
+    $except_methods = array('WpSocialBookmarkingLight', 'wpsocialbookmarkinglight', 'to_utf8', 'link_raw', 'link', 'get_methods');
     $methods = array();
     foreach($all_methods as $method){
         if(in_array($method, $except_methods)){

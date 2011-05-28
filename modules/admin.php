@@ -180,7 +180,7 @@ function wsbl_update_services(is_simply)
     jQuery("#services_id").val(vals);
     
     is_simply = is_simply || false;
-    var services = ['mixi', 'twitter', 'hatena_button', 'facebook_like', 'facebook_send', 'gree']
+    var services = ['mixi', 'twitter', 'hatena_button', 'facebook_like', 'facebook_send', 'gree', 'evernote', 'tumblr', 'atode'];
     for(var i in services){
         wsbl_tab_toggle(services[i], is_simply);
     }
@@ -274,6 +274,9 @@ function wp_social_bookmarking_light_options_page()
             <li id='hatena_button_settings'><a href="#tabs-4"><span><?php _el("hatena_button") ?></span></a></li>
             <li id='facebook_settings'><a href="#tabs-5"><span><?php _el("facebook") ?></span></a></li>
             <li id='gree_settings'><a href="#tabs-7"><span><?php _el("gree") ?></span></a></li>
+            <li id='evernote_settings'><a href="#tabs-8"><span><?php _el("evernote") ?></span></a></li>
+            <li id='tumblr_settings'><a href="#tabs-9"><span><?php _el("tumblr") ?></span></a></li>
+            <li id='atode_settings'><a href="#tabs-10"><span><?php _el("atode") ?></span></a></li>
         </ul>
 
         <!-- General -->
@@ -293,8 +296,8 @@ function wp_social_bookmarking_light_options_page()
                 <th scope="row"><?php _el('Singular') ?>:</th>
                 <td>
                 <select name='single_page'>
-                <option value='true' <?php if( $options['single_page'] == true ) echo 'selected'; ?>>Enabled</option>
-                <option value='false' <?php if( $options['single_page'] == false ) echo 'selected'; ?>>Disabled</option>
+                <option value='true' <?php if( $options['single_page'] == true ) echo 'selected'; ?>>Yes</option>
+                <option value='false' <?php if( $options['single_page'] == false ) echo 'selected'; ?>>No</option>
                 </select>
                 </td>
             </tr>
@@ -302,8 +305,29 @@ function wp_social_bookmarking_light_options_page()
                 <th scope="row"><?php _el('Page') ?>:</th>
                 <td>
                 <select name='is_page'>
-                <option value='true' <?php if( $options['is_page'] == true ) echo 'selected'; ?>>Enabled</option>
-                <option value='false' <?php if( $options['is_page'] == false ) echo 'selected'; ?>>Disabled</option>
+                <option value='true' <?php if( $options['is_page'] == true ) echo 'selected'; ?>>Yes</option>
+                <option value='false' <?php if( $options['is_page'] == false ) echo 'selected'; ?>>No</option>
+                </select>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row"><?php _el('Padding') ?>:</th>
+                <td>
+                Top:
+                <select name='style_padding_top'>
+                <?php 
+                for($i = 0; $i < 50; $i++){
+                    ?><option value='<?php echo $i ?>' <?php if( $options['style']['padding_top'] == $i ) echo 'selected'; ?>><?php echo $i?>px</option><?php
+                }
+                ?>
+                </select>
+                Bottom:
+                <select name='style_padding_bottom'>
+                <?php 
+                for($i = 0; $i < 50; $i++){
+                    ?><option value='<?php echo $i ?>' <?php if( $options['style']['padding_bottom'] == $i ) echo 'selected'; ?>><?php echo $i?>px</option><?php
+                }
+                ?>
                 </select>
                 </td>
             </tr>
@@ -485,8 +509,8 @@ function wp_social_bookmarking_light_options_page()
                 <th scope="row">Send button:<br> <span style="font-size:10px">(confirm width size)</span></th>
                 <td>
                 <select name='facebook_like_send'>
-                <option value='true' <?php if( $options['facebook_like']['send'] == true ) echo 'selected'; ?>>Enable</option>
-                <option value='false' <?php if( $options['facebook_like']['send'] == false ) echo 'selected'; ?>>Disable</option>
+                <option value='true' <?php if( $options['facebook_like']['send'] == true ) echo 'selected'; ?>>Yes</option>
+                <option value='false' <?php if( $options['facebook_like']['send'] == false ) echo 'selected'; ?>>No</option>
                 </select>
                 </td>
             </tr>
@@ -566,6 +590,66 @@ function wp_social_bookmarking_light_options_page()
             </tr>
             </table>
         </div>
+
+        <!-- evernote -->
+        <div id="tabs-8">
+            <table class='form-table'>
+            <tr>
+                <th scope="row">Button type:</th>
+                <td>
+                <select name='evernote_button_type' onchange='jQuery("#evernote_img").attr("src", "http://static.evernote.com/"+this.form.evernote_button_type.value+".png")'>
+                <?php
+                $button_types = array('article-clipper', 'article-clipper-remember', 'article-clipper-fr', 'article-clipper-es', 'article-clipper-jp', 'article-clipper-rus', 'site-mem-16');
+                foreach($button_types as $button_type){
+                    ?><option value='<?php echo $button_type ?>' <?php if( $options['evernote']['button_type'] == $button_type ) echo 'selected'; ?>><?php echo $button_type?></option><?php
+                }
+                ?>
+                </select>
+                <img id='evernote_img' style="vertical-align:middle" src='http://static.evernote.com/<?php echo $options['evernote']['button_type'] ?>.png'>
+                </td>
+            </tr>
+            </table>
+        </div>
+
+        <!-- tumblr -->
+        <div id="tabs-9">
+            <table class='form-table'>
+            <tr>
+                <th scope="row">Button type:</th>
+                <td>
+                <select name='tumblr_button_type' onchange='jQuery("#tumblr_img").attr("src", "http://platform.tumblr.com/v1/share_"+this.form.tumblr_button_type.value+".png")'>
+                <?php
+                $button_types = array('1', '2', '3', '4');
+                foreach($button_types as $button_type){
+                    ?><option value='<?php echo $button_type ?>' <?php if( $options['tumblr']['button_type'] == $button_type ) echo 'selected'; ?>>share_<?php echo $button_type?></option><?php
+                }
+                ?>
+                </select>
+                <img id='tumblr_img' style="vertical-align:middle" src='http://platform.tumblr.com/v1/share_<?php echo $options['tumblr']['button_type'] ?>.png'>
+                </td>
+            </tr>
+            </table>
+        </div>
+
+        <!-- atode -->
+        <div id="tabs-10">
+            <table class='form-table'>
+            <tr>
+                <th scope="row">Button type:</th>
+                <td>
+                <select name='atode_button_type' onchange='jQuery("#atode_img").attr("src", "http://atode.cc/img/"+this.form.atode_button_type.value+".gif")'>
+                <?php
+                $button_types = array('iconsja', 'iconnja', 'iconnen');
+                foreach($button_types as $button_type){
+                    ?><option value='<?php echo $button_type ?>' <?php if( $options['atode']['button_type'] == $button_type ) echo 'selected'; ?>><?php echo $button_type?></option><?php
+                }
+                ?>
+                </select>
+                <img id='atode_img' style="vertical-align:middle" src='http://atode.cc/img/<?php echo $options['atode']['button_type'] ?>.gif'>
+                </td>
+            </tr>
+            </table>
+        </div>
         
     </div>
     <p class="submit">
@@ -612,6 +696,7 @@ function wp_social_bookmarking_light_options_page()
     <tr><td>stumbleupon</td><td>StumbleUpon</td></tr>
     <tr><td>mixi</td><td>mixi Check (require <a href="http://developer.mixi.co.jp/connect/mixi_plugin/mixi_check/mixicheck" onclick="window.open('http://developer.mixi.co.jp/connect/mixi_plugin/mixi_check/mixicheck'); return false;" >mixi check key</a>)</td></tr>
     <tr><td>gree</td><td>GREE Social Feedback</td></tr>
+    <tr><td>atode</td><td>atode (toread)</td></tr>
     </table>
 </div>
 

@@ -81,15 +81,21 @@ function wp_social_bookmarking_light_wp_head()
 <?php
     }
     
+    // load javascript
+    // tumblr
+    if(in_array('tumblr', $services)){
+        ?><script type="text/javascript" src="http://platform.tumblr.com/v1/share.js"></script><?php
+    }
+
+    // css
+    $padding_top = $options['style']['padding_top'];
+    $padding_bottom = $options['style']['padding_bottom'];
 ?>
 <style type="text/css">
-div.wp_social_bookmarking_light{border:0 !important;padding:0 !important;margin:0 !important;}
-div.wp_social_bookmarking_light div{float:left !important;border:0 !important;padding:0 4px 0 0 !important;margin:0 !important;height:21px !important;text-indent:0 !important;}
+div.wp_social_bookmarking_light{border:0 !important;padding:<?php echo $padding_top ?>px 0 <?php echo $padding_bottom ?>px 0 !important;margin:0 !important;}
+div.wp_social_bookmarking_light div{float:left !important;border:0 !important;padding:0 4px 0px 0 !important;margin:0 !important;height:21px !important;text-indent:0 !important;}
 div.wp_social_bookmarking_light img{border:0 !important;padding:0;margin:0;vertical-align:top !important;}
 .wp_social_bookmarking_light_clear{clear:both !important;}
-a.wp_social_bookmarking_light_instapaper {display: inline-block;font-family: 'Lucida Grande', Verdana, sans-serif;font-weight: bold;font-size: 11px;-webkit-border-radius: 8px;-moz-border-radius: 8px;color: #fff;background-color: #626262;border: 1px solid #626262;padding: 0px 3px 0px;text-shadow: #3b3b3b 1px 1px 0px;min-width: 62px;text-align: center;vertical-align:top;line-height:21px;}
-a.wp_social_bookmarking_light_instapaper, a.wp_social_bookmarking_light_instapaper:hover, a.wp_social_bookmarking_light_instapaper:active, a.wp_social_bookmarking_light_instapaper:visited {color: #fff; text-decoration: none; outline: none;}
-.wp_social_bookmarking_light_instapaper:focus {outline: none;}
 </style>
 <!-- END: WP Social Bookmarking Light -->
 <?php
@@ -123,4 +129,34 @@ function wp_social_bookmarking_light_the_content( $content )
         return "{$content}{$out}";
     }
     return $content;
+}
+
+/**
+ * wp_footer function
+ */
+function wp_social_bookmarking_light_wp_footer()
+{
+?>
+<!-- BEGIN: WP Social Bookmarking Light -->
+<?php
+    // load options
+    $options = wp_social_bookmarking_light_options();
+    $services = explode(",", $options['services']);
+    
+    /*
+     * load javascript
+     */
+    // facebook
+    if(in_array('facebook_like', $services) || in_array('facebook_send', $services)){
+        $locale = $options['facebook']['locale'];
+        $locale = ($locale == '' ? 'en_US' : $locale);
+        echo '<script src="http://connect.facebook.net/'.$locale.'/all.js#xfbml=1"></script>'."\n";
+    }
+    // evernote
+    if(in_array('evernote', $services)){
+        echo '<script type="text/javascript" src="http://static.evernote.com/noteit.js"></script>'."\n";
+    }
+?>
+<!-- END: WP Social Bookmarking Light -->
+<?php
 }
