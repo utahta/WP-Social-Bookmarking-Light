@@ -86,6 +86,12 @@ function wp_social_bookmarking_light_wp_head()
     if(in_array('tumblr', $services)){
         ?><script type="text/javascript" src="http://platform.tumblr.com/v1/share.js"></script><?php
     }
+    // facebook
+    if(in_array('facebook_like', $services) || in_array('facebook_send', $services)){
+        $locale = $options['facebook']['locale'];
+        $locale = ($locale == '' ? 'en_US' : $locale);
+        echo '<script src="http://connect.facebook.net/'.$locale.'/all.js#xfbml=1"></script>'."\n";
+    }
 
     // css
     $padding_top = $options['style']['padding_top'];
@@ -146,12 +152,6 @@ function wp_social_bookmarking_light_wp_footer()
     /*
      * load javascript
      */
-    // facebook
-    if(in_array('facebook_like', $services) || in_array('facebook_send', $services)){
-        $locale = $options['facebook']['locale'];
-        $locale = ($locale == '' ? 'en_US' : $locale);
-        echo '<script src="http://connect.facebook.net/'.$locale.'/all.js#xfbml=1"></script>'."\n";
-    }
     // evernote
     if(in_array('evernote', $services)){
         echo '<script type="text/javascript" src="http://static.evernote.com/noteit.js"></script>'."\n";

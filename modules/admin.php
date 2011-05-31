@@ -57,7 +57,7 @@ function wp_social_bookmarking_light_admin_head()
     margin: 0px;
     padding: 3px;
 }
-.wsbl_options td{en
+.wsbl_options td{
     text-align: left;
     margin: 0px;
     padding: 3px;
