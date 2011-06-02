@@ -92,6 +92,11 @@ function wp_social_bookmarking_light_wp_head()
         $locale = ($locale == '' ? 'en_US' : $locale);
         echo '<script src="http://connect.facebook.net/'.$locale.'/all.js#xfbml=1"></script>'."\n";
     }
+    // Google +1
+    if(in_array('google_plus_one', $services)){
+        echo '<script src="http://apis.google.com/js/plusone.js"></script>'."\n";
+    }
+
 
     // css
     $padding_top = $options['style']['padding_top'];
