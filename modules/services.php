@@ -316,7 +316,7 @@ class WpSocialBookmarkingLight
         $options = wp_social_bookmarking_light_options();
         $button_size = $options['google_plus_one']['button_size'];
         $include_count = $options['google_plus_one']['count'] ? '' : 'count="false"';
-        $raw = '<g:plusone size="'.$button_size.'" '.$include_count.' href="'.$this->encode_url.'"></g:plusone>';
+        $raw = '<g:plusone size="'.$button_size.'" '.$include_count.' href="'.$this->url.'"></g:plusone>';
         return $this->link_raw($raw);
     }
 
