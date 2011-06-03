@@ -308,7 +308,15 @@ class WpSocialBookmarkingLight
         $icon = WP_SOCIAL_BOOKMARKING_LIGHT_IMAGES_URL."/google-buzz.png";
         return $this->link( $url, $alt, $icon, 16, 16 );
     }
-    
+    /**
+     * @brief Google Buzz
+     */
+    function google_plus_one()
+    {
+        $raw = '<g:plusone size="medium"></g:plusone>';
+        return $this->link_raw($raw);
+    }
+
     /**
      * @brief Delicious
      */
