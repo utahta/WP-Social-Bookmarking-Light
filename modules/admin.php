@@ -683,6 +683,7 @@ function wp_social_bookmarking_light_options_page()
     <tr><td>choix</td><td>Choix</td></tr>
     <tr><td>google</td><td>Google Bookmarks</td></tr>
     <tr><td>google_buzz</td><td>Google Buzz</td></tr>
+    <tr><td>google_plus_one</td><td>Google +1</td></tr>
     <tr><td>delicious</td><td>Delicious</td></tr>
     <tr><td>digg</td><td>Digg</td></tr>
     <tr><td>friendfeed</td><td>FriendFeed</td></tr>
