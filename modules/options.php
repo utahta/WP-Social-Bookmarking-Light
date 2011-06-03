@@ -53,6 +53,9 @@ function wp_social_bookmarking_light_default_options()
                   'evernote' => array('button_type' => 'article-clipper'),
                   'tumblr' => array('button_type' => '1'),
                   'atode' => array('button_type' => 'iconsja'),
+                  'google_plus_one' => array('button_size' => 'medium',
+                                                'lang' => 'en-US',
+                                                'count' => true),
     );
 }
 
@@ -88,8 +91,8 @@ function wp_social_bookmarking_light_save_options($data)
                       "single_page" => $data["single_page"] == 'true',
                       "is_page" => $data["is_page"] == 'true',
                       'style' => array('padding_top' => $data["style_padding_top"],
-                                    	'padding_bottom' => $data["style_padding_bottom"]),
-    				  "mixi" => array('check_key' => $data["mixi_check_key"],
+                                        'padding_bottom' => $data["style_padding_bottom"]),
+                      "mixi" => array('check_key' => $data["mixi_check_key"],
                                        'check_robots' => $data["mixi_check_robots"],
                                        'button' => $data['mixi_button']),
                       "twitter" => array('via' => $data['twitter_via'],
@@ -112,6 +115,9 @@ function wp_social_bookmarking_light_save_options($data)
                       'evernote' => array('button_type' => $data['evernote_button_type']),
                       'tumblr' => array('button_type' => $data['tumblr_button_type']),
                       'atode' => array('button_type' => $data['atode_button_type']),
+                      'google_plus_one' => array('button_size' => $data['google_plus_one_button_size'],
+                                                    'lang' => $data['google_plus_one_lang'],
+                                                    'count' => $data['google_plus_one_count'] == 'true'),
     );
     update_option( 'wp_social_bookmarking_light_options', $options );
     return $options;

@@ -94,9 +94,9 @@ function wp_social_bookmarking_light_wp_head()
     }
     // Google +1
     if(in_array('google_plus_one', $services)){
-        echo '<script src="http://apis.google.com/js/plusone.js"></script>'."\n";
+        $lang = $options['google_plus_one']['lang'];
+        echo '<script src="http://apis.google.com/js/plusone.js">{lang:\''.$lang.'\'}</script>'."\n";
     }
-
 
     // css
     $padding_top = $options['style']['padding_top'];
