@@ -68,14 +68,14 @@ function wp_social_bookmarking_light_admin_head()
     margin: 0;
     padding: 5px;
     overflow: auto;
-    width: 160px;
+    width: 165px;
     height: 240px;
     float: left;
     border: 1px solid #999;
     background-color: #FFF;
 }
 #wsbl_sortable li, #wsbl_draggable li{
-    width: 120px;
+    width: 135px;
     height: 20px;
     font-size: 12px;
     margin: 0px auto;
@@ -126,15 +126,15 @@ function wsbl_get_service_codes()
  */
 function wsbl_has_option(service_id)
 {
-	var services = wsbl_get_service_codes();
-	var facebook_id = ['facebook_like', 'facebook_send'];
-	if(jQuery.inArray(service_id, facebook_id) >= 0){
-		for(var i in facebook_id){
-			if(jQuery.inArray(facebook_id[i], services) >= 0){
-				return true;
-			}
-		}
-	}
+    var services = wsbl_get_service_codes();
+    var facebook_id = ['facebook_like', 'facebook_send'];
+    if(jQuery.inArray(service_id, facebook_id) >= 0){
+        for(var i in facebook_id){
+            if(jQuery.inArray(facebook_id[i], services) >= 0){
+                return true;
+            }
+        }
+    }
     return jQuery.inArray(service_id, services) >= 0;
 }
 
@@ -143,10 +143,10 @@ function wsbl_has_option(service_id)
  */
 function wsbl_get_tab_id(service_id)
 {
-	if(service_id == 'facebook_like' || service_id == 'facebook_send'){
-		return 'facebook';
-	}
-	return service_id;
+    if(service_id == 'facebook_like' || service_id == 'facebook_send'){
+        return 'facebook';
+    }
+    return service_id;
 }
 
 /**
@@ -154,8 +154,8 @@ function wsbl_get_tab_id(service_id)
  */
 function wsbl_tab_toggle(service_id, is_simply)
 {
-	var has_option = wsbl_has_option(service_id);
-	var tab_id = wsbl_get_tab_id(service_id);
+    var has_option = wsbl_has_option(service_id);
+    var tab_id = wsbl_get_tab_id(service_id);
     
     var tab_id_settings = "#" + tab_id + "_settings";
     if(is_simply){
@@ -180,7 +180,7 @@ function wsbl_update_services(is_simply)
     jQuery("#services_id").val(vals);
     
     is_simply = is_simply || false;
-    var services = ['mixi', 'twitter', 'hatena_button', 'facebook_like', 'facebook_send', 'gree', 'evernote', 'tumblr', 'atode'];
+    var services = ['mixi', 'twitter', 'hatena_button', 'facebook_like', 'facebook_send', 'gree', 'evernote', 'tumblr', 'atode', 'google_plus_one'];
     for(var i in services){
         wsbl_tab_toggle(services[i], is_simply);
     }
@@ -248,7 +248,7 @@ jQuery(document).ready(function(){
 function wp_social_bookmarking_light_options_page()
 {
     if( isset( $_POST['save'] ) ){
-    	$options = wp_social_bookmarking_light_save_options($_POST);
+        $options = wp_social_bookmarking_light_save_options($_POST);
         echo '<div class="updated"><p><strong>'.__( 'Options saved.', WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN ).'</strong></p></div>';
     }
     else if( isset( $_POST['restore'] ) ){
@@ -277,6 +277,7 @@ function wp_social_bookmarking_light_options_page()
             <li id='evernote_settings'><a href="#tabs-8"><span><?php _el("evernote") ?></span></a></li>
             <li id='tumblr_settings'><a href="#tabs-9"><span><?php _el("tumblr") ?></span></a></li>
             <li id='atode_settings'><a href="#tabs-10"><span><?php _el("atode") ?></span></a></li>
+            <li id='google_plus_one_settings'><a href="#tabs-11"><span><?php _el("google_plus_one") ?></span></a></li>
         </ul>
 
         <!-- General -->
@@ -646,6 +647,90 @@ function wp_social_bookmarking_light_options_page()
                 ?>
                 </select>
                 <img id='atode_img' style="vertical-align:middle" src='http://atode.cc/img/<?php echo $options['atode']['button_type'] ?>.gif'>
+                </td>
+            </tr>
+            </table>
+        </div>
+
+        <!-- google +1 -->
+        <div id="tabs-11">
+            <table class='form-table'>
+            <tr>
+                <th scope="row">Button size:</th>
+                <td>
+                <select name='google_plus_one_button_size'>
+                <option value='small' <?php if( $options['google_plus_one']['button_size'] == 'small' ) echo 'selected'; ?>>small</option>
+                <option value='medium' <?php if( $options['google_plus_one']['button_size'] == 'medium' ) echo 'selected'; ?>>medium</option>
+                </select>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">Language:</th>
+                <td>
+                <select name='google_plus_one_lang'>
+                <?php 
+                $langs = array(
+                    "ar" => "Arabic",
+                    "ar" => "Arabic",
+                    "bg" => "Bulgarian",
+                    "ca" => "Catalan",
+                    "zh-CN" => "Chinese (Simplified)",
+                    "zh-TW" => "Chinese (Traditional)",
+                    "hr" => "Croatian",
+                    "cs" => "Czech",
+                    "da" => "Danish",
+                    "nl" => "Dutch",
+                    "en-US" => "English (US)",
+                    "en-GB" => "English (UK)",
+                    "et" => "Estonian",
+                    "fil" => "Filipino",
+                    "fi" => "Finnish",
+                    "fr" => "French",
+                    "de" => "German",
+                    "el" => "Greek",
+                    "iw" => "Hebrew",
+                    "hi" => "Hindi",
+                    "hu" => "Hungarian",
+                    "id" => "Indonesian",
+                    "it" => "Italian",
+                    "ja" => "Japanese",
+                    "ko" => "Korean",
+                    "lv" => "Latvian",
+                    "lt" => "Lithuanian",
+                    "ms" => "Malay",
+                    "no" => "Norwegian",
+                    "fa" => "Persian",
+                    "pl" => "Polish",
+                    "pt-BR" => "Portuguese (Brazil)",
+                    "pt-PT" => "Portuguese (Portugal)",
+                    "ro" => "Romanian",
+                    "ru" => "Russian",
+                    "sr" => "Serbian",
+                    "sv" => "Swedish",
+                    "sk" => "Slovak",
+                    "sl" => "Slovenian",
+                    "es" => "Spanish",
+                    "es-419" => "Spanish (Latin America)",
+                    "th" => "Thai",
+                    "tr" => "Turkish",
+                    "uk" => "Ukrainian",
+                    "vi" => "Vietnamese",
+                );
+                foreach($langs as $key => $val){
+                    $selected = $options['google_plus_one']['lang'] == $key ? "selected" : "";
+                    echo "<option $selected value='$key'>$val</option>\n";
+                }
+                ?>
+                </select>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">Include count:</th>
+                <td>
+                <select name='google_plus_one_count'>
+                <option value='true' <?php if( $options['google_plus_one']['count'] == true ) echo 'selected'; ?>>Yes</option>
+                <option value='false' <?php if( $options['google_plus_one']['count'] == false ) echo 'selected'; ?>>No</option>
+                </select>
                 </td>
             </tr>
             </table>
