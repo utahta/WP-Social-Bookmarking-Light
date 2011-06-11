@@ -101,10 +101,11 @@ function wp_social_bookmarking_light_wp_head()
     // css
     $padding_top = $options['style']['padding_top'];
     $padding_bottom = $options['style']['padding_bottom'];
+    $float = $options['style']['float'];
 ?>
 <style type="text/css">
 div.wp_social_bookmarking_light{border:0 !important;padding:<?php echo $padding_top ?>px 0 <?php echo $padding_bottom ?>px 0 !important;margin:0 !important;}
-div.wp_social_bookmarking_light div{float:left !important;border:0 !important;padding:0 4px 0px 0 !important;margin:0 !important;height:21px !important;text-indent:0 !important;}
+div.wp_social_bookmarking_light div{float:<?php echo $float ?> !important;border:0 !important;padding:0 4px 0px 0 !important;margin:0 !important;height:21px !important;text-indent:0 !important;}
 div.wp_social_bookmarking_light img{border:0 !important;padding:0;margin:0;vertical-align:top !important;}
 .wp_social_bookmarking_light_clear{clear:both !important;}
 </style>
