@@ -309,7 +309,7 @@ class WpSocialBookmarkingLight
         return $this->link( $url, $alt, $icon, 16, 16 );
     }
     /**
-     * @brief Google Buzz
+     * @brief Google +1
      */
     function google_plus_one()
     {
@@ -491,6 +491,22 @@ class WpSocialBookmarkingLight
                                  ." data-button='{$data_button}'"
                                  ." data-key='{$data_key}'>Check</a>"
                                  .'<script type="text/javascript" src="http://static.mixi.jp/js/share.js"></script>' );
+    }
+    
+    /**
+     * @brief mixi Like
+     */
+    function mixi_like()
+    {
+        $options = wp_social_bookmarking_light_options();
+        $data_key = $options['mixi']['check_key'];
+        $width = $options['mixi_like']['width'];
+        
+        return $this->link_raw('<iframe src="http://plugins.mixi.jp/favorite.pl?href='.$this->encode_url.'&service_key='.$data_key.'" '
+                                .'scrolling="no" '
+                                .'frameborder="0" '
+            					.'allowTransparency="true" '
+                                .'style="border:0; overflow:hidden; width:'.$width.'px; height:20px;"></iframe>');
     }
     
     /**
