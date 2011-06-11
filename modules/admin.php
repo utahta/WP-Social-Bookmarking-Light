@@ -122,31 +122,32 @@ function wsbl_get_service_codes()
 }
 
 /**
+ * get tab id.
+ */
+function wsbl_get_tab_ids(service_id)
+{
+    if(service_id == 'facebook'){
+        return ['facebook', 'facebook_like', 'facebook_send'];
+    }
+    if(service_id == 'mixi'){
+        return ['mixi', 'mixi_like'];
+    }
+    return [service_id];
+}
+
+/**
  * has option
  */
 function wsbl_has_option(service_id)
 {
     var services = wsbl_get_service_codes();
-    var facebook_id = ['facebook_like', 'facebook_send'];
-    if(jQuery.inArray(service_id, facebook_id) >= 0){
-        for(var i in facebook_id){
-            if(jQuery.inArray(facebook_id[i], services) >= 0){
-                return true;
-            }
+    var ids = wsbl_get_tab_ids(service_id);
+    for(var i in ids){
+        if(jQuery.inArray(ids[i], services) >= 0){
+            return true;
         }
     }
-    return jQuery.inArray(service_id, services) >= 0;
-}
-
-/**
- * get tab id.
- */
-function wsbl_get_tab_id(service_id)
-{
-    if(service_id == 'facebook_like' || service_id == 'facebook_send'){
-        return 'facebook';
-    }
-    return service_id;
+    return false;
 }
 
 /**
@@ -155,7 +156,7 @@ function wsbl_get_tab_id(service_id)
 function wsbl_tab_toggle(service_id, is_simply)
 {
     var has_option = wsbl_has_option(service_id);
-    var tab_id = wsbl_get_tab_id(service_id);
+    var tab_id = service_id;
     
     var tab_id_settings = "#" + tab_id + "_settings";
     if(is_simply){
@@ -180,7 +181,7 @@ function wsbl_update_services(is_simply)
     jQuery("#services_id").val(vals);
     
     is_simply = is_simply || false;
-    var services = ['mixi', 'twitter', 'hatena_button', 'facebook_like', 'facebook_send', 'gree', 'evernote', 'tumblr', 'atode', 'google_plus_one'];
+    var services = ['mixi', 'twitter', 'hatena_button', 'facebook', 'gree', 'evernote', 'tumblr', 'atode', 'google_plus_one'];
     for(var i in services){
         wsbl_tab_toggle(services[i], is_simply);
     }
@@ -333,6 +334,15 @@ function wp_social_bookmarking_light_options_page()
                 </td>
             </tr>
             <tr>
+                <th scope="row"><?php _el('Float') ?>:</th>
+                <td>
+                <select name='style_float'>
+                <option value='left' <?php if( $options['style']['float'] == 'left' ) echo 'selected'; ?>><?php _el('float_left') ?></option>
+                <option value='right' <?php if( $options['style']['float'] == 'right' ) echo 'selected'; ?>><?php _el('float_right') ?></option>
+                </select>
+                </td>
+            </tr>
+            <tr>
                 <th scope="row"><?php _el('Services') ?>: <br/> <span style="font-size:10px">(drag-and-drop)</span></th>
                 <td>
                     <input type="text" id='services_id' name='services' value="<?php echo $options['services'] ?>"size=120 style="font-size:12px;" onclick="this.select(0, this.value.length)" readonly/>
@@ -374,6 +384,8 @@ function wp_social_bookmarking_light_options_page()
         
         <!-- mixi -->
         <div id="tabs-2">
+            <!-- General -->
+            <strong>General</strong>
             <table class='form-table'>
             <tr>
                 <th scope="row">Check Key:</th>
@@ -381,6 +393,12 @@ function wp_social_bookmarking_light_options_page()
                 <input type="text" name='mixi_check_key' value="<?php echo $options['mixi']["check_key"] ?>" size=50 />
                 </td>
             </tr>
+            </table>
+            <br/>
+            
+            <!-- mixi Check -->
+            <strong>mixi Check</strong>
+            <table class='form-table'>
             <tr>
                 <th scope="row">Check Robots:</th>
                 <td>
@@ -398,6 +416,16 @@ function wp_social_bookmarking_light_options_page()
                 </select>
                 </td>
             </tr>
+            </table>
+            <br/>
+			
+			<!-- mixi Like -->
+            <strong>mixi Like</strong>
+            <table class='form-table'>
+                <th scope="row">Width:</th>
+                <td>
+                <input type="text" name='mixi_like_width' value="<?php echo $options['mixi_like']["width"] ?>"/>
+                </td>
             </table>
         </div>
 
@@ -781,6 +809,7 @@ function wp_social_bookmarking_light_options_page()
     <tr><td>instapaper</td><td>Instapaper</td></tr>
     <tr><td>stumbleupon</td><td>StumbleUpon</td></tr>
     <tr><td>mixi</td><td>mixi Check (require <a href="http://developer.mixi.co.jp/connect/mixi_plugin/mixi_check/mixicheck" onclick="window.open('http://developer.mixi.co.jp/connect/mixi_plugin/mixi_check/mixicheck'); return false;" >mixi check key</a>)</td></tr>
+    <tr><td>mixi_like</td><td>mixi Like (require <a href="http://developer.mixi.co.jp/connect/mixi_plugin/mixi_check/mixicheck" onclick="window.open('http://developer.mixi.co.jp/connect/mixi_plugin/mixi_check/mixicheck'); return false;" >mixi check key</a>)</td></tr>
     <tr><td>gree</td><td>GREE Social Feedback</td></tr>
     <tr><td>atode</td><td>atode (toread)</td></tr>
     </table>
