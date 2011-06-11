@@ -32,7 +32,7 @@ function wp_social_bookmarking_light_default_options()
                   "mixi" => array('check_key' => '',
                                    'check_robots' => 'noimage',
                                    'button' => 'button-3'),
-                  'mixi_like' => array('width' => '450'),
+                  'mixi_like' => array('width' => '65'),
                   "twitter" => array('via' => "",
                                       'lang' => "en",
                                       'count' => 'horizontal',

@@ -502,7 +502,7 @@ class WpSocialBookmarkingLight
         $data_key = $options['mixi']['check_key'];
         $width = $options['mixi_like']['width'];
         
-        return $this->link_raw('<iframe src="http://plugins.mixi.jp/favorite.pl?href='.$this->encode_url.'&service_key='.$data_key.'" '
+        return $this->link_raw('<iframe src="http://plugins.mixi.jp/favorite.pl?href='.$this->encode_url.'&service_key='.$data_key.'&show_faces=false" '
                                 .'scrolling="no" '
                                 .'frameborder="0" '
             					.'allowTransparency="true" '

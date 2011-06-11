@@ -809,6 +809,7 @@ function wp_social_bookmarking_light_options_page()
     <tr><td>instapaper</td><td>Instapaper</td></tr>
     <tr><td>stumbleupon</td><td>StumbleUpon</td></tr>
     <tr><td>mixi</td><td>mixi Check (require <a href="http://developer.mixi.co.jp/connect/mixi_plugin/mixi_check/mixicheck" onclick="window.open('http://developer.mixi.co.jp/connect/mixi_plugin/mixi_check/mixicheck'); return false;" >mixi check key</a>)</td></tr>
+    <tr><td>mixi_like</td><td>mixi Like (require <a href="http://developer.mixi.co.jp/connect/mixi_plugin/mixi_check/mixicheck" onclick="window.open('http://developer.mixi.co.jp/connect/mixi_plugin/mixi_check/mixicheck'); return false;" >mixi check key</a>)</td></tr>
     <tr><td>gree</td><td>GREE Social Feedback</td></tr>
     <tr><td>atode</td><td>atode (toread)</td></tr>
     </table>
