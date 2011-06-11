@@ -333,6 +333,15 @@ function wp_social_bookmarking_light_options_page()
                 </td>
             </tr>
             <tr>
+                <th scope="row"><?php _el('Float') ?>:</th>
+                <td>
+                <select name='style_float'>
+                <option value='left' <?php if( $options['style']['float'] == 'left' ) echo 'selected'; ?>>left</option>
+                <option value='right' <?php if( $options['style']['float'] == 'right' ) echo 'selected'; ?>>right</option>
+                </select>
+                </td>
+            </tr>
+            <tr>
                 <th scope="row"><?php _el('Services') ?>: <br/> <span style="font-size:10px">(drag-and-drop)</span></th>
                 <td>
                     <input type="text" id='services_id' name='services' value="<?php echo $options['services'] ?>"size=120 style="font-size:12px;" onclick="this.select(0, this.value.length)" readonly/>
