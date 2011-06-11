@@ -197,3 +197,12 @@ msgstr "説明"
 msgid "Padding"
 msgstr "上下の間隔"
 
+msgid "Float"
+msgstr "整列"
+
+msgid "float_left"
+msgstr "左揃え"
+
+msgid "float_right"
+msgstr "右揃え"
+
