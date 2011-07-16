@@ -90,12 +90,12 @@ function wp_social_bookmarking_light_wp_head()
     if(in_array('facebook_like', $services) || in_array('facebook_send', $services)){
         $locale = $options['facebook']['locale'];
         $locale = ($locale == '' ? 'en_US' : $locale);
-        echo '<script src="http://connect.facebook.net/'.$locale.'/all.js#xfbml=1"></script>'."\n";
+        echo '<script type="text/javascript" src="http://connect.facebook.net/'.$locale.'/all.js#xfbml=1"></script>'."\n";
     }
     // Google +1
     if(in_array('google_plus_one', $services)){
         $lang = $options['google_plus_one']['lang'];
-        echo '<script src="http://apis.google.com/js/plusone.js">{lang:\''.$lang.'\'}</script>'."\n";
+        echo '<script type="text/javascript" src="http://apis.google.com/js/plusone.js">{lang:\''.$lang.'\'}</script>'."\n";
     }
 
     // css
