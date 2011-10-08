@@ -563,13 +563,13 @@ class WpSocialBookmarkingLight
 		$title = $this->title;
 		$button_type = $options['atode']['button_type'];
 		
-		return '<div class="growbutton">' . 
+		return '<span class="growbutton">' . 
 		   '<span style="display: none;" itemscope itemref="' . $button_type . '" itemtype="http://growbutton.com/ns#button">'.
 		   '<span itemprop="url">' . $link . '</span>'.
 		   '<span itemprop="title">' . $title . '</span>'.
 		   '<span itemprop="image"></span>' . 
 		   '<span itemprop="site_name">'. $site_name . '</span>'.
-		   '</div>';
+		   '</span>';
 	}
 }
 
