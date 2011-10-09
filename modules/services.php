@@ -31,12 +31,12 @@ class WpSocialBookmarkingLight
     function WpSocialBookmarkingLight( $url, $title, $blogname )
     {
         $title = $this->to_utf8( $title );
-        $blogname = $this->to_utf8( $blogname );
+        $this->blogname = $this->to_utf8( $blogname );
         $this->url = $url;
         $this->title = $title;
         $this->encode_url = rawurlencode( $url );
         $this->encode_title = rawurlencode( $title );
-        $this->encode_blogname = rawurlencode( $blogname );
+        $this->encode_blogname = rawurlencode( $this->blogname );
     }
     
     function to_utf8( $str )
@@ -552,6 +552,25 @@ class WpSocialBookmarkingLight
         }
         return '';
     }
+
+	/**
+	 * @brief grow!
+	 */
+	function grow()
+	{
+		$site_name = $this->blogname;
+		$link = $this->url;
+		$title = $this->title;
+		$button_type = $options['grow']['button_type'];
+		
+		return '<span class="growbutton">' . 
+		   '<span style="display: none;" itemscope itemref="' . $button_type . '" itemtype="http://growbutton.com/ns#button">'.
+		   '<span itemprop="url">' . $link . '</span>'.
+		   '<span itemprop="title">' . $title . '</span>'.
+		   '<span itemprop="image"></span>' . 
+		   '<span itemprop="site_name">'. $site_name . '</span>'.
+		   '</span>';
+	}
 }
 
 /**
