@@ -181,7 +181,7 @@ function wsbl_update_services(is_simply)
     jQuery("#services_id").val(vals);
     
     is_simply = is_simply || false;
-    var services = ['mixi', 'twitter', 'hatena_button', 'facebook', 'gree', 'evernote', 'tumblr', 'atode', 'google_plus_one'];
+    var services = ['mixi', 'twitter', 'hatena_button', 'facebook', 'gree', 'evernote', 'tumblr', 'atode', 'google_plus_one', 'grow'];
     for(var i in services){
         wsbl_tab_toggle(services[i], is_simply);
     }
@@ -279,7 +279,7 @@ function wp_social_bookmarking_light_options_page()
             <li id='tumblr_settings'><a href="#tabs-9"><span><?php _el("tumblr") ?></span></a></li>
             <li id='atode_settings'><a href="#tabs-10"><span><?php _el("atode") ?></span></a></li>
             <li id='google_plus_one_settings'><a href="#tabs-11"><span><?php _el("google_plus_one") ?></span></a></li>
-            <li id='grow_button_settings'><a href="#tabs-12"><span><?php _el("grow") ?></span></a></li>
+            <li id='grow_settings'><a href="#tabs-12"><span><?php _el("grow") ?></span></a></li>
         </ul>
 
         <!-- General -->
