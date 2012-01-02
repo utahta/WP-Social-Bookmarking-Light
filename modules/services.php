@@ -561,13 +561,15 @@ class WpSocialBookmarkingLight
 		$site_name = get_bloginfo('name');
 		$link = $this->url;
 		$title = $this->title;
-		$button_type = $options['atode']['button_type'];
+		$button_type = $options['grow']['button_type'];
+		$image_id = get_post_thumbnail_id();
+    	$image_url = wp_get_attachment_image_src($image_id,'thumbnail', true);
 		
 		return '<span class="growbutton">' . 
 		   '<span style="display: none;" itemscope itemref="' . $button_type . '" itemtype="http://growbutton.com/ns#button">'.
 		   '<span itemprop="url">' . $link . '</span>'.
 		   '<span itemprop="title">' . $title . '</span>'.
-		   '<span itemprop="image"></span>' . 
+		   '<span itemprop="image">' . $image_url[0] . '</span>' . 
 		   '<span itemprop="site_name">'. $site_name . '</span>'.
 		   '</span>';
 	}

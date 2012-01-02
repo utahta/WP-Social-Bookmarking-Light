@@ -165,7 +165,7 @@ function wp_social_bookmarking_light_wp_footer()
 
 	if(in_array('grow', $services)){
 		$apikey = $options['grow']['apikey'];
-		if($apikey){
+		if($apikey && !is_preview()){
 			echo '<script type="text/javascript" src="http://growbutton.com/javascripts/button.js?apikey=' . $apikey . '&shape=' . $options['grow']['button_type'] .'&insert=false"></script>';
 		}
 	}
