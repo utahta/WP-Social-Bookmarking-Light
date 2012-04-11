@@ -5,7 +5,7 @@ Plugin URI: http://www.ninxit.com/blog/2010/06/13/wp-social-bookmarking-light/
 Description: This plugin inserts social share links at the top or bottom of each post.
 Author: utahta
 Author URI: http://www.ninxit.com/blog/
-Version: 1.6.9
+Version: 1.7.1
 */
 /*
 Copyright 2010 utahta (email : labs.ninxit@gmail.com)

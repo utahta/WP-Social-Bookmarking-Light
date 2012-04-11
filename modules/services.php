@@ -31,12 +31,12 @@ class WpSocialBookmarkingLight
     function WpSocialBookmarkingLight( $url, $title, $blogname )
     {
         $title = $this->to_utf8( $title );
-        $blogname = $this->to_utf8( $blogname );
+        $this->blogname = $this->to_utf8( $blogname );
         $this->url = $url;
         $this->title = $title;
         $this->encode_url = rawurlencode( $url );
         $this->encode_title = rawurlencode( $title );
-        $this->encode_blogname = rawurlencode( $blogname );
+        $this->encode_blogname = rawurlencode( $this->blogname );
     }
     
     function to_utf8( $str )
@@ -89,7 +89,7 @@ class WpSocialBookmarkingLight
                                 .' title="'.$alt.'">'
                                 .' <img src="http://b.st-hatena.com/images/entry-button/button-only.gif"'
                                 .' alt="'.$alt.'" width="20" height="20" style="border: none;" /></a>'
-                                .'<script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button.js" charset="utf-8" async="async"></script>');
+                                .'<script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button_wo_al.js" charset="utf-8" async="async"></script>');
     }
     
     /**
@@ -558,7 +558,7 @@ class WpSocialBookmarkingLight
 	 */
 	function grow()
 	{
-		$site_name = get_bloginfo('name');
+		$site_name = $this->blogname;
 		$link = $this->url;
 		$title = $this->title;
 		$button_type = $options['grow']['button_type'];
