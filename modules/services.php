@@ -567,7 +567,6 @@ class WpSocialBookmarkingLight
 		   '<span style="display: none;" itemscope itemref="' . $button_type . '" itemtype="http://growbutton.com/ns#button">'.
 		   '<span itemprop="url">' . $link . '</span>'.
 		   '<span itemprop="title">' . $title . '</span>'.
-		   '<span itemprop="image"></span>' . 
 		   '<span itemprop="site_name">'. $site_name . '</span>'.
 		   '</span>';
 	}
