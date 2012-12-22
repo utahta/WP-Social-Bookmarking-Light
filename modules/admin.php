@@ -270,6 +270,7 @@ function wp_social_bookmarking_light_options_page()
     <div id="tabs">
         <ul>
             <li><a href="#tabs-1"><span><?php _e("General Settings") ?></span></a></li>
+            <li><a href="#tabs-1_2"><span><?php _e("Styles") ?></span></a></li>
             <li id='mixi_settings'><a href="#tabs-2"><span><?php _el("mixi") ?></span></a></li>
             <li id='twitter_settings'><a href="#tabs-3"><span><?php _el("twitter") ?></span></a></li>
             <li id='hatena_button_settings'><a href="#tabs-4"><span><?php _el("hatena_button") ?></span></a></li>
@@ -313,36 +314,6 @@ function wp_social_bookmarking_light_options_page()
                 </td>
             </tr>
             <tr>
-                <th scope="row"><?php _el('Padding') ?>:</th>
-                <td>
-                Top:
-                <select name='style_padding_top'>
-                <?php 
-                for($i = 0; $i < 50; $i++){
-                    ?><option value='<?php echo $i ?>' <?php if( $options['style']['padding_top'] == $i ) echo 'selected'; ?>><?php echo $i?>px</option><?php
-                }
-                ?>
-                </select>
-                Bottom:
-                <select name='style_padding_bottom'>
-                <?php 
-                for($i = 0; $i < 50; $i++){
-                    ?><option value='<?php echo $i ?>' <?php if( $options['style']['padding_bottom'] == $i ) echo 'selected'; ?>><?php echo $i?>px</option><?php
-                }
-                ?>
-                </select>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row"><?php _el('Float') ?>:</th>
-                <td>
-                <select name='style_float'>
-                <option value='left' <?php if( $options['style']['float'] == 'left' ) echo 'selected'; ?>><?php _el('float_left') ?></option>
-                <option value='right' <?php if( $options['style']['float'] == 'right' ) echo 'selected'; ?>><?php _el('float_right') ?></option>
-                </select>
-                </td>
-            </tr>
-            <tr>
                 <th scope="row"><?php _el('Services') ?>: <br/> <span style="font-size:10px">(drag-and-drop)</span></th>
                 <td>
                     <input type="text" id='services_id' name='services' value="<?php echo $options['services'] ?>"size=120 style="font-size:12px;" onclick="this.select(0, this.value.length)" readonly/>
@@ -378,6 +349,18 @@ function wp_social_bookmarking_light_options_page()
                     </ul>
                     <br clear="both"/>
                 </td>
+            </tr>
+            </table>
+        </div>
+        
+        <!-- Styles -->
+        <div id="tabs-1_2">
+            <table class='form-table'>
+            <tr>
+	            <th scope="row">Custom CSS:</th>
+            	<td>
+            		<textarea name="styles" rows="20" cols="80"><?php echo $options['styles'] ?></textarea>
+            	</td>
             </tr>
             </table>
         </div>
@@ -422,10 +405,12 @@ function wp_social_bookmarking_light_options_page()
 			<!-- mixi Like -->
             <strong>mixi Like</strong>
             <table class='form-table'>
+            <tr>
                 <th scope="row">Width:</th>
                 <td>
                 <input type="text" name='mixi_like_width' value="<?php echo $options['mixi_like']["width"] ?>"/>
                 </td>
+            </tr>
             </table>
         </div>
 
@@ -457,18 +442,6 @@ function wp_social_bookmarking_light_options_page()
                 <option value='none' <?php if( $options['twitter']['count'] == 'none' ) echo 'selected'; ?>>none</option>
                 <option value='horizontal' <?php if( $options['twitter']['count'] == 'horizontal' ) echo 'selected'; ?>>horizontal</option>
                 </select>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">Width:</th>
-                <td>
-                <input type="text" name='twitter_width' value="<?php echo $options['twitter']['width'] ?>" size=20 />
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">Height:</th>
-                <td>
-                <input type="text" name='twitter_height' value="<?php echo $options['twitter']['height'] ?>" size=20 />
                 </td>
             </tr>
             </table>
