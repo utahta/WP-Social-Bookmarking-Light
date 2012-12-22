@@ -181,7 +181,7 @@ function wsbl_update_services(is_simply)
     jQuery("#services_id").val(vals);
     
     is_simply = is_simply || false;
-    var services = ['mixi', 'twitter', 'hatena_button', 'facebook', 'gree', 'evernote', 'tumblr', 'atode', 'google_plus_one'];
+    var services = ['mixi', 'twitter', 'hatena_button', 'facebook', 'gree', 'evernote', 'tumblr', 'atode', 'google_plus_one', 'line'];
     for(var i in services){
         wsbl_tab_toggle(services[i], is_simply);
     }
@@ -280,7 +280,8 @@ function wp_social_bookmarking_light_options_page()
             <li id='tumblr_settings'><a href="#tabs-9"><span><?php _el("tumblr") ?></span></a></li>
             <li id='atode_settings'><a href="#tabs-10"><span><?php _el("atode") ?></span></a></li>
             <li id='google_plus_one_settings'><a href="#tabs-11"><span><?php _el("google_plus_one") ?></span></a></li>
-        </ul>
+            <li id='line_settings'><a href="#tabs-12"><span><?php _el("line") ?></span></a></li>
+            </ul>
 
         <!-- General -->
         <div id="tabs-1">
@@ -736,6 +737,26 @@ function wp_social_bookmarking_light_options_page()
             </tr>
             </table>
         </div>
+
+        <!-- line -->
+        <div id="tabs-12">
+            <table class='form-table'>
+            <tr>
+                <th scope="row">Button type:</th>
+                <td>
+                <select name='line_button_type' onchange='jQuery("#line_img").attr("src", "<?php echo WP_SOCIAL_BOOKMARKING_LIGHT_IMAGES_URL ?>/"+this.form.line_button_type.value+".png")'>
+                <?php
+                $button_types = array('line20x20', 'line88x20');
+                foreach($button_types as $button_type){
+                    ?><option value='<?php echo $button_type ?>' <?php if( $options['line']['button_type'] == $button_type ) echo 'selected'; ?>><?php echo $button_type?></option><?php
+                }
+                ?>
+                </select>
+                <img id='line_img' style="vertical-align:middle" src='<?php echo WP_SOCIAL_BOOKMARKING_LIGHT_IMAGES_URL."/".$options['line']['button_type'] ?>.png'>
+                </td>
+            </tr>
+            </table>
+        </div>
         
     </div>
     <p class="submit">
@@ -785,6 +806,7 @@ function wp_social_bookmarking_light_options_page()
     <tr><td>mixi_like</td><td>mixi Like (require <a href="http://developer.mixi.co.jp/connect/mixi_plugin/mixi_check/mixicheck" onclick="window.open('http://developer.mixi.co.jp/connect/mixi_plugin/mixi_check/mixicheck'); return false;" >mixi check key</a>)</td></tr>
     <tr><td>gree</td><td>GREE Social Feedback</td></tr>
     <tr><td>atode</td><td>atode (toread)</td></tr>
+    <tr><td>line</td><td>LINE Button</td></tr>
     </table>
 </div>
 

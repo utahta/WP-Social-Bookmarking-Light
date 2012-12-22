@@ -44,6 +44,9 @@ function wp_social_bookmarking_light_default_options()
 .wp_social_bookmarking_light_clear{
     clear: both !important;
 }
+.wsbl_twitter{
+    width: 100px;
+}
 EOT;
     
     return array( "services" => "hatena_button, twitter, facebook_like, google_plus_one",
@@ -78,6 +81,7 @@ EOT;
                   'google_plus_one' => array('button_size' => 'medium',
                                                 'lang' => 'en-US',
                                                 'count' => true),
+                  'line' => array('button_type' => 'line88x20'),
     );
 }
 
@@ -138,6 +142,7 @@ function wp_social_bookmarking_light_save_options($data)
                       'google_plus_one' => array('button_size' => $data['google_plus_one_button_size'],
                                                     'lang' => $data['google_plus_one_lang'],
                                                     'count' => $data['google_plus_one_count'] == 'true'),
+                      'line' => array('button_type' => $data['line_button_type']),
     );
     update_option( 'wp_social_bookmarking_light_options', $options );
     return $options;

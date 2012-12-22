@@ -136,7 +136,7 @@ class WpSocialBookmarkingLight
                                 .($twitter['via'] != '' ? '&amp;via='.$twitter['via'] : '')
                                 .'&amp;lang='.$twitter['lang']
                                 .'&amp;count='.$twitter['count']
-                                .'">'
+                                .'" style="width:130px; height:20px;">'
                                 .'</iframe>');
     }
 
@@ -548,6 +548,25 @@ class WpSocialBookmarkingLight
             case 'iconnen': return $this->link_raw('<a href=\'http://atode.cc/\' onclick=\'javascript:(function(){var s=document.createElement("scr"+"ipt");s.charset="UTF-8";s.language="javascr"+"ipt";s.type="text/javascr"+"ipt";var d=new Date;s.src="http://atode.cc/bjs.php?d="+d.getMilliseconds();document.body.appendChild(s)})();return false;\'><img src="http://atode.cc/img/iconnen.gif" alt="email this" border="0" align="absmiddle" width="66" height="20"></a>');
         }
         return '';
+    }
+    
+    /**
+     * @brief LINE
+     */
+    function line()
+    {
+    	$options = wp_social_bookmarking_light_options();
+    	if($options['line']['button_type'] == "line88x20"){
+    	    $icon = WP_SOCIAL_BOOKMARKING_LIGHT_IMAGES_URL."/line88x20.png";
+    	    $width = 88;
+    	    $height = 20;
+    	}
+    	else{
+    	    $icon = WP_SOCIAL_BOOKMARKING_LIGHT_IMAGES_URL."/line20x20.png";
+    	    $width = 20;
+    	    $height = 20;
+    	}
+    	return $this->link("http://line.naver.jp/R/msg/text/?{$this->title}%0D%0A{$this->url}", "LINEで送る", $icon, $width, $height);
     }
     
 }
