@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 function wp_social_bookmarking_light_default_options()
 {
-    return array( "services" => "hatena, hatena_users, facebook, google_buzz, yahoo, livedoor, friendfeed, tweetmeme, grow",
+    return array( "services" => "hatena_button, twitter, facebook, google_plus_one",
                   "position" => "top",
                   "single_page" => true,
                   "is_page" => true,
@@ -58,8 +58,6 @@ function wp_social_bookmarking_light_default_options()
                   'google_plus_one' => array('button_size' => 'medium',
                                                 'lang' => 'en-US',
                                                 'count' => true),
-                  'grow' => array('button_type' => 'square' ,
-				  					  'apikey' => ''),
     );
 }
 
@@ -124,8 +122,6 @@ function wp_social_bookmarking_light_save_options($data)
                       'google_plus_one' => array('button_size' => $data['google_plus_one_button_size'],
                                                     'lang' => $data['google_plus_one_lang'],
                                                     'count' => $data['google_plus_one_count'] == 'true'),
-                      'grow' => array('button_type' => $data['grow_button_type'] ,
-				  					  'apikey' => $data['grow_apikey']),
     );
     update_option( 'wp_social_bookmarking_light_options', $options );
     return $options;

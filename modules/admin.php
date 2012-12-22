@@ -181,7 +181,7 @@ function wsbl_update_services(is_simply)
     jQuery("#services_id").val(vals);
     
     is_simply = is_simply || false;
-    var services = ['mixi', 'twitter', 'hatena_button', 'facebook', 'gree', 'evernote', 'tumblr', 'atode', 'google_plus_one', 'grow'];
+    var services = ['mixi', 'twitter', 'hatena_button', 'facebook', 'gree', 'evernote', 'tumblr', 'atode', 'google_plus_one'];
     for(var i in services){
         wsbl_tab_toggle(services[i], is_simply);
     }
@@ -279,7 +279,6 @@ function wp_social_bookmarking_light_options_page()
             <li id='tumblr_settings'><a href="#tabs-9"><span><?php _el("tumblr") ?></span></a></li>
             <li id='atode_settings'><a href="#tabs-10"><span><?php _el("atode") ?></span></a></li>
             <li id='google_plus_one_settings'><a href="#tabs-11"><span><?php _el("google_plus_one") ?></span></a></li>
-            <li id='grow_settings'><a href="#tabs-12"><span><?php _el("grow") ?></span></a></li>
         </ul>
 
         <!-- General -->
@@ -765,24 +764,6 @@ function wp_social_bookmarking_light_options_page()
             </table>
         </div>
         
-		<!-- grow! button  -->
-		<div id="tabs-12">
-            <table class='form-table'>
-	            <tr>
-	            	<th scope="row">apikey</th>
-	            	<td> <input type="text" name='grow_apikey' value="<?php echo $options['grow']["apikey"] ?>" size=50 /></td>
-	            </tr>
-	            <tr>
-	            	<th scope="row">Button type</th>
-	            	<td>
-						<input id="square" type="radio" name="grow_button_type" value="square" <?php if('square' == $options['grow']["button_type"]):?> checked="checked" <?php endif; ?>><label for="square">Square</label>
-						<br/>
-						<input id="rectangle" type="radio" name="grow_button_type" value="rectangle" <?php if('rectangle' == $options['grow']["button_type"]):?> checked="checked" <?php endif; ?>><label for="rectangle">Rectangle</label>
-					</td>
-	            </tr>
-            </table>
-		</div>
-        
     </div>
     <p class="submit">
     <input class="button-primary" type="submit" name='save' value='<?php _e('Save Changes') ?>' />
@@ -831,7 +812,6 @@ function wp_social_bookmarking_light_options_page()
     <tr><td>mixi_like</td><td>mixi Like (require <a href="http://developer.mixi.co.jp/connect/mixi_plugin/mixi_check/mixicheck" onclick="window.open('http://developer.mixi.co.jp/connect/mixi_plugin/mixi_check/mixicheck'); return false;" >mixi check key</a>)</td></tr>
     <tr><td>gree</td><td>GREE Social Feedback</td></tr>
     <tr><td>atode</td><td>atode (toread)</td></tr>
-    <tr><td>grow!</td><td>grow! button (require <a href="http://growbutton.com/setting#!get_button"  onclick="window.open('http://growbutton.com/setting#!get_button'); return false;" >apikey</a>)</td></tr>
     </table>
 </div>
 

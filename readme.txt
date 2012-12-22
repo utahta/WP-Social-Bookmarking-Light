@@ -1,7 +1,7 @@
 === WP Social Bookmarking Light ===
 Contributors: utahvich
 Donate link:
-Tags: links, social, bookmarks, bookmarking, Hatena, Livedoor Clip, BuzzURL, @nifty clip, Twitter, Tumblr, FC2 Bookmark, newsing, Choix, Yahoo!JAPAN Bookmark, Yahoo!Buzz, Google Bookmark, Delicious, Digg, FriendFeed, Google Buzz, Facebook, reddit, LinkedIn, Evernote, Instapaper, StumbleUpon, mixi, gree, atode, toread, grow!
+Tags: links, social, bookmarks, bookmarking, Hatena, Livedoor Clip, BuzzURL, @nifty clip, Twitter, Tumblr, FC2 Bookmark, newsing, Choix, Yahoo!JAPAN Bookmark, Yahoo!Buzz, Google Bookmark, Delicious, Digg, FriendFeed, Google Buzz, Facebook, reddit, LinkedIn, Evernote, Instapaper, StumbleUpon, mixi, gree, atode, toread
 Requires at least: 2.9.0
 Tested up to: 3.1.2
 Stable tag: 1.7.2
@@ -43,7 +43,6 @@ This is the list of used social sites:
 *  mixi Like
 *  GREE Social Feedback
 *  atode (toread)
-*  Grow!
 
 == Installation ==
 
