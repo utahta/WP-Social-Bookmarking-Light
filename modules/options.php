@@ -22,7 +22,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
  */
 function wp_social_bookmarking_light_default_options()
 {
-    return array( "services" => "hatena_button, twitter, facebook, google_plus_one",
+    return array( "services" => "hatena_button, twitter, facebook_like, google_plus_one",
                   "position" => "top",
                   "single_page" => true,
                   "is_page" => true,

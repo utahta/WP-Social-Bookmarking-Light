@@ -33,7 +33,7 @@ function wp_social_bookmarking_light_output( $services, $link, $title )
         $service = trim($service);
         if($service != ''){
             if(in_array($service, $class_methods)){
-                $out .= '<div>'.call_user_func( array( $wp, $service ) ).'</div>'; // A WpSocialBookmarkingLight method is called.
+                $out .= '<div class="wpsbl_'.$service.'">'.call_user_func( array( $wp, $service ) ).'</div>'; // WpSocialBookmarkingLight method
             }
             else{
                 $out .= "<div>[`$service` not found]</div>";

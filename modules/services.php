@@ -129,8 +129,6 @@ class WpSocialBookmarkingLight
     {
         $options = wp_social_bookmarking_light_options();
         $twitter = $options['twitter'];
-        $width = $twitter['width'] != '' ? $twitter['width'] : '120';
-        $height = $twitter['height'] != '' ? $twitter['height'] : '20';
         return $this->link_raw('<iframe allowtransparency="true" frameborder="0" scrolling="no"'
                                 .' src="http://platform.twitter.com/widgets/tweet_button.html'
                                 .'?url='.$this->encode_url
@@ -138,8 +136,7 @@ class WpSocialBookmarkingLight
                                 .($twitter['via'] != '' ? '&amp;via='.$twitter['via'] : '')
                                 .'&amp;lang='.$twitter['lang']
                                 .'&amp;count='.$twitter['count']
-                                .'"'
-                                .' style="width:'.$width.'px; height:'.$twitter['height'].'px;">'
+                                .'">'
                                 .'</iframe>');
     }
 
@@ -552,7 +549,7 @@ class WpSocialBookmarkingLight
         }
         return '';
     }
-
+    
 }
 
 /**
