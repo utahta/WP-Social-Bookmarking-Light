@@ -49,7 +49,7 @@ function wp_social_bookmarking_light_default_options()
 }
 EOT;
     
-    return array( "services" => "hatena_button, twitter, facebook_like, google_plus_one",
+    return array( "services" => "hatena_button, facebook_like, twitter",
                   "styles" => $styles,
                   "position" => "top",
                   "single_page" => true,
