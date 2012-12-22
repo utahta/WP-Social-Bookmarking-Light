@@ -63,6 +63,7 @@ This is the list of used social sites:
 * Added: LINE Button
 * Improved: Custom CSS
 * Bug fixed: Facebook Like Button (iframe)
+* Removed: Grow! Button
 
 = 1.7.2 =
 * Bug fixed: Grow! Button.
