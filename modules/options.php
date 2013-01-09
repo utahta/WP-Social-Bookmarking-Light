@@ -79,8 +79,9 @@ EOT;
                   'tumblr' => array('button_type' => '1'),
                   'atode' => array('button_type' => 'iconsja'),
                   'google_plus_one' => array('button_size' => 'medium',
-                                                'lang' => 'en-US',
-                                                'count' => true),
+                                             'lang' => 'en-US',
+                                             'annotation' => 'none',
+                                             'inline_size' => '250'),
                   'line' => array('button_type' => 'line88x20'),
     );
 }
@@ -140,8 +141,9 @@ function wp_social_bookmarking_light_save_options($data)
                       'tumblr' => array('button_type' => $data['tumblr_button_type']),
                       'atode' => array('button_type' => $data['atode_button_type']),
                       'google_plus_one' => array('button_size' => $data['google_plus_one_button_size'],
-                                                    'lang' => $data['google_plus_one_lang'],
-                                                    'count' => $data['google_plus_one_count'] == 'true'),
+                                                  'lang' => $data['google_plus_one_lang'],
+                                                  'annotation' => $data['google_plus_one_annotation'],
+                                                  'inline_size' => $data['google_plus_one_inline_size']),
                       'line' => array('button_type' => $data['line_button_type']),
     );
     update_option( 'wp_social_bookmarking_light_options', $options );

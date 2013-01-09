@@ -92,11 +92,6 @@ function wp_social_bookmarking_light_wp_head()
         $locale = ($locale == '' ? 'en_US' : $locale);
         echo '<script type="text/javascript" src="http://connect.facebook.net/'.$locale.'/all.js#xfbml=1"></script>'."\n";
     }
-    // Google +1
-    if(in_array('google_plus_one', $services)){
-        $lang = $options['google_plus_one']['lang'];
-        echo '<script type="text/javascript" src="http://apis.google.com/js/plusone.js">{lang:\''.$lang.'\'}</script>'."\n";
-    }
 
     // css
 ?>
@@ -134,6 +129,9 @@ function wp_social_bookmarking_light_the_content( $content )
     else if( $options['position'] == 'bottom' ){
         return "{$content}{$out}";
     }
+    else if( $options['position'] == 'both'){
+        return "{$out}{$content}{$out}";
+    }
     return $content;
 }
 
@@ -156,6 +154,22 @@ function wp_social_bookmarking_light_wp_footer()
     if(in_array('evernote', $services)){
         echo '<script type="text/javascript" src="http://static.evernote.com/noteit.js"></script>'."\n";
     }
+    // Google +1
+    if(in_array('google_plus_one', $services)){
+        $lang = $options['google_plus_one']['lang'];
+?>
+<script type="text/javascript">
+  window.___gcfg = {lang: <?php echo $lang ?>};
+
+  (function() {
+    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
+    po.src = 'https://apis.google.com/js/plusone.js';
+    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
+  })();
+</script>
+<?php
+    }
+    
 ?>
 <!-- END: WP Social Bookmarking Light -->
 <?php

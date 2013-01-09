@@ -292,6 +292,7 @@ function wp_social_bookmarking_light_options_page()
                 <select name='position'>
                 <option value='top' <?php if( $options['position'] == 'top' ) echo 'selected'; ?>>Top</option>
                 <option value='bottom' <?php if( $options['position'] == 'bottom' ) echo 'selected'; ?>>Bottom</option>
+                <option value='both' <?php if( $options['position'] == 'both' ) echo 'selected'; ?>>Both</option>
                 <option value='none' <?php if( $options['position'] == 'none' ) echo 'selected'; ?>>None</option>
                 </select>
                 </td>
@@ -727,14 +728,22 @@ function wp_social_bookmarking_light_options_page()
                 </td>
             </tr>
             <tr>
-                <th scope="row">Include count:</th>
+                <th scope="row">Annotation:</th>
                 <td>
-                <select name='google_plus_one_count'>
-                <option value='true' <?php if( $options['google_plus_one']['count'] == true ) echo 'selected'; ?>>Yes</option>
-                <option value='false' <?php if( $options['google_plus_one']['count'] == false ) echo 'selected'; ?>>No</option>
+                <select name='google_plus_one_annotation'>
+                <option value='none' <?php if( $options['google_plus_one']['annotation'] == "none" ) echo 'selected'; ?>>none</option>
+                <option value='bubble' <?php if( $options['google_plus_one']['annotation'] == "bubble" ) echo 'selected'; ?>>bubble</option>
+                <option value='inline' <?php if( $options['google_plus_one']['annotation'] == "inline" ) echo 'selected'; ?>>inline</option>
                 </select>
                 </td>
             </tr>
+            <tr>
+                <th scope="row">Inline size:</th>
+                <td>
+                <input type="text" name='google_plus_one_inline_size' value="<?php echo $options['google_plus_one']["inline_size"] ?>" />
+                </td>
+            </tr>
+            
             </table>
         </div>
 

@@ -312,8 +312,9 @@ class WpSocialBookmarkingLight
     {
         $options = wp_social_bookmarking_light_options();
         $button_size = $options['google_plus_one']['button_size'];
-        $include_count = $options['google_plus_one']['count'] ? '' : 'count="false"';
-        $raw = '<g:plusone size="'.$button_size.'" '.$include_count.' href="'.$this->url.'"></g:plusone>';
+        $annotation = $options['google_plus_one']['annotation'];
+        $width = $annotation == 'inline' ? 'width="'.$options['google_plus_one']['inline_size'].'"' : "";
+        $raw = '<g:plusone size="'.$button_size.'" annotation="'.$annotation.'" href="'.$this->url.'" '.$width.'></g:plusone>';
         return $this->link_raw($raw);
     }
 
