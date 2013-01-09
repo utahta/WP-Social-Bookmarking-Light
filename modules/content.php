@@ -159,7 +159,7 @@ function wp_social_bookmarking_light_wp_footer()
         $lang = $options['google_plus_one']['lang'];
 ?>
 <script type="text/javascript">
-  window.___gcfg = {lang: <?php echo $lang ?>};
+  window.___gcfg = {lang: '<?php echo $lang ?>'};
 
   (function() {
     var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
