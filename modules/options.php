@@ -83,6 +83,7 @@ EOT;
                                              'annotation' => 'none',
                                              'inline_size' => '250'),
                   'line' => array('button_type' => 'line88x20'),
+                  'pocket' => array('button_type' => 'none'),
     );
 }
 
@@ -145,6 +146,7 @@ function wp_social_bookmarking_light_save_options($data)
                                                   'annotation' => $data['google_plus_one_annotation'],
                                                   'inline_size' => $data['google_plus_one_inline_size']),
                       'line' => array('button_type' => $data['line_button_type']),
+                      'pocket' => array('button_type' => $data['pocket_button_type']),
     );
     update_option( 'wp_social_bookmarking_light_options', $options );
     return $options;

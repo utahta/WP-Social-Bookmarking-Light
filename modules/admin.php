@@ -181,7 +181,7 @@ function wsbl_update_services(is_simply)
     jQuery("#services_id").val(vals);
     
     is_simply = is_simply || false;
-    var services = ['mixi', 'twitter', 'hatena_button', 'facebook', 'gree', 'evernote', 'tumblr', 'atode', 'google_plus_one', 'line'];
+    var services = ['mixi', 'twitter', 'hatena_button', 'facebook', 'gree', 'evernote', 'tumblr', 'atode', 'google_plus_one', 'line', 'pocket'];
     for(var i in services){
         wsbl_tab_toggle(services[i], is_simply);
     }
@@ -281,6 +281,7 @@ function wp_social_bookmarking_light_options_page()
             <li id='atode_settings'><a href="#tabs-10"><span><?php _el("atode") ?></span></a></li>
             <li id='google_plus_one_settings'><a href="#tabs-11"><span><?php _el("google_plus_one") ?></span></a></li>
             <li id='line_settings'><a href="#tabs-12"><span><?php _el("line") ?></span></a></li>
+            <li id='pocket_settings'><a href="#tabs-13"><span><?php _el("pocket") ?></span></a></li>
             </ul>
 
         <!-- General -->
@@ -766,6 +767,22 @@ function wp_social_bookmarking_light_options_page()
             </tr>
             </table>
         </div>
+
+        <!-- pocket -->
+        <div id="tabs-13">
+            <table class='form-table'>
+            <tr>
+                <th scope="row">Button type:</th>
+                <td>
+                <select name='pocket_button_type'>
+                <option value='none' <?php if( $options['pocket']['button_type'] == 'none' ) echo 'selected'; ?>>none</option>
+                <option value='horizontal' <?php if( $options['pocket']['button_type'] == 'horizontal' ) echo 'selected'; ?>>horizontal</option>
+                <option value='vertical' <?php if( $options['pocket']['button_type'] == 'vertical' ) echo 'selected'; ?>>vertical</option>
+                </select>
+                </td>
+            </tr>
+            </table>
+        </div>
         
     </div>
     <p class="submit">
@@ -816,6 +833,7 @@ function wp_social_bookmarking_light_options_page()
     <tr><td>gree</td><td>GREE Social Feedback</td></tr>
     <tr><td>atode</td><td>atode (toread)</td></tr>
     <tr><td>line</td><td>LINE Button</td></tr>
+    <tr><td>pocket</td><td>Pocket Button</td></tr>
     </table>
 </div>
 
