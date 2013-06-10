@@ -569,7 +569,16 @@ class WpSocialBookmarkingLight
     	}
     	return $this->link("http://line.naver.jp/R/msg/text/?{$this->title}%0D%0A{$this->url}", "LINEで送る", $icon, $width, $height);
     }
-    
+
+    /**
+     * @brief Pocket
+     */
+    function pocket()
+    {
+    	$options = wp_social_bookmarking_light_options();
+	return $this->link_raw('<a href="https://getpocket.com/save" class="pocket-btn" data-lang="en" data-save-url="' . $this->url . '" data-pocket-count="' . $options['pocket']['button_type'] . '" data-pocket-align="left" >Pocket</a><script type="text/javascript">!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script>');
+    }
+
 }
 
 /**
