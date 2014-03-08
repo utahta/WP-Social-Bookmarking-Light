@@ -87,10 +87,23 @@ function wp_social_bookmarking_light_wp_head()
         ?><script type="text/javascript" src="http://platform.tumblr.com/v1/share.js"></script><?php
     }
     // facebook
-    if(in_array('facebook_like', $services) || in_array('facebook_send', $services)){
-        $locale = $options['facebook']['locale'];
-        $locale = ($locale == '' ? 'en_US' : $locale);
-        echo '<script type="text/javascript" src="http://connect.facebook.net/'.$locale.'/all.js#xfbml=1"></script>'."\n";
+    if(in_array('facebook_like', $services)  || 
+       in_array('facebook_share', $services) || 
+       in_array('facebook_send', $services)){
+        $version = $options['facebook']['version'];
+        if($version == "html5" || $version == "xfbml"){
+            $locale = $options['facebook']['locale'];
+            $locale = ($locale == '' ? 'en_US' : $locale);
+?>
+<script>(function(d, s, id) {
+  var js, fjs = d.getElementsByTagName(s)[0];
+  if (d.getElementById(id)) return;
+  js = d.createElement(s); js.id = id;
+  js.src = "//connect.facebook.net/<?php echo $locale ?>/all.js#xfbml=1";
+  fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>   
+<?php
+        }
     }
 
     // css

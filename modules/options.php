@@ -24,7 +24,7 @@ function wp_social_bookmarking_light_default_options()
     $styles = <<<EOT
 .wp_social_bookmarking_light{
     border: 0 !important;
-    padding: 0 !important;
+    padding: 10px 0 20px 0 !important;
     margin: 0 !important;
 }
 .wp_social_bookmarking_light div{
@@ -32,7 +32,7 @@ function wp_social_bookmarking_light_default_options()
     border: 0 !important;
     padding: 0 !important;
     margin: 0 5px 0px 0 !important;
-    height: 23px !important;
+    line-height: 13px !important;
     text-indent: 0 !important;
 }
 .wp_social_bookmarking_light img{
@@ -44,12 +44,18 @@ function wp_social_bookmarking_light_default_options()
 .wp_social_bookmarking_light_clear{
     clear: both !important;
 }
+#fb-root{
+    display: none;
+}
 .wsbl_twitter{
     width: 100px;
 }
+.wsbl_facebook_like iframe{
+    max-width: none !important;
+}
 EOT;
     
-    return array( "services" => "hatena_button, facebook_like, twitter",
+    return array( "services" => "hatena_button,facebook_like,twitter",
                   "styles" => $styles,
                   "position" => "top",
                   "single_page" => true,
@@ -62,17 +68,18 @@ EOT;
                                       'lang' => "en",
                                       'count' => 'horizontal'),
                   "hatena_button" => array('layout' => 'standard'),
-                  'facebook' => array('locale' => 'en_US'),
-                  'facebook_like' => array('version' => 'xfbml',
+                  'facebook' => array('locale' => 'en_US',
+                                      'version' => 'xfbml',
+                                      'fb_root' => true),
+                  'facebook_like' => array('layout' => 'button_count',
                                             'action' => 'like',
-                                            'colorscheme' => 'light',
-                                            'send' => false,
-                                            'width' => '100',
-                                            'font' => '',
-                                            'locale' => ''),
+                                            'share' => false,
+                                            'width' => '100'),
+                  'facebook_share' => array('type' => 'button_count',
+                                            'width' => ''),
                   'facebook_send' => array('colorscheme' => 'light',
-                                             'font' => '',
-                                             'locale' => ''),
+                                           'width' => '',
+                                           'height' => ''),
                   'gree' => array('button_type' => '4',
                                     'button_size' => '16'),
                   'evernote' => array('button_type' => 'article-clipper'),
@@ -127,15 +134,18 @@ function wp_social_bookmarking_light_save_options($data)
                                           'lang' => $data['twitter_lang'],
                                           'count' => $data['twitter_count']),
                       'hatena_button' => array('layout' => $data['hatena_button_layout']),
-                      'facebook' => array('locale' => trim($data['facebook_locale'])),
-                      'facebook_like' => array('version' => $data['facebook_like_version'],
+                      'facebook' => array('locale' => trim($data['facebook_locale']),
+                                          'version' => $data['facebook_version'],
+                                          'fb_root' => $data['facebook_fb_root'] == 'true'),
+                      'facebook_like' => array('layout' => $data['facebook_like_layout'],
                                                 'action' => $data['facebook_like_action'],
-                                                'colorscheme' => $data['facebook_like_colorscheme'],
-                                                'send' => $data['facebook_like_send'] == 'true',
-                                                'width' => $data['facebook_like_width'],
-                                                'font' => $data['facebook_like_font']),
+                                                'share' => $data['facebook_like_share'] == 'true',
+                                                'width' => $data['facebook_like_width']),
+                      'facebook_share' => array('type' => $data['facebook_share_type'],
+                                                'width' => $data['facebook_share_width']),
                       'facebook_send' => array('colorscheme' => $data['facebook_send_colorscheme'],
-                                                'font' => $data['facebook_send_font']),
+                                               'width' => $data['facebook_send_width'],
+                                               'height' => $data['facebook_send_height']),
                       'gree' => array('button_type' => $data['gree_button_type'],
                                         'button_size' => $data['gree_button_size']),
                       'evernote' => array('button_type' => $data['evernote_button_type']),

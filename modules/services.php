@@ -368,40 +368,78 @@ class WpSocialBookmarkingLight
     function facebook_like()
     {
         $options = wp_social_bookmarking_light_options();
-        $version = $options['facebook_like']['version'];
+        $layout = $options['facebook_like']['layout'];
         $action = $options['facebook_like']['action'];
-        $colorscheme = $options['facebook_like']['colorscheme'];
-        $send = $options['facebook_like']['send'] ? 'true' : 'false';
+        $share = $options['facebook_like']['share'] ? 'true' : 'false';
         $width = $options['facebook_like']['width'];
-        $font = $options['facebook_like']['font'];
         $locale = $options['facebook']['locale'];
+        $version = $options['facebook']['version'];
+        $fb_root = $options['facebook']['fb_root'] ? '<div id="fb-root"></div>' : '';
         
-        if($version == 'iframe'){
-            return $this->link_raw('<iframe src="http://www.facebook.com/plugins/like.php?href='.$this->encode_url
-                                    .'&amp;send='.$send
-                                    .'&amp;layout=button_count'
-                                    .'&amp;show_faces=false'
-                                    .'&amp;width='.$width
-                                    .'&amp;action='.$action
-                                    .'&amp;colorscheme='.$colorscheme
-                                    .($font == '' ? '' : '&amp;font='.$font)
-                                    .($locale == '' ? '' : '&amp;locale='.$locale)
-                                    .'&amp;height=21"'
-                                    .' scrolling="no" frameborder="0"'
-                                    .' style="border:none; overflow:hidden; width:'.$width.'px; height:21px;"'
-                                    .' allowTransparency="true"></iframe>');
+        if($version == "html5"){
+            return $this->link_raw( $fb_root
+                                    .'<div class="fb-like" '
+                                    .'data-href="'.$this->url.'" '
+                                    .'data-layout="'.$layout.'" '
+                                    .'data-action="'.$action.'" '
+                                    .($width != "" ? 'data-width="'.$width.'" ' : '')
+                                    .'data-share="'.$share.'" '
+                                    .'data-show_faces="false" >'
+                                    .'</div>');
+        }
+        elseif($version == "xfbml"){
+            return $this->link_raw( $fb_root
+                                    .'<fb:like '
+                                    .'href="'.$this->url.'" '
+                                    .'layout="'.$layout.'" '
+                                    .'action="'.$action.'" '
+                                    .($width != "" ? 'width="'.$width.'" ' : '')
+                                    .'share="'.$share.'" '
+                                    .'show_faces="false" >'
+                                    .'</fb:like>');
         }
         else{
-            return $this->link_raw('<fb:like '
-                                    .'href="'.$this->url.'" '
-                                    .'send="'.$send.'" '
-                                    .'layout="button_count" '
-                                    .'width="'.$width.'" '
-                                    .'show_faces="false" '
-                                    .'action="'.$action.'" '
-                                    .'colorscheme="'.$colorscheme.'" '
-                                    .'font="'.$font.'">'
-                                    .'</fb:like>');
+            return $this->link_raw('<iframe src="http://www.facebook.com/plugins/like.php?href='.$this->encode_url
+                    .'&amp;layout='.$layout
+                    .'&amp;show_faces=false'
+                    .'&amp;width='.$width
+                    .'&amp;action='.$action
+                    .'&amp;share='.$share
+                    .($locale == '' ? '' : '&amp;locale='.$locale)
+                    .'&amp;height=35"'
+                    .' scrolling="no" frameborder="0"'
+                    .' style="border:none; overflow:hidden; width:'.$width.'px; height:35px;"'
+                    .' allowTransparency="true"></iframe>');
+        }
+        
+    }
+    
+    /**
+     * @brief Facebook Share
+     */
+    function facebook_share()
+    {
+        $options = wp_social_bookmarking_light_options();
+        $url = $this->url;
+        $version = $options['facebook']['version'];
+        $fb_root = $options['facebook']['fb_root'] ? '<div id="fb-root"></div>' : '';
+        $width = $options['facebook_share']['width'];
+        $type = $options['facebook_share']['type'];
+        
+        if($version == "html5"){
+            return $this->link_raw( $fb_root
+                                    .'<div class="fb-share-button" '
+                                    .'data-href="'.$url.'" '
+                                    .($width != "" ? 'data-width="'.$width.'" ' : '')
+                                    .'data-type="'.$type.'">'
+                                    .'</div>');
+        }else{
+            return $this->link_raw( $fb_root
+                                    .'<fb:share-button '
+                                    .'href="'.$url.'" '
+                                    .($width != "" ? 'width="'.$width.'" ' : '')
+                                    .'type="'.$type.'" >'
+                                    .'</fb:share-button>');
         }
     }
     
@@ -410,12 +448,31 @@ class WpSocialBookmarkingLight
      */
     function facebook_send()
     {
-    	$options = wp_social_bookmarking_light_options();
-    	$url = $this->url;
-    	$font = $options['facebook_send']['font'];
-    	$colorscheme = $options['facebook_send']['colorscheme'];
+        $options = wp_social_bookmarking_light_options();
+        $url = $this->url;
+        $version = $options['facebook']['version'];
+        $fb_root = $options['facebook']['fb_root'] ? '<div id="fb-root"></div>' : '';
+        $colorscheme = $options['facebook_send']['colorscheme'];
+        $width = $options['facebook_send']['width'];
+        $height = $options['facebook_send']['height'];
         
-    	return $this->link_raw('<fb:send href="'.$url.'" font="'.$font.'" colorscheme="'.$colorscheme.'"></fb:send>');
+        if($version == "html5"){
+            return $this->link_raw( $fb_root
+                                    .'<div class="fb-send" '
+                                    .'data-href="'.$url.'" '
+                                    .($width != "" ? 'data-width="'.$width.'" ' : '')
+                                    .($height != "" ? 'data-height="'.$height.'" ' : '')
+                                    .'data-colorscheme="'.$colorscheme.'">'
+                                    .'</div>');
+        }else{
+            return $this->link_raw( $fb_root
+                                    .'<fb:send '
+                                    .'href="'.$url.'" '
+                                    .($width != "" ? 'width="'.$width.'" ' : '')
+                                    .($height != "" ? 'height="'.$height.'" ' : '')
+                                    .'colorscheme="'.$colorscheme.'" >'
+                                    .'</fb:send>');
+        }
     }
 
    /**
@@ -450,7 +507,7 @@ class WpSocialBookmarkingLight
         
         return $this->link_raw('<a href="#" onclick="Evernote.doClip({ title:\''.$this->title.'\', url:\''.$this->url.'\' });return false;">'
                                 .'<img src="http://static.evernote.com/'.$type.'.png" />'
-								.'</a>');
+                                .'</a>');
     }
     
     /**
@@ -503,7 +560,7 @@ class WpSocialBookmarkingLight
         return $this->link_raw('<iframe src="http://plugins.mixi.jp/favorite.pl?href='.$this->encode_url.'&service_key='.$data_key.'&show_faces=false" '
                                 .'scrolling="no" '
                                 .'frameborder="0" '
-            					.'allowTransparency="true" '
+                                .'allowTransparency="true" '
                                 .'style="border:0; overflow:hidden; width:'.$width.'px; height:20px;"></iframe>');
     }
     
@@ -512,17 +569,17 @@ class WpSocialBookmarkingLight
      */
     function gree()
     {
-    	$options = wp_social_bookmarking_light_options();
+        $options = wp_social_bookmarking_light_options();
         $url = $this->encode_url;
         $type = $options['gree']['button_type'];
         $size = $options['gree']['button_size'];
         switch($type){
-        	case '0': $btn_type = 'btn_iine'; break;
-        	case '1': $btn_type = 'btn_kininaru'; break;
-        	case '2': $btn_type = 'btn_osusume'; break;
-        	case '3': $btn_type = 'btn_share'; break;
-        	case '4': $btn_type = 'btn_logo'; break;
-        	default: $btn_type = 'btn_logo';
+            case '0': $btn_type = 'btn_iine'; break;
+            case '1': $btn_type = 'btn_kininaru'; break;
+            case '2': $btn_type = 'btn_osusume'; break;
+            case '3': $btn_type = 'btn_share'; break;
+            case '4': $btn_type = 'btn_logo'; break;
+            default: $btn_type = 'btn_logo';
         }
         $alt = __( "Share on GREE", WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN );
         return $this->link_raw('<a href="http://gree.jp/?mode=share&act=write'
@@ -541,7 +598,7 @@ class WpSocialBookmarkingLight
      */
     function atode()
     {
-    	$options = wp_social_bookmarking_light_options();
+        $options = wp_social_bookmarking_light_options();
         $type = $options['atode']['button_type'];
         switch($type){
             case 'iconsja': return $this->link_raw('<a href=\'http://atode.cc/\' onclick=\'javascript:(function(){var s=document.createElement("scr"+"ipt");s.charset="UTF-8";s.language="javascr"+"ipt";s.type="text/javascr"+"ipt";var d=new Date;s.src="http://atode.cc/bjs.php?d="+d.getMilliseconds();document.body.appendChild(s)})();return false;\'><img src="http://atode.cc/img/iconsja.gif" alt="email this" border="0" align="absmiddle" width="16" height="16"></a>');
@@ -556,18 +613,18 @@ class WpSocialBookmarkingLight
      */
     function line()
     {
-    	$options = wp_social_bookmarking_light_options();
-    	if($options['line']['button_type'] == "line88x20"){
-    	    $icon = WP_SOCIAL_BOOKMARKING_LIGHT_IMAGES_URL."/line88x20.png";
-    	    $width = 88;
-    	    $height = 20;
-    	}
-    	else{
-    	    $icon = WP_SOCIAL_BOOKMARKING_LIGHT_IMAGES_URL."/line20x20.png";
-    	    $width = 20;
-    	    $height = 20;
-    	}
-    	return $this->link("http://line.naver.jp/R/msg/text/?{$this->title}%0D%0A{$this->url}", "LINEで送る", $icon, $width, $height);
+        $options = wp_social_bookmarking_light_options();
+        if($options['line']['button_type'] == "line88x20"){
+            $icon = WP_SOCIAL_BOOKMARKING_LIGHT_IMAGES_URL."/line88x20.png";
+            $width = 88;
+            $height = 20;
+        }
+        else{
+            $icon = WP_SOCIAL_BOOKMARKING_LIGHT_IMAGES_URL."/line20x20.png";
+            $width = 20;
+            $height = 20;
+        }
+        return $this->link("http://line.naver.jp/R/msg/text/?{$this->title}%0D%0A{$this->url}", "LINEで送る", $icon, $width, $height);
     }
 
     /**

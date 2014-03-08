@@ -126,9 +126,9 @@ function wsbl_get_service_codes()
  */
 function wsbl_get_tab_ids(service_id)
 {
-    if(service_id == 'facebook'){
-        return ['facebook', 'facebook_like', 'facebook_send'];
-    }
+    if(service_id == 'facebook_general'){
+        return ['facebook_like', 'facebook_share', 'facebook_send'];
+	}
     if(service_id == 'mixi'){
         return ['mixi', 'mixi_like'];
     }
@@ -181,7 +181,8 @@ function wsbl_update_services(is_simply)
     jQuery("#services_id").val(vals);
     
     is_simply = is_simply || false;
-    var services = ['mixi', 'twitter', 'hatena_button', 'facebook', 'gree', 'evernote', 'tumblr', 'atode', 'google_plus_one', 'line', 'pocket'];
+    var services = ['mixi', 'twitter', 'hatena_button', 'facebook_general', 'facebook_like', 'facebook_share', 'facebook_send',
+                    'gree', 'evernote', 'tumblr', 'atode', 'google_plus_one', 'line', 'pocket'];
     for(var i in services){
         wsbl_tab_toggle(services[i], is_simply);
     }
@@ -271,17 +272,20 @@ function wp_social_bookmarking_light_options_page()
         <ul>
             <li><a href="#tabs-1"><span><?php _e("General Settings") ?></span></a></li>
             <li><a href="#tabs-1_2"><span><?php _e("Styles") ?></span></a></li>
-            <li id='mixi_settings'><a href="#tabs-2"><span><?php _el("mixi") ?></span></a></li>
-            <li id='twitter_settings'><a href="#tabs-3"><span><?php _el("twitter") ?></span></a></li>
-            <li id='hatena_button_settings'><a href="#tabs-4"><span><?php _el("hatena_button") ?></span></a></li>
-            <li id='facebook_settings'><a href="#tabs-5"><span><?php _el("facebook") ?></span></a></li>
-            <li id='gree_settings'><a href="#tabs-7"><span><?php _el("gree") ?></span></a></li>
-            <li id='evernote_settings'><a href="#tabs-8"><span><?php _el("evernote") ?></span></a></li>
+            <li id='mixi_settings'><a href="#tabs-2"><span><?php _el("Mixi") ?></span></a></li>
+            <li id='twitter_settings'><a href="#tabs-3"><span><?php _el("Twitter") ?></span></a></li>
+            <li id='hatena_button_settings'><a href="#tabs-4"><span><?php _el("Hatena") ?></span></a></li>
+            <li id='facebook_general_settings'><a href="#tabs-15"><span><?php _el("FB") ?></span></a></li>
+            <li id='facebook_like_settings'><a href="#tabs-5"><span><?php _el("FB Like") ?></span></a></li>
+            <li id='facebook_share_settings'><a href="#tabs-6"><span><?php _el("FB Share") ?></span></a></li>
+            <li id='facebook_send_settings'><a href="#tabs-14"><span><?php _el("FB Send") ?></span></a></li>
+            <li id='gree_settings'><a href="#tabs-7"><span><?php _el("GREE") ?></span></a></li>
+            <li id='evernote_settings'><a href="#tabs-8"><span><?php _el("Evernote") ?></span></a></li>
             <li id='tumblr_settings'><a href="#tabs-9"><span><?php _el("tumblr") ?></span></a></li>
             <li id='atode_settings'><a href="#tabs-10"><span><?php _el("atode") ?></span></a></li>
-            <li id='google_plus_one_settings'><a href="#tabs-11"><span><?php _el("google_plus_one") ?></span></a></li>
-            <li id='line_settings'><a href="#tabs-12"><span><?php _el("line") ?></span></a></li>
-            <li id='pocket_settings'><a href="#tabs-13"><span><?php _el("pocket") ?></span></a></li>
+            <li id='google_plus_one_settings'><a href="#tabs-11"><span><?php _el("Google Plus One") ?></span></a></li>
+            <li id='line_settings'><a href="#tabs-12"><span><?php _el("LINE") ?></span></a></li>
+            <li id='pocket_settings'><a href="#tabs-13"><span><?php _el("Pocket") ?></span></a></li>
             </ul>
 
         <!-- General -->
@@ -465,10 +469,8 @@ function wp_social_bookmarking_light_options_page()
             </table>
         </div>
 
-        <!-- facebook -->
-        <div id="tabs-5">
-            <!-- General -->
-            <strong>General</strong>
+        <!-- Facebook General -->
+        <div id="tabs-15">
             <table class='form-table'>
             <tr>
                 <th scope="row">Locale:</th>
@@ -477,18 +479,38 @@ function wp_social_bookmarking_light_options_page()
                 <span>en_US, ja_JP, fr_FR ...</span> see more <a href='http://developers.facebook.com/docs/internationalization/' target=_blank>facebook docs</a>
                 </td>
             </tr>
-            </table>
-            <br/>
-
-            <!-- Like Button -->
-            <strong>Like Button</strong>
-            <table class='form-table'>
             <tr>
                 <th scope="row">Version:</th>
                 <td>
-                <select name='facebook_like_version'>
-                <option value='iframe' <?php if( $options['facebook_like']['version'] == 'iframe' ) echo 'selected'; ?>>iframe</option>
-                <option value='xfbml' <?php if( $options['facebook_like']['version'] == 'xfbml' ) echo 'selected'; ?>>xfbml</option>
+                <select name='facebook_version'>
+                <option value='html5' <?php if( $options['facebook']['version'] == 'html5' ) echo 'selected'; ?>>html5</option>
+                <option value='xfbml' <?php if( $options['facebook']['version'] == 'xfbml' ) echo 'selected'; ?>>xfbml</option>
+                <option value='iframe' <?php if( $options['facebook']['version'] == 'iframe' ) echo 'selected'; ?>>iframe</option>
+                </select>
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">Add fb-root:</th>
+                <td>
+                <select name='facebook_fb_root'>
+                <option value='true' <?php if( $options['facebook']['fb_root'] == true ) echo 'selected'; ?>>Yes</option>
+                <option value='false' <?php if( $options['facebook']['fb_root'] == false ) echo 'selected'; ?>>No</option>
+                </select>
+                </td>
+            </tr>
+            </table>
+        </div>
+        
+        <!-- Facebook Like Button -->
+        <div id="tabs-5">
+            <!-- Like Button -->
+            <table class='form-table'>
+            <tr>
+                <th scope="row">Layout:</th>
+                <td>
+                <select name='facebook_like_layout'>
+                <option value='button' <?php if( $options['facebook_like']['layout'] == 'button' ) echo 'selected'; ?>>button</option>
+                <option value='button_count' <?php if( $options['facebook_like']['layout'] == 'button_count' ) echo 'selected'; ?>>button_count</option>
                 </select>
                 </td>
             </tr>
@@ -502,20 +524,11 @@ function wp_social_bookmarking_light_options_page()
                 </td>
             </tr>
             <tr>
-                <th scope="row">Color Scheme:</th>
+                <th scope="row">Share:</th>
                 <td>
-                <select name='facebook_like_colorscheme'>
-                <option value='light' <?php if( $options['facebook_like']['colorscheme'] == 'light' ) echo 'selected'; ?>>light</option>
-                <option value='dark' <?php if( $options['facebook_like']['colorscheme'] == 'dark' ) echo 'selected'; ?>>dark</option>
-                </select>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">Send button:<br> <span style="font-size:10px">(confirm width size)</span></th>
-                <td>
-                <select name='facebook_like_send'>
-                <option value='true' <?php if( $options['facebook_like']['send'] == true ) echo 'selected'; ?>>Yes</option>
-                <option value='false' <?php if( $options['facebook_like']['send'] == false ) echo 'selected'; ?>>No</option>
+                <select name='facebook_like_share'>
+                <option value='true' <?php if( $options['facebook_like']['share'] == true ) echo 'selected'; ?>>Yes</option>
+                <option value='false' <?php if( $options['facebook_like']['share'] == false ) echo 'selected'; ?>>No</option>
                 </select>
                 </td>
             </tr>
@@ -525,24 +538,32 @@ function wp_social_bookmarking_light_options_page()
                 <input type="text" name='facebook_like_width' value="<?php echo $options['facebook_like']['width'] ?>" size=20 />
                 </td>
             </tr>
+            </table>
+        </div>
+        
+        <!-- Facebook Share Button -->
+        <div id="tabs-6">
+            <table class='form-table'>
             <tr>
-                <th scope="row">Font:</th>
+                <th scope="row">Layout:</th>
                 <td>
-                <select name='facebook_like_font'>
-                <option value='' <?php if( $options['facebook_like']['font'] == '' ) echo 'selected'; ?>></option>
-                <option value='arial' <?php if( $options['facebook_like']['font'] == 'arial' ) echo 'selected'; ?>>arial</option>
-                <option value='lucida+grande' <?php if( $options['facebook_like']['font'] == 'lucida+grande' ) echo 'selected'; ?>>lucida grande</option>
-                <option value='tahoma' <?php if( $options['facebook_like']['font'] == 'tahoma' ) echo 'selected'; ?>>tahoma</option>
-                <option value='trebuchet+ms' <?php if( $options['facebook_like']['font'] == 'trebuchet+ms' ) echo 'selected'; ?>>trebuchet ms</option>
-                <option value='verdana' <?php if( $options['facebook_like']['font'] == 'verdana' ) echo 'selected'; ?>>verdana</option>
+                <select name='facebook_share_type'>
+                <option value='button' <?php if( $options['facebook_share']['type'] == 'button' ) echo 'selected'; ?>>button</option>
+                <option value='button_count' <?php if( $options['facebook_share']['type'] == 'button_count' ) echo 'selected'; ?>>button_count</option>
                 </select>
                 </td>
             </tr>
+            <tr>
+                <th scope="row">Width:</th>
+                <td>
+                <input type="text" name='facebook_share_width' value="<?php echo $options['facebook_share']['width'] ?>" size=20 />
+                </td>
+            </tr>
             </table>
-            <br/>
-            
-            <!-- Send Button -->
-            <strong>Send Button</strong>
+        </div>
+        
+        <!-- Facebook Send Button -->
+        <div id="tabs-14">
             <table class='form-table'>
             <tr>
                 <th scope="row">Color Scheme:</th>
@@ -554,16 +575,15 @@ function wp_social_bookmarking_light_options_page()
                 </td>
             </tr>
             <tr>
-                <th scope="row">Font:</th>
+                <th scope="row">Width:</th>
                 <td>
-                <select name='facebook_send_font'>
-                <option value='' <?php if( $options['facebook_send']['font'] == '' ) echo 'selected'; ?>></option>
-                <option value='arial' <?php if( $options['facebook_send']['font'] == 'arial' ) echo 'selected'; ?>>arial</option>
-                <option value='lucida+grande' <?php if( $options['facebook_send']['font'] == 'lucida+grande' ) echo 'selected'; ?>>lucida grande</option>
-                <option value='tahoma' <?php if( $options['facebook_send']['font'] == 'tahoma' ) echo 'selected'; ?>>tahoma</option>
-                <option value='trebuchet+ms' <?php if( $options['facebook_send']['font'] == 'trebuchet+ms' ) echo 'selected'; ?>>trebuchet ms</option>
-                <option value='verdana' <?php if( $options['facebook_send']['font'] == 'verdana' ) echo 'selected'; ?>>verdana</option>
-                </select>
+                <input type="text" name='facebook_send_width' value="<?php echo $options['facebook_send']['width'] ?>" size=20 />
+                </td>
+            </tr>
+            <tr>
+                <th scope="row">Height:</th>
+                <td>
+                <input type="text" name='facebook_send_height' value="<?php echo $options['facebook_send']['height'] ?>" size=20 />
                 </td>
             </tr>
             </table>
@@ -822,6 +842,7 @@ function wp_social_bookmarking_light_options_page()
     <tr><td>friendfeed</td><td>FriendFeed</td></tr>
     <tr><td>facebook</td><td>Facebook Share</td></tr>
     <tr><td>facebook_like</td><td>Facebook Like Button</td></tr>
+    <tr><td>facebook_share</td><td>Facebook Share Button</td></tr>
     <tr><td>facebook_send</td><td>Facebook Send Button</td></tr>
     <tr><td>reddit</td><td>reddit</td></tr>
     <tr><td>linkedin</td><td>LinkedIn</td></tr>
