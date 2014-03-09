@@ -399,7 +399,7 @@ class WpSocialBookmarkingLight
                                     .'</fb:like>');
         }
         else{
-            return $this->link_raw('<iframe src="http://www.facebook.com/plugins/like.php?href='.$this->encode_url
+            return $this->link_raw('<iframe src="//www.facebook.com/plugins/like.php?href='.$this->encode_url
                     .'&amp;layout='.$layout
                     .'&amp;show_faces=false'
                     .'&amp;width='.$width
