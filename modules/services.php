@@ -130,7 +130,7 @@ class WpSocialBookmarkingLight
         $options = wp_social_bookmarking_light_options();
         $twitter = $options['twitter'];
         return $this->link_raw('<iframe allowtransparency="true" frameborder="0" scrolling="no"'
-                                .' src="http://platform.twitter.com/widgets/tweet_button.html'
+                                .' src="//platform.twitter.com/widgets/tweet_button.html'
                                 .'?url='.$this->encode_url
                                 .'&amp;text='.$this->encode_title
                                 .($twitter['via'] != '' ? '&amp;via='.$twitter['via'] : '')
