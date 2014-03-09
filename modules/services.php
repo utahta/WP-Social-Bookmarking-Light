@@ -87,9 +87,9 @@ class WpSocialBookmarkingLight
                                 .' data-hatena-bookmark-title="'.$title.'"'
                                 .' data-hatena-bookmark-layout="'.$options['hatena_button']['layout'].'"'
                                 .' title="'.$alt.'">'
-                                .' <img src="http://b.st-hatena.com/images/entry-button/button-only.gif"'
+                                .' <img src="//b.hatena.ne.jp/images/entry-button/button-only.gif"'
                                 .' alt="'.$alt.'" width="20" height="20" style="border: none;" /></a>'
-                                .'<script type="text/javascript" src="http://b.st-hatena.com/js/bookmark_button_wo_al.js" charset="utf-8" async="async"></script>');
+                                .'<script type="text/javascript" src="//b.hatena.ne.jp/js/bookmark_button_wo_al.js" charset="utf-8" async="async"></script>');
     }
     
     /**
@@ -130,7 +130,7 @@ class WpSocialBookmarkingLight
         $options = wp_social_bookmarking_light_options();
         $twitter = $options['twitter'];
         return $this->link_raw('<iframe allowtransparency="true" frameborder="0" scrolling="no"'
-                                .' src="http://platform.twitter.com/widgets/tweet_button.html'
+                                .' src="//platform.twitter.com/widgets/tweet_button.html'
                                 .'?url='.$this->encode_url
                                 .'&amp;text='.$this->encode_title
                                 .($twitter['via'] != '' ? '&amp;via='.$twitter['via'] : '')
@@ -399,7 +399,7 @@ class WpSocialBookmarkingLight
                                     .'</fb:like>');
         }
         else{
-            return $this->link_raw('<iframe src="http://www.facebook.com/plugins/like.php?href='.$this->encode_url
+            return $this->link_raw('<iframe src="//www.facebook.com/plugins/like.php?href='.$this->encode_url
                     .'&amp;layout='.$layout
                     .'&amp;show_faces=false'
                     .'&amp;width='.$width
