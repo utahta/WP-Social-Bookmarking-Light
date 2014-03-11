@@ -32,7 +32,8 @@ function wp_social_bookmarking_light_default_options()
     border: 0 !important;
     padding: 0 !important;
     margin: 0 5px 0px 0 !important;
-    line-height: 13px !important;
+    min-height: 30px !important;
+    line-height: 18px !important;
     text-indent: 0 !important;
 }
 .wp_social_bookmarking_light img{
@@ -67,7 +68,7 @@ EOT;
                   "twitter" => array('via' => "",
                                       'lang' => "en",
                                       'count' => 'horizontal'),
-                  "hatena_button" => array('layout' => 'standard'),
+                  "hatena_button" => array('layout' => 'simple-balloon'),
                   'facebook' => array('locale' => 'en_US',
                                       'version' => 'xfbml',
                                       'fb_root' => true),

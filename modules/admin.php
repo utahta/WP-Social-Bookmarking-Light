@@ -461,8 +461,11 @@ function wp_social_bookmarking_light_options_page()
                 <th scope="row">Layout:</th>
                 <td>
                 <select name='hatena_button_layout'>
+                <option value='standard-balloon' <?php if( $options['hatena_button']['layout'] == 'standard-balloon' ) echo 'selected'; ?>>standard-balloon</option>
+                <option value='standard-noballoon' <?php if( $options['hatena_button']['layout'] == 'standard-noballoon' ) echo 'selected'; ?>>standard-noballoon</option>
                 <option value='standard' <?php if( $options['hatena_button']['layout'] == 'standard' ) echo 'selected'; ?>>standard</option>
                 <option value='simple' <?php if( $options['hatena_button']['layout'] == 'simple' ) echo 'selected'; ?>>simple</option>
+                <option value='simple-balloon' <?php if( $options['hatena_button']['layout'] == 'simple-balloon' ) echo 'selected'; ?>>simple-balloon</option>
                 </select>
                 </td>
             </tr>
