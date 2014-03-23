@@ -87,7 +87,7 @@ class WpSocialBookmarkingLight
                                 .' data-hatena-bookmark-title="'.$title.'"'
                                 .' data-hatena-bookmark-layout="'.$options['hatena_button']['layout'].'"'
                                 .' title="'.$alt.'">'
-                                .' <img src="//b.st-hatena.com/images/entry-button/button-only@2x.png"'
+                                .' <img src="//b.hatena.ne.jp/images/entry-button/button-only@2x.png"'
                                 .' alt="'.$alt.'" width="20" height="20" style="border: none;" /></a>'
                                 .'<script type="text/javascript" src="//b.hatena.ne.jp/js/bookmark_button.js" charset="utf-8" async="async"></script>');
     }
