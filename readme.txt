@@ -4,7 +4,7 @@ Donate link:
 Tags: links, social, bookmarks, bookmarking, Hatena, Livedoor Clip, BuzzURL, @nifty clip, Twitter, Tumblr, FC2 Bookmark, newsing, Choix, Yahoo!JAPAN Bookmark, Yahoo!Buzz, Google Bookmark, Delicious, Digg, FriendFeed, Google Buzz, Facebook, reddit, LinkedIn, Evernote, Instapaper, StumbleUpon, mixi, gree, atode, toread, line, pocket
 Requires at least: 2.9.0
 Tested up to: 3.8
-Stable tag: 1.7.6
+Stable tag: 1.7.7
 
 This plugin inserts social share links at the top or bottom of each post.
 
@@ -60,6 +60,10 @@ This is the list of used social sites:
 3. This is how the plugin looks in manually inside your template.
 
 == Changelog ==
+
+= 1.7.7 =
+* Fixed: https security warning in IE. (Hatena, Facebook and Twitter Button)
+* Improved: Hatena Button layout
 
 = 1.7.6 =
 * Improved: Facebook Like, Share and Send Button
