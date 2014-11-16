@@ -3,5 +3,6 @@
 .settings/
 .svn/
 .svnignore
-
+.idea
+*.iml
 

@@ -134,7 +134,7 @@ function wp_social_bookmarking_light_the_content( $content )
     
     $out = wp_social_bookmarking_light_output( $options['services'], get_permalink(), get_the_title() );
     if( $out == '' ){
-       return $content;
+        return $content;
     }
     if( $options['position'] == 'top' ){
         return "{$out}{$content}";
