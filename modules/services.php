@@ -624,7 +624,13 @@ class WpSocialBookmarkingLight
             $width = 20;
             $height = 20;
         }
-        return $this->link("http://line.naver.jp/R/msg/text/?{$this->title}%0D%0A{$this->url}", "LINEで送る", $icon, $width, $height);
+
+        if ($options['line']['protocol'] === 'line') {
+            $url = "line://msg/text/{$this->title}%0D%0A{$this->url}";
+        } else {
+            $url = "http://line.me/R/msg/text/?{$this->title}%0D%0A{$this->url}";
+        }
+        return $this->link($url, "LINEで送る", $icon, $width, $height);
     }
 
     /**

@@ -788,6 +788,15 @@ function wp_social_bookmarking_light_options_page()
                 <img id='line_img' style="vertical-align:middle" src='<?php echo WP_SOCIAL_BOOKMARKING_LIGHT_IMAGES_URL."/".$options['line']['button_type'] ?>.png'>
                 </td>
             </tr>
+            <tr>
+                <th scope="row">Protocol:</th>
+                <td>
+                    <select name='line_protocol'>
+                        <option value='http' <?php if( $options['line']['protocol'] == 'http' ) echo 'selected'; ?>>http://</option>
+                        <option value='line' <?php if( $options['line']['protocol'] == 'line' ) echo 'selected'; ?>>line://</option>
+                    </select>
+                </td>
+            </tr>
             </table>
         </div>
 
