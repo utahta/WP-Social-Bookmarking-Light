@@ -626,9 +626,9 @@ class WpSocialBookmarkingLight
         }
 
         if ($options['line']['protocol'] === 'line') {
-            $url = "line://msg/text/{$this->title}%0D%0A{$this->url}";
+            $url = "line://msg/text/{$this->encode_title}%0D%0A{$this->encode_url}";
         } else {
-            $url = "http://line.me/R/msg/text/?{$this->title}%0D%0A{$this->url}";
+            $url = "http://line.me/R/msg/text/?{$this->encode_title}%0D%0A{$this->encode_url}";
         }
         return $this->link($url, "LINEで送る", $icon, $width, $height);
     }
