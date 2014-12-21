@@ -3,8 +3,8 @@ Contributors: utahvich
 Donate link:
 Tags: links, social, bookmarks, bookmarking, Hatena, Livedoor Clip, BuzzURL, @nifty clip, Twitter, Tumblr, FC2 Bookmark, newsing, Choix, Yahoo!JAPAN Bookmark, Yahoo!Buzz, Google Bookmark, Delicious, Digg, FriendFeed, Google Buzz, Facebook, reddit, LinkedIn, Evernote, Instapaper, StumbleUpon, mixi, gree, atode, toread, line, pocket
 Requires at least: 2.9.0
-Tested up to: 3.8
-Stable tag: 1.7.8
+Tested up to: 4.1
+Stable tag: 1.7.9
 
 This plugin inserts social share links at the top or bottom of each post.
 
@@ -60,6 +60,9 @@ This is the list of used social sites:
 3. This is how the plugin looks in manually inside your template.
 
 == Changelog ==
+
+= 1.7.9 =
+* Updated: Added line option to select protocol
 
 = 1.7.8 =
 * Updated: Facebook js sdk version 2.0
