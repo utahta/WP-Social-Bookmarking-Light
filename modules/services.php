@@ -51,10 +51,11 @@ class WpSocialBookmarkingLight
     function link_raw( $url ){
         return $url;
     }
-    function link( $url, $alt, $icon, $width, $height ){
+    function link( $url, $alt, $icon, $width, $height, $blank=true ){
         $width = $width ? "width='$width'" : "";
         $height = $height ? "height='$height'" : "";
-        return "<a href='{$url}' title='{$alt}' rel=nofollow class='wp_social_bookmarking_light_a' target=_blank>"
+        $blank = $blank ? "target=_blank" : "";
+        return "<a href='{$url}' title='{$alt}' rel=nofollow class='wp_social_bookmarking_light_a' $blank>"
                ."<img src='{$icon}' alt='{$alt}' title='{$alt}' $width $height class='wp_social_bookmarking_light_img' />"
                ."</a>";
     }
@@ -624,7 +625,13 @@ class WpSocialBookmarkingLight
             $width = 20;
             $height = 20;
         }
-        return $this->link("http://line.naver.jp/R/msg/text/?{$this->title}%0D%0A{$this->url}", "LINEで送る", $icon, $width, $height);
+
+        if ($options['line']['protocol'] === 'line') {
+            $url = "line://msg/text/{$this->encode_title}%0D%0A{$this->encode_url}";
+        } else {
+            $url = "http://line.me/R/msg/text/?{$this->encode_title}%0D%0A{$this->encode_url}";
+        }
+        return $this->link($url, "LINEで送る", $icon, $width, $height, false);
     }
 
     /**

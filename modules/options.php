@@ -90,7 +90,8 @@ EOT;
                                              'lang' => 'en-US',
                                              'annotation' => 'none',
                                              'inline_size' => '250'),
-                  'line' => array('button_type' => 'line88x20'),
+                  'line' => array('button_type' => 'line88x20',
+                                  'protocol' => 'http'),
                   'pocket' => array('button_type' => 'none'),
     );
 }
@@ -117,8 +118,9 @@ function wp_social_bookmarking_light_options()
 
 /**
  * save options
- * 
+ *
  * @param array $data ($_POST)
+ * @return array
  */
 function wp_social_bookmarking_light_save_options($data)
 {
@@ -156,7 +158,8 @@ function wp_social_bookmarking_light_save_options($data)
                                                   'lang' => $data['google_plus_one_lang'],
                                                   'annotation' => $data['google_plus_one_annotation'],
                                                   'inline_size' => $data['google_plus_one_inline_size']),
-                      'line' => array('button_type' => $data['line_button_type']),
+                      'line' => array('button_type' => $data['line_button_type'],
+                                      'protocol' => $data['line_protocol']),
                       'pocket' => array('button_type' => $data['pocket_button_type']),
     );
     update_option( 'wp_social_bookmarking_light_options', $options );
