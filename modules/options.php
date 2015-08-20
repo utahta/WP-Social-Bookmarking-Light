@@ -124,6 +124,9 @@ function wp_social_bookmarking_light_options()
  */
 function wp_social_bookmarking_light_save_options($data)
 {
+    foreach ($data as $key => $value) {
+        $data[$key] = htmlspecialchars($value, ENT_QUOTES, 'UTF-8');
+    }
     $options = array("services" => $data["services"],
                       "styles" => $data["styles"],
                       "position" => $data["position"],
