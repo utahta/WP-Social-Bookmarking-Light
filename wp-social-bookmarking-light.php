@@ -1,11 +1,11 @@
 <?php
 /*
 Plugin Name: WP Social Bookmarking Light
-Plugin URI: http://www.ninxit.com/blog/2010/06/13/wp-social-bookmarking-light/
+Plugin URI: https://github.com/utahta/WP-Social-Bookmarking-Light
 Description: This plugin inserts social share links at the top or bottom of each post.
 Author: utahta
-Author URI: http://www.ninxit.com/blog/
-Version: 1.7.9
+Author URI: https://github.com/utahta/WP-Social-Bookmarking-Light
+Version: 1.7.10
 */
 /*
 Copyright 2010 utahta (email : labs.ninxit@gmail.com)
