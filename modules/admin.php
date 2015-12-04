@@ -864,8 +864,6 @@ function wp_social_bookmarking_light_options_page()
     <tr><td>hatena</td><td>Hatena Bookmark</td></tr>
     <tr><td>hatena_users</td><td>Hatena Bookmark Users</td></tr>
     <tr><td>hatena_button</td><td>Hatena Bookmark Button</td></tr>
-    <tr><td>twib</td><td>Twib - Twitter</td></tr>
-    <tr><td>twib_users</td><td>Twib Users - Twitter</td></tr>
     <tr><td>twitter</td><td>Tweet Button - Twitter</td></tr>
     <tr><td>livedoor</td><td>Livedoor Clip</td></tr>
     <tr><td>livedoor_users</td><td>Livedoor Clip Users</td></tr>

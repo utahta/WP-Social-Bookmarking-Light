@@ -92,25 +92,7 @@ class WpSocialBookmarkingLight
                                 .' alt="'.$alt.'" width="20" height="20" style="border: none;" /></a>'
                                 .'<script type="text/javascript" src="//b.hatena.ne.jp/js/bookmark_button.js" charset="utf-8" async="async"></script>');
     }
-    
-    /**
-     * @brief twib
-     */
-    function twib()
-    {
-        $url = "http://twib.jp/share?url={$this->encode_url}";
-        $alt = __( "Post to Twitter", WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN );
-        $icon = WP_SOCIAL_BOOKMARKING_LIGHT_IMAGES_URL."/twib.gif";
-        return $this->link( $url, $alt, $icon, 18, 18 );
-    }
-    function twib_users()
-    {
-        $url = "http://twib.jp/url/{$this->url}";
-        $alt = sprintf( __("Tweets - %s", WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN), $this->title );
-        $icon = "http://image.twib.jp/counter/{$this->url}";
-        return $this->link( $url, $alt, $icon, null, null );
-    }
-    
+
     /**
      * @brief twitter
      */
