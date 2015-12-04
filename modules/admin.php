@@ -870,8 +870,6 @@ function wp_social_bookmarking_light_options_page()
     <tr><td>yahoo</td><td>Yahoo!JAPAN Bookmark</td></tr>
     <tr><td>yahoo_users</td><td>Yahoo!JAPAN Bookmark Users</td></tr>
     <tr><td>yahoo_buzz</td><td>Yahoo!Buzz</td></tr>
-    <tr><td>buzzurl</td><td>BuzzURL</td></tr>
-    <tr><td>buzzurl_users</td><td>BuzzURL Users</td></tr>
     <tr><td>nifty</td><td>@nifty Clip</td></tr>
     <tr><td>nifty_users</td><td>@nifty Clip Users</td></tr>
     <tr><td>tumblr</td><td>Tumblr</td></tr>

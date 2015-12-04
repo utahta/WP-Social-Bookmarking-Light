@@ -166,25 +166,7 @@ class WpSocialBookmarkingLight
         $icon = WP_SOCIAL_BOOKMARKING_LIGHT_IMAGES_URL."/yahoo_buzz.png";
         return $this->link( $url, $alt, $icon, 16, 16 );
     }
-    
-    /**
-     * @brief BuzzURL
-     */
-    function buzzurl()
-    {
-        $url = "http://buzzurl.jp/entry/{$this->url}";
-        $alt = __( "Bookmark this on BuzzURL", WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN );
-        $icon = WP_SOCIAL_BOOKMARKING_LIGHT_IMAGES_URL."/buzzurl.gif";
-        return $this->link( $url, $alt, $icon, 21, 15 );
-    }
-    function buzzurl_users()
-    {
-        $url = "http://buzzurl.jp/entry/{$this->url}";
-        $alt = sprintf( __("BuzzURL - %s", WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN), $this->title );
-        $icon = "http://api.buzzurl.jp/api/counter/v1/image?url={$this->encode_url}";
-        return $this->link( $url, $alt, $icon, null, null );
-    }
-    
+
     /**
      * @brief nifty clip
      */
