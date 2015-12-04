@@ -118,15 +118,27 @@ class WpSocialBookmarkingLight
     {
         $options = wp_social_bookmarking_light_options();
         $twitter = $options['twitter'];
-        return $this->link_raw('<iframe allowtransparency="true" frameborder="0" scrolling="no"'
-                                .' src="//platform.twitter.com/widgets/tweet_button.html'
-                                .'?url='.$this->encode_url
-                                .'&amp;text='.$this->encode_title
-                                .($twitter['via'] != '' ? '&amp;via='.$twitter['via'] : '')
-                                .'&amp;lang='.$twitter['lang']
-                                .'&amp;count='.$twitter['count']
-                                .'" style="width:130px; height:20px;">'
-                                .'</iframe>');
+        $data_url = $this->url;
+        $data_text = $this->title;
+        $data_via = $twitter['via'] !== '' ? 'data-via="'.$twitter['via'].'"' : '';
+        $data_size = $twitter['size'] === 'large' ? 'data-size="large"' : '';
+        $data_related = $twitter['related'] !== '' ? 'data-related="'.$twitter['related'].'"' : '';
+        $data_hashtags = $twitter['hashtags'] !== '' ? 'data-hashtags="'.$twitter['hashtags'].'"' : '';
+        $data_dnt = $twitter['dnt'] ? 'data-dnt="true"' : '';
+        $data_lang = $twitter['lang'] !== '' ? 'data-lang="'.$twitter['lang'].'"' : '';
+
+        return $this->link_raw(
+            '<a href="https://twitter.com/share" class="twitter-share-button"{count}'
+            .' data-url="'.$data_url.'"'
+            .' data-text="'.$data_text.'"'
+            .' '.$data_via
+            .' '.$data_size
+            .' '.$data_related
+            .' '.$data_hashtags
+            .' '.$data_dnt
+            .' '.$data_lang
+            .'>Tweet</a>'
+        );
     }
 
     /**
