@@ -112,18 +112,6 @@ class WpSocialBookmarkingLight
     }
     
     /**
-     * @brief tweetmeme
-     */
-    function tweetmeme()
-    {
-        return $this->link_raw( "<script type='text/javascript'>"
-                               ."tweetmeme_style = 'compact';"
-                               ."tweetmeme_url='{$this->url}';"
-                               ."</script>"
-                               ."<script type='text/javascript' src='http://tweetmeme.com/i/scripts/button.js'></script>" );
-    }
-    
-    /**
      * @brief twitter
      */
     function twitter()
