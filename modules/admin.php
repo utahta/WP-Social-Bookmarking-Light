@@ -182,7 +182,7 @@ function wsbl_update_services(is_simply)
     
     is_simply = is_simply || false;
     var services = ['mixi', 'twitter', 'hatena_button', 'facebook_general', 'facebook_like', 'facebook_share', 'facebook_send',
-                    'gree', 'evernote', 'tumblr', 'atode', 'google_plus_one', 'line', 'pocket'];
+                    'gree', 'evernote', 'tumblr', 'atode', 'google_plus_one', 'line', 'pocket', 'pinterest'];
     for(var i in services){
         wsbl_tab_toggle(services[i], is_simply);
     }
@@ -286,6 +286,7 @@ function wp_social_bookmarking_light_options_page()
             <li id='google_plus_one_settings'><a href="#tabs-11"><span><?php _el("Google Plus One") ?></span></a></li>
             <li id='line_settings'><a href="#tabs-12"><span><?php _el("LINE") ?></span></a></li>
             <li id='pocket_settings'><a href="#tabs-13"><span><?php _el("Pocket") ?></span></a></li>
+            <li id='pinterest_settings'><a href="#tabs-16"><span><?php _el("Pinterest") ?></span></a></li>
             </ul>
 
         <!-- General -->
@@ -424,33 +425,69 @@ function wp_social_bookmarking_light_options_page()
         <!-- Twitter -->
         <div id="tabs-3">
             <table class='form-table'>
-            <tr>
-                <th scope="row">Via: <br> <span style="font-size:10px">(your twitter account)</span></th>
-                <td>
-                <input type="text" name='twitter_via' value="<?php echo $options['twitter']['via'] ?>" size=50 />
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">Language:</th>
-                <td>
-                <select name='twitter_lang'>
-                <option value='en' <?php if( $options['twitter']['lang'] == 'en' ) echo 'selected'; ?>>English</option>
-                <option value='fr' <?php if( $options['twitter']['lang'] == 'fr' ) echo 'selected'; ?>>French</option>
-                <option value='de' <?php if( $options['twitter']['lang'] == 'de' ) echo 'selected'; ?>>German</option>
-                <option value='es' <?php if( $options['twitter']['lang'] == 'es' ) echo 'selected'; ?>>Spanish</option>
-                <option value='ja' <?php if( $options['twitter']['lang'] == 'ja' ) echo 'selected'; ?>>Japanese</option>
-                </select>
-                </td>
-            </tr>
-            <tr>
-                <th scope="row">Count:</th>
-                <td>
-                <select name='twitter_count'>
-                <option value='none' <?php if( $options['twitter']['count'] == 'none' ) echo 'selected'; ?>>none</option>
-                <option value='horizontal' <?php if( $options['twitter']['count'] == 'horizontal' ) echo 'selected'; ?>>horizontal</option>
-                </select>
-                </td>
-            </tr>
+                <tr>
+                    <th scope="row">Via: <br> <span style="font-size:10px">(your twitter account)</span></th>
+                    <td>
+                    <input type="text" name='twitter_via' value="<?php echo $options['twitter']['via'] ?>" size=50 />
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Related: <br> <span style="font-size:10px">(related twitter account)</span></th>
+                    <td>
+                        <input type="text" name='twitter_related' value="<?php echo $options['twitter']['related'] ?>" size=50 />
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Hashtags: <br> <span style="font-size:10px"></span></th>
+                    <td>
+                        <input type="text" name='twitter_hashtags' value="<?php echo $options['twitter']['hashtags'] ?>" size=50 />
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Language:</th>
+                    <td>
+                    <select name='twitter_lang'>
+                        <option value="" <?php if( $options['twitter']['lang'] == '' ) echo 'selected'; ?>>---</option>
+                        <option value="fr" <?php if( $options['twitter']['lang'] == 'fr' ) echo 'selected'; ?>>French - français</option>
+                        <option value="en" <?php if( $options['twitter']['lang'] == 'en' ) echo 'selected'; ?>>English</option>
+                        <option value="ar" <?php if( $options['twitter']['lang'] == 'ar' ) echo 'selected'; ?>>Arabic - العربية</option>
+                        <option value="ja" <?php if( $options['twitter']['lang'] == 'ja' ) echo 'selected'; ?>>Japanese - 日本語</option>
+                        <option value="es" <?php if( $options['twitter']['lang'] == 'es' ) echo 'selected'; ?>>Spanish - Español</option>
+                        <option value="de" <?php if( $options['twitter']['lang'] == 'de' ) echo 'selected'; ?>>German - Deutsch</option>
+                        <option value="it" <?php if( $options['twitter']['lang'] == 'it' ) echo 'selected'; ?>>Italian - Italiano</option>
+                        <option value="id" <?php if( $options['twitter']['lang'] == 'id' ) echo 'selected'; ?>>Indonesian - Bahasa Indonesia</option>
+                        <option value="pt" <?php if( $options['twitter']['lang'] == 'pt' ) echo 'selected'; ?>>Portuguese - Português</option>
+                        <option value="ko" <?php if( $options['twitter']['lang'] == 'ko' ) echo 'selected'; ?>>Korean - 한국어</option>
+                        <option value="tr" <?php if( $options['twitter']['lang'] == 'tr' ) echo 'selected'; ?>>Turkish - Türkçe</option>
+                        <option value="ru" <?php if( $options['twitter']['lang'] == 'ru' ) echo 'selected'; ?>>Russian - Русский</option>
+                        <option value="nl" <?php if( $options['twitter']['lang'] == 'nl' ) echo 'selected'; ?>>Dutch - Nederlands</option>
+                        <option value="fil" <?php if( $options['twitter']['lang'] == 'fil' ) echo 'selected'; ?>>Filipino - Filipino</option>
+                        <option value="msa" <?php if( $options['twitter']['lang'] == 'msa' ) echo 'selected'; ?>>Malay - Bahasa Melayu</option>
+                        <option value="zh-tw" <?php if( $options['twitter']['lang'] == 'zh-tw' ) echo 'selected'; ?>>Traditional Chinese - 繁體中文</option>
+                        <option value="zh-cn" <?php if( $options['twitter']['lang'] == 'zh-cn' ) echo 'selected'; ?>>Simplified Chinese - 简体中文</option>
+                        <option value="hi" <?php if( $options['twitter']['lang'] == 'hi' ) echo 'selected'; ?>>Hindi - हिन्दी</option>
+                        <option value="no" <?php if( $options['twitter']['lang'] == 'no' ) echo 'selected'; ?>>Norwegian - Norsk</option>
+                        <option value="sv" <?php if( $options['twitter']['lang'] == 'sv' ) echo 'selected'; ?>>Swedish - Svenska</option>
+                        <option value="fi" <?php if( $options['twitter']['lang'] == 'fi' ) echo 'selected'; ?>>Finnish - Suomi</option>
+                        <option value="da" <?php if( $options['twitter']['lang'] == 'da' ) echo 'selected'; ?>>Danish - Dansk</option>
+                        <option value="pl" <?php if( $options['twitter']['lang'] == 'pl' ) echo 'selected'; ?>>Polish - Polski</option>
+                        <option value="hu" <?php if( $options['twitter']['lang'] == 'hu' ) echo 'selected'; ?>>Hungarian - Magyar</option>
+                        <option value="fa" <?php if( $options['twitter']['lang'] == 'fa' ) echo 'selected'; ?>>Farsi - فارسی</option>
+                        <option value="he" <?php if( $options['twitter']['lang'] == 'he' ) echo 'selected'; ?>>Hebrew - עִבְרִית</option>
+                        <option value="ur" <?php if( $options['twitter']['lang'] == 'ur' ) echo 'selected'; ?>>Urdu - اردو</option>
+                        <option value="th" <?php if( $options['twitter']['lang'] == 'th' ) echo 'selected'; ?>>Thai - ภาษาไทย</option>
+                    </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Size:</th>
+                    <td>
+                    <select name='twitter_size'>
+                        <option value='' <?php if( $options['twitter']['size'] === '' ) echo 'selected'; ?>>normal</option>
+                        <option value='large' <?php if( $options['twitter']['size'] === 'large' ) echo 'selected'; ?>>large</option>
+                    </select>
+                    </td>
+                </tr>
             </table>
         </div>
 
@@ -815,7 +852,59 @@ function wp_social_bookmarking_light_options_page()
             </tr>
             </table>
         </div>
-        
+
+        <!-- Pinterest -->
+        <div id="tabs-16">
+            <table class='form-table'>
+                <tr>
+                    <th scope="row">Type: <br> <span style="font-size:10px"></span></th>
+                    <td>
+                        <select name='pinterest_type'>
+                            <option value='all' <?php if( $options['pinterest']['type'] === 'all' ) echo 'selected'; ?>>All</option>
+                            <option value='hover' <?php if( $options['pinterest']['type'] === 'hover' ) echo 'selected'; ?>>Hover</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Shape: <br> <span style="font-size:10px"></span></th>
+                    <td>
+                        <select name='pinterest_shape'>
+                            <option value='rect' <?php if( $options['pinterest']['shape'] === 'rect' ) echo 'selected'; ?>>Rectangle</option>
+                            <option value='round' <?php if( $options['pinterest']['shape'] === 'round' ) echo 'selected'; ?>>Round</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Size: <br> <span style="font-size:10px"></span></th>
+                    <td>
+                        <select name='pinterest_size'>
+                            <option value='large' <?php if( $options['pinterest']['size'] === 'large' ) echo 'selected'; ?>>Large</option>
+                            <option value='small' <?php if( $options['pinterest']['size'] === 'small' ) echo 'selected'; ?>>Small</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Color: <br> <span style="font-size:10px"></span></th>
+                    <td>
+                        <select name='pinterest_color'>
+                            <option value='red' <?php if( $options['pinterest']['color'] === 'red' ) echo 'selected'; ?>>Red</option>
+                            <option value='gray' <?php if( $options['pinterest']['color'] === 'gray' ) echo 'selected'; ?>>Gray</option>
+                            <option value='white' <?php if( $options['pinterest']['color'] === 'white' ) echo 'selected'; ?>>White</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Language:</th>
+                    <td>
+                        <select name='pinterest_lang'>
+                            <option value="en" <?php if( $options['pinterest']['lang'] == 'en' ) echo 'selected'; ?>>English</option>
+                            <option value="ja" <?php if( $options['pinterest']['lang'] == 'ja' ) echo 'selected'; ?>>Japanese - 日本語</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
     </div>
     <p class="submit">
     <input class="button-primary" type="submit" name='save' value='<?php _e('Save Changes') ?>' />
@@ -828,17 +917,12 @@ function wp_social_bookmarking_light_options_page()
     <tr><td>hatena</td><td>Hatena Bookmark</td></tr>
     <tr><td>hatena_users</td><td>Hatena Bookmark Users</td></tr>
     <tr><td>hatena_button</td><td>Hatena Bookmark Button</td></tr>
-    <tr><td>twib</td><td>Twib - Twitter</td></tr>
-    <tr><td>twib_users</td><td>Twib Users - Twitter</td></tr>
-    <tr><td>tweetmeme</td><td>TweetMeme - Twitter</td></tr>
     <tr><td>twitter</td><td>Tweet Button - Twitter</td></tr>
     <tr><td>livedoor</td><td>Livedoor Clip</td></tr>
     <tr><td>livedoor_users</td><td>Livedoor Clip Users</td></tr>
     <tr><td>yahoo</td><td>Yahoo!JAPAN Bookmark</td></tr>
     <tr><td>yahoo_users</td><td>Yahoo!JAPAN Bookmark Users</td></tr>
     <tr><td>yahoo_buzz</td><td>Yahoo!Buzz</td></tr>
-    <tr><td>buzzurl</td><td>BuzzURL</td></tr>
-    <tr><td>buzzurl_users</td><td>BuzzURL Users</td></tr>
     <tr><td>nifty</td><td>@nifty Clip</td></tr>
     <tr><td>nifty_users</td><td>@nifty Clip Users</td></tr>
     <tr><td>tumblr</td><td>Tumblr</td></tr>
@@ -867,6 +951,7 @@ function wp_social_bookmarking_light_options_page()
     <tr><td>atode</td><td>atode (toread)</td></tr>
     <tr><td>line</td><td>LINE Button</td></tr>
     <tr><td>pocket</td><td>Pocket Button</td></tr>
+    <tr><td>pinterest</td><td>Pinterest Button</td></tr>
     </table>
 </div>
 
