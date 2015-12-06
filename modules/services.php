@@ -607,6 +607,59 @@ class WpSocialBookmarkingLight
         return $this->link_raw('<a href="https://getpocket.com/save" class="pocket-btn" data-lang="en" data-save-url="' . $this->url . '" data-pocket-count="' . $options['pocket']['button_type'] . '" data-pocket-align="left" >Pocket</a><script type="text/javascript">!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script>');
     }
 
+
+    /**
+     * @brief pinterest
+     */
+    function pinterest()
+    {
+        $options = wp_social_bookmarking_light_options();
+        $pinterest = $options['pinterest'];
+        if ($pinterest['type'] === 'hover') {
+            return '';
+        }
+        $data_pin_shape = '';
+        $data_pin_color = '';
+        $data_pin_lang = '';
+
+        if ($pinterest['shape'] === 'round') {
+            // 円形ボタン
+            $data_pin_shape = 'data-pin-shape="round"';
+
+            if ($pinterest['size'] === 'large') {
+                $data_pin_height = 'data-pin-height="32"';
+                $img_src = "//assets.pinterest.com/images/pidgets/pinit_fg_en_round_red_32.png";
+            } else {
+                $data_pin_height = '';
+                $img_src = '//assets.pinterest.com/images/pidgets/pinit_fg_en_round_red_16.png';
+            }
+        } else {
+            // 長方形ボタン
+            $color = $pinterest['color'];
+            $lang = $pinterest['lang'];
+            $data_pin_color = 'data-pin-color="'.$color.'"';
+            $data_pin_lang = 'data-pin-lang="'.$lang.'"';
+
+            if ($pinterest['size'] === 'large') {
+                $data_pin_height = 'data-pin-height="28"';
+                $img_src = "//assets.pinterest.com/images/pidgets/pinit_fg_${lang}_rect_${color}_28.png";
+            } else {
+                $data_pin_height = '';
+                $img_src = "//assets.pinterest.com/images/pidgets/pinit_fg_${lang}_round_${$color}_16.png";
+            }
+        }
+
+        return $this->link_raw(
+            '<a href="//jp.pinterest.com/pin/create/button/"'
+            .' data-pin-do="buttonBookmark"'
+            .' '.$data_pin_color
+            .' '.$data_pin_lang
+            .' '.$data_pin_shape
+            .' '.$data_pin_height
+            .'>'
+            .'<img src="'.$img_src.'" /></a>'
+        );
+    }
 }
 
 /**

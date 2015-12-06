@@ -169,11 +169,11 @@ function wp_social_bookmarking_light_wp_footer()
         echo "<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>";
     }
     // evernote
-    if(in_array('evernote', $services)){
+    if (in_array('evernote', $services)) {
         echo '<script type="text/javascript" src="http://static.evernote.com/noteit.js"></script>'."\n";
     }
     // Google +1
-    if(in_array('google_plus_one', $services)){
+    if (in_array('google_plus_one', $services)) {
         $lang = $options['google_plus_one']['lang'];
 ?>
 <script type="text/javascript">
@@ -187,8 +187,31 @@ function wp_social_bookmarking_light_wp_footer()
 </script>
 <?php
     }
+    // pinterest
+    if (in_array('pinterest', $services)) {
+        if ($options['pinterest']['type'] === 'all') {
+            $data_pin_hover = $data_pin_shape = $data_pin_color = $data_pin_lang = $data_pin_height = '';
+        } else {
+            $data_pin_hover = 'data-pin-hover="true"';
+            $shape = $options['pinterest']['shape'];
+            $data_pin_shape = $shape === 'round' ? 'data-pin-shape="round"' : '';
+            $data_pin_color = 'data-pin-color="'.$options['pinterest']['color'];
+            $data_pin_lang = 'data-pin-lang="'.$options['pinterest']['lang'];
+            $data_pin_height = '';
+            if ($options['pinterest']['size'] === 'large') {
+                $data_pin_height = $shape === 'round' ? 'data-pin-height="32"' : 'data-pin-height="28"';
+            }
+        }
+        echo '<script type="text/javascript" async defer  '
+            .$data_pin_shape.' '
+            .$data_pin_color.' '
+            .$data_pin_lang.' '
+            .$data_pin_height.' '
+            .$data_pin_hover.' '
+            .'src="//assets.pinterest.com/js/pinit.js"></script>';
+    }
 
-?>
+    ?>
 <!-- END: WP Social Bookmarking Light -->
 <?php
 }

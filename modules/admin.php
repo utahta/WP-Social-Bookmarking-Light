@@ -182,7 +182,7 @@ function wsbl_update_services(is_simply)
     
     is_simply = is_simply || false;
     var services = ['mixi', 'twitter', 'hatena_button', 'facebook_general', 'facebook_like', 'facebook_share', 'facebook_send',
-                    'gree', 'evernote', 'tumblr', 'atode', 'google_plus_one', 'line', 'pocket'];
+                    'gree', 'evernote', 'tumblr', 'atode', 'google_plus_one', 'line', 'pocket', 'pinterest'];
     for(var i in services){
         wsbl_tab_toggle(services[i], is_simply);
     }
@@ -286,6 +286,7 @@ function wp_social_bookmarking_light_options_page()
             <li id='google_plus_one_settings'><a href="#tabs-11"><span><?php _el("Google Plus One") ?></span></a></li>
             <li id='line_settings'><a href="#tabs-12"><span><?php _el("LINE") ?></span></a></li>
             <li id='pocket_settings'><a href="#tabs-13"><span><?php _el("Pocket") ?></span></a></li>
+            <li id='pinterest_settings'><a href="#tabs-16"><span><?php _el("Pinterest") ?></span></a></li>
             </ul>
 
         <!-- General -->
@@ -851,7 +852,59 @@ function wp_social_bookmarking_light_options_page()
             </tr>
             </table>
         </div>
-        
+
+        <!-- Pinterest -->
+        <div id="tabs-16">
+            <table class='form-table'>
+                <tr>
+                    <th scope="row">Type: <br> <span style="font-size:10px"></span></th>
+                    <td>
+                        <select name='pinterest_type'>
+                            <option value='all' <?php if( $options['pinterest']['type'] === 'all' ) echo 'selected'; ?>>All</option>
+                            <option value='hover' <?php if( $options['pinterest']['type'] === 'hover' ) echo 'selected'; ?>>Hover</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Shape: <br> <span style="font-size:10px"></span></th>
+                    <td>
+                        <select name='pinterest_shape'>
+                            <option value='rect' <?php if( $options['pinterest']['shape'] === 'rect' ) echo 'selected'; ?>>Rectangle</option>
+                            <option value='round' <?php if( $options['pinterest']['shape'] === 'round' ) echo 'selected'; ?>>Round</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Size: <br> <span style="font-size:10px"></span></th>
+                    <td>
+                        <select name='pinterest_size'>
+                            <option value='large' <?php if( $options['pinterest']['size'] === 'large' ) echo 'selected'; ?>>Large</option>
+                            <option value='small' <?php if( $options['pinterest']['size'] === 'small' ) echo 'selected'; ?>>Small</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Color: <br> <span style="font-size:10px"></span></th>
+                    <td>
+                        <select name='pinterest_color'>
+                            <option value='red' <?php if( $options['pinterest']['color'] === 'red' ) echo 'selected'; ?>>Red</option>
+                            <option value='gray' <?php if( $options['pinterest']['color'] === 'gray' ) echo 'selected'; ?>>Gray</option>
+                            <option value='white' <?php if( $options['pinterest']['color'] === 'white' ) echo 'selected'; ?>>White</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Language:</th>
+                    <td>
+                        <select name='pinterest_lang'>
+                            <option value="en" <?php if( $options['pinterest']['lang'] == 'en' ) echo 'selected'; ?>>English</option>
+                            <option value="ja" <?php if( $options['pinterest']['lang'] == 'ja' ) echo 'selected'; ?>>Japanese - 日本語</option>
+                        </select>
+                    </td>
+                </tr>
+            </table>
+        </div>
+
     </div>
     <p class="submit">
     <input class="button-primary" type="submit" name='save' value='<?php _e('Save Changes') ?>' />
@@ -898,6 +951,7 @@ function wp_social_bookmarking_light_options_page()
     <tr><td>atode</td><td>atode (toread)</td></tr>
     <tr><td>line</td><td>LINE Button</td></tr>
     <tr><td>pocket</td><td>Pocket Button</td></tr>
+    <tr><td>pinterest</td><td>Pinterest Button</td></tr>
     </table>
 </div>
 

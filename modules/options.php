@@ -55,6 +55,9 @@ function wp_social_bookmarking_light_default_options()
 .wsbl_facebook_like iframe{
     max-width: none !important;
 }
+.wsbl_pinterest a{
+    border: 0px !important;
+}
 EOT;
     
     return array(
@@ -115,6 +118,13 @@ EOT;
             'protocol' => 'http'
         ),
         'pocket' => array('button_type' => 'none'),
+        'pinterest' => array(
+            'type' => 'all',
+            'shape' => 'rect',
+            'size' => 'large',
+            'color' => 'gray',
+            'lang' => 'en',
+        ),
     );
 }
 
@@ -211,6 +221,13 @@ function wp_social_bookmarking_light_save_options($data)
             'protocol' => $data['line_protocol']
         ),
         'pocket' => array('button_type' => $data['pocket_button_type']),
+        'pinterest' => array(
+            'type' => $data['pinterest_type'],
+            'shape' => $data['pinterest_shape'],
+            'size' => $data['pinterest_size'],
+            'color' => $data['pinterest_color'],
+            'lang' => $data['pinterest_lang'],
+        ),
     );
     update_option( 'wp_social_bookmarking_light_options', $options );
     return $options;
