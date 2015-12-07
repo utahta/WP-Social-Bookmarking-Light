@@ -166,7 +166,7 @@ function wp_social_bookmarking_light_wp_footer()
      */
     // twitter
     if (in_array('twitter', $services)) {
-        echo "<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>";
+        echo "<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>\n";
     }
     // evernote
     if (in_array('evernote', $services)) {
@@ -175,17 +175,7 @@ function wp_social_bookmarking_light_wp_footer()
     // Google +1
     if (in_array('google_plus_one', $services)) {
         $lang = $options['google_plus_one']['lang'];
-?>
-<script type="text/javascript">
-  window.___gcfg = {lang: '<?php echo $lang ?>'};
-
-  (function() {
-    var po = document.createElement('script'); po.type = 'text/javascript'; po.async = true;
-    po.src = 'https://apis.google.com/js/plusone.js';
-    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(po, s);
-  })();
-</script>
-<?php
+        echo '<script src="https://apis.google.com/js/platform.js" async defer>{lang: "'.$lang.'"}</script>'."\n";
     }
     // pinterest
     if (in_array('pinterest', $services)) {
