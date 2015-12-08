@@ -272,6 +272,7 @@ function wp_social_bookmarking_light_options_page()
         <ul>
             <li><a href="#tabs-1"><span><?php _e("General Settings") ?></span></a></li>
             <li><a href="#tabs-1_2"><span><?php _e("Styles") ?></span></a></li>
+            <li><a href="#tabs-1_3"><span><?php _e("Donate") ?></span></a></li>
             <li id='mixi_settings'><a href="#tabs-2"><span><?php _el("Mixi") ?></span></a></li>
             <li id='twitter_settings'><a href="#tabs-3"><span><?php _el("Twitter") ?></span></a></li>
             <li id='hatena_button_settings'><a href="#tabs-4"><span><?php _el("Hatena") ?></span></a></li>
@@ -372,7 +373,39 @@ function wp_social_bookmarking_light_options_page()
             </tr>
             </table>
         </div>
-        
+
+        <!-- Donate -->
+        <div id="tabs-1_3">
+            <table class='form-table'>
+                <tr>
+                    <th scope="row">Amazon:</th>
+                    <td>
+                        <p><b>To: labs.ninxit@gmail.com</b></p>
+                        <p>
+                            <a href="https://www.amazon.com/gp/product/B004LLIKVU/" target="_blank">Gift Cards - E-mail Delivery</a>
+                        </p>
+                        <p>
+                            <a href="https://www.amazon.co.jp/gp/product/B005FOVUS2/" target="_blank">ギフト券 - Eメールタイプ</a>
+                        </p>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row"></th>
+                    <td>
+                        <a href="http://www.amazon.co.jp/registry/wishlist/234SVHP1HFGPR" target=_blank>Wishlist - 欲しいものリスト</a>
+                    </td>
+                </tr>
+                <tr>
+                    <th scope="row">Bitcoin:</th>
+                    <td>
+                        <p>Please Donate To Bitcoin Address:</p>
+                        <p><b>1MLuaV3tnoDBq6ND1TvQeBfqdZ1oVmpQgc</b></p>
+                        <img src="<?php echo WP_SOCIAL_BOOKMARKING_LIGHT_IMAGES_URL ?>/bitcoin_donate.jpg">
+                    </td>
+                </tr>
+            </table>
+        </div>
+
         <!-- mixi -->
         <div id="tabs-2">
             <!-- General -->

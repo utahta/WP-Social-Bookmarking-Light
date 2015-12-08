@@ -4,7 +4,7 @@ Donate link:
 Tags: links, social, bookmarks, bookmarking, Hatena, Livedoor Clip, @nifty clip, Twitter, Tumblr, FC2 Bookmark, newsing, Choix, Yahoo!JAPAN Bookmark, Yahoo!Buzz, Google Bookmark, Delicious, Digg, FriendFeed, Google Buzz, Facebook, reddit, LinkedIn, Evernote, Instapaper, StumbleUpon, mixi, gree, atode, toread, line, pocket, Pinterest
 Requires at least: 2.9.0
 Tested up to: 4.3
-Stable tag: 1.8.0
+Stable tag: 1.8.1
 
 This plugin inserts social share links at the top or bottom of each post.
 
@@ -60,6 +60,10 @@ This is the list of used social sites:
 3. This is how the plugin looks in manually inside your template.
 
 == Changelog ==
+
+= 1.8.1 =
+* Updated: Google +1 Button
+* Added: Donate
 
 = 1.8.0 =
 * Added: Pinterest
