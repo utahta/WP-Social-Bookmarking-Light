@@ -1,6 +1,6 @@
 === WP Social Bookmarking Light ===
 Contributors: utahvich
-Donate link:
+Donate link: https://github.com/utahta/WP-Social-Bookmarking-Light/wiki/Donate
 Tags: links, social, bookmarks, bookmarking, Hatena, Livedoor Clip, @nifty clip, Twitter, Tumblr, FC2 Bookmark, newsing, Choix, Yahoo!JAPAN Bookmark, Yahoo!Buzz, Google Bookmark, Delicious, Digg, FriendFeed, Google Buzz, Facebook, reddit, LinkedIn, Evernote, Instapaper, StumbleUpon, mixi, gree, atode, toread, line, pocket, Pinterest
 Requires at least: 2.9.0
 Tested up to: 4.3
