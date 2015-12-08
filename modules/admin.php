@@ -723,79 +723,81 @@ function wp_social_bookmarking_light_options_page()
                 <th scope="row">Button size:</th>
                 <td>
                 <select name='google_plus_one_button_size'>
-                <option value='small' <?php if( $options['google_plus_one']['button_size'] == 'small' ) echo 'selected'; ?>>small</option>
-                <option value='medium' <?php if( $options['google_plus_one']['button_size'] == 'medium' ) echo 'selected'; ?>>medium</option>
+                    <option value='small' <?php if( $options['google_plus_one']['button_size'] == 'small' ) echo 'selected'; ?>>small</option>
+                    <option value='medium' <?php if( $options['google_plus_one']['button_size'] == 'medium' ) echo 'selected'; ?>>medium</option>
+                    <option value='standard' <?php if( $options['google_plus_one']['button_size'] == 'standard' ) echo 'selected'; ?>>standard</option>
+                    <option value='tall' <?php if( $options['google_plus_one']['button_size'] == 'tall' ) echo 'selected'; ?>>tall</option>
                 </select>
                 </td>
             </tr>
             <tr>
                 <th scope="row">Language:</th>
                 <td>
-                <select name='google_plus_one_lang'>
-                <?php 
-                $langs = array(
-                    "ar" => "Arabic",
-                    "ar" => "Arabic",
-                    "bg" => "Bulgarian",
-                    "ca" => "Catalan",
-                    "zh-CN" => "Chinese (Simplified)",
-                    "zh-TW" => "Chinese (Traditional)",
-                    "hr" => "Croatian",
-                    "cs" => "Czech",
-                    "da" => "Danish",
-                    "nl" => "Dutch",
-                    "en-US" => "English (US)",
-                    "en-GB" => "English (UK)",
-                    "et" => "Estonian",
-                    "fil" => "Filipino",
-                    "fi" => "Finnish",
-                    "fr" => "French",
-                    "de" => "German",
-                    "el" => "Greek",
-                    "iw" => "Hebrew",
-                    "hi" => "Hindi",
-                    "hu" => "Hungarian",
-                    "id" => "Indonesian",
-                    "it" => "Italian",
-                    "ja" => "Japanese",
-                    "ko" => "Korean",
-                    "lv" => "Latvian",
-                    "lt" => "Lithuanian",
-                    "ms" => "Malay",
-                    "no" => "Norwegian",
-                    "fa" => "Persian",
-                    "pl" => "Polish",
-                    "pt-BR" => "Portuguese (Brazil)",
-                    "pt-PT" => "Portuguese (Portugal)",
-                    "ro" => "Romanian",
-                    "ru" => "Russian",
-                    "sr" => "Serbian",
-                    "sv" => "Swedish",
-                    "sk" => "Slovak",
-                    "sl" => "Slovenian",
-                    "es" => "Spanish",
-                    "es-419" => "Spanish (Latin America)",
-                    "th" => "Thai",
-                    "tr" => "Turkish",
-                    "uk" => "Ukrainian",
-                    "vi" => "Vietnamese",
-                );
-                foreach($langs as $key => $val){
-                    $selected = $options['google_plus_one']['lang'] == $key ? "selected" : "";
-                    echo "<option $selected value='$key'>$val</option>\n";
-                }
-                ?>
-                </select>
+                    <select name='google_plus_one_lang'>
+                    <?php
+                    $langs = array(
+                        "ar" => "Arabic",
+                        "ar" => "Arabic",
+                        "bg" => "Bulgarian",
+                        "ca" => "Catalan",
+                        "zh-CN" => "Chinese (Simplified)",
+                        "zh-TW" => "Chinese (Traditional)",
+                        "hr" => "Croatian",
+                        "cs" => "Czech",
+                        "da" => "Danish",
+                        "nl" => "Dutch",
+                        "en-US" => "English (US)",
+                        "en-GB" => "English (UK)",
+                        "et" => "Estonian",
+                        "fil" => "Filipino",
+                        "fi" => "Finnish",
+                        "fr" => "French",
+                        "de" => "German",
+                        "el" => "Greek",
+                        "iw" => "Hebrew",
+                        "hi" => "Hindi",
+                        "hu" => "Hungarian",
+                        "id" => "Indonesian",
+                        "it" => "Italian",
+                        "ja" => "Japanese",
+                        "ko" => "Korean",
+                        "lv" => "Latvian",
+                        "lt" => "Lithuanian",
+                        "ms" => "Malay",
+                        "no" => "Norwegian",
+                        "fa" => "Persian",
+                        "pl" => "Polish",
+                        "pt-BR" => "Portuguese (Brazil)",
+                        "pt-PT" => "Portuguese (Portugal)",
+                        "ro" => "Romanian",
+                        "ru" => "Russian",
+                        "sr" => "Serbian",
+                        "sv" => "Swedish",
+                        "sk" => "Slovak",
+                        "sl" => "Slovenian",
+                        "es" => "Spanish",
+                        "es-419" => "Spanish (Latin America)",
+                        "th" => "Thai",
+                        "tr" => "Turkish",
+                        "uk" => "Ukrainian",
+                        "vi" => "Vietnamese",
+                    );
+                    foreach($langs as $key => $val){
+                        $selected = $options['google_plus_one']['lang'] == $key ? "selected" : "";
+                        echo "<option $selected value='$key'>$val</option>\n";
+                    }
+                    ?>
+                    </select>
                 </td>
             </tr>
             <tr>
                 <th scope="row">Annotation:</th>
                 <td>
-                <select name='google_plus_one_annotation'>
-                <option value='none' <?php if( $options['google_plus_one']['annotation'] == "none" ) echo 'selected'; ?>>none</option>
-                <option value='bubble' <?php if( $options['google_plus_one']['annotation'] == "bubble" ) echo 'selected'; ?>>bubble</option>
-                <option value='inline' <?php if( $options['google_plus_one']['annotation'] == "inline" ) echo 'selected'; ?>>inline</option>
-                </select>
+                    <select name='google_plus_one_annotation'>
+                        <option value='none' <?php if( $options['google_plus_one']['annotation'] == "none" ) echo 'selected'; ?>>none</option>
+                        <option value='bubble' <?php if( $options['google_plus_one']['annotation'] == "bubble" ) echo 'selected'; ?>>bubble</option>
+                        <option value='inline' <?php if( $options['google_plus_one']['annotation'] == "inline" ) echo 'selected'; ?>>inline</option>
+                    </select>
                 </td>
             </tr>
             <tr>
@@ -804,7 +806,6 @@ function wp_social_bookmarking_light_options_page()
                 <input type="text" name='google_plus_one_inline_size' value="<?php echo $options['google_plus_one']["inline_size"] ?>" />
                 </td>
             </tr>
-            
             </table>
         </div>
 
