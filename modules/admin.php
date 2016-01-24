@@ -477,6 +477,15 @@ function wp_social_bookmarking_light_options_page()
                     </td>
                 </tr>
                 <tr>
+                    <th scope="row">Dnt: <br> <span style="font-size:10px">(Opt-out of tailoring Twitter)</span></th>
+                    <td>
+                        <select name='twitter_dnt'>
+                            <option value='true' <?php if( $options['twitter']['dnt'] == true ) echo 'selected'; ?>>Yes</option>
+                            <option value='false' <?php if( $options['twitter']['dnt'] == false ) echo 'selected'; ?>>No</option>
+                        </select>
+                    </td>
+                </tr>
+                <tr>
                     <th scope="row">Language:</th>
                     <td>
                     <select name='twitter_lang'>
