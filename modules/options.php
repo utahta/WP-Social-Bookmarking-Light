@@ -77,7 +77,8 @@ EOT;
             'lang' => "",
             'size' => "",
             'related' => "",
-            'hashtags' => ""
+            'hashtags' => "",
+            "dnt" => false
         ),
         "hatena_button" => array('layout' => 'simple-balloon'),
         'facebook' => array(
@@ -178,7 +179,8 @@ function wp_social_bookmarking_light_save_options($data)
             'lang' => $data['twitter_lang'],
             'size' => $data['twitter_size'],
             'related' => $data['twitter_related'],
-            'hashtags' => $data['twitter_hashtags']
+            'hashtags' => $data['twitter_hashtags'],
+            'dnt' => $data['twitter_dnt'] == 'true',
         ),
         'hatena_button' => array(
             'layout' => $data['hatena_button_layout']
