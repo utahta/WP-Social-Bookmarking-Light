@@ -117,22 +117,45 @@ function wp_social_bookmarking_light_wp_head()
 }
 
 /**
- * add_filter the_content.
+ * true if can be displayed, false if not
+ *
+ * @return bool
  */
-function wp_social_bookmarking_light_the_content( $content )
+function wp_social_bookmarking_light_is_enabled()
 {
-    if( is_feed() || is_404() || is_robots() || is_comments_popup() || (function_exists( 'is_ktai' ) && is_ktai()) ){
-       return $content;
+    if (is_feed() || is_404() || is_robots() || is_comments_popup() || (function_exists( 'is_ktai' ) && is_ktai())) {
+        return false;
     }
 
     $options = wp_social_bookmarking_light_options();
-    if( $options['single_page'] && !is_singular() ){
-        return $content;
+    if ($options['single_page'] && !is_singular()) {
+        return false;
     }
-    if( !$options['is_page'] && is_page() ){
+    if (!$options['is_page'] && is_page()) {
+        return false;
+    }
+
+    global $wp_current_filter;
+    if (in_array('get_the_excerpt', (array)$wp_current_filter)) {
+        return false;
+    }
+    return true;
+}
+
+/**
+ * Add the Share Buttons to the content.
+ * add_filter "the_content"
+ *
+ * @param string $content
+ * @return string
+ */
+function wp_social_bookmarking_light_the_content($content)
+{
+    if (!wp_social_bookmarking_light_is_enabled()) {
         return $content;
     }
 
+    $options = wp_social_bookmarking_light_options();
     $out = wp_social_bookmarking_light_output( $options['services'], get_permalink(), get_the_title() );
     if( $out == '' ){
         return $content;
