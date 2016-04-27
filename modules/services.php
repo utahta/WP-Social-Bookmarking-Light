@@ -102,23 +102,23 @@ class WpSocialBookmarkingLight
         $twitter = $options['twitter'];
         $data_url = $this->url;
         $data_text = $this->title;
-        $data_via = $twitter['via'] !== '' ? 'data-via="'.$twitter['via'].'"' : '';
-        $data_size = $twitter['size'] === 'large' ? 'data-size="large"' : '';
-        $data_related = $twitter['related'] !== '' ? 'data-related="'.$twitter['related'].'"' : '';
-        $data_hashtags = $twitter['hashtags'] !== '' ? 'data-hashtags="'.$twitter['hashtags'].'"' : '';
-        $data_dnt = $twitter['dnt'] ? 'data-dnt="true"' : '';
-        $data_lang = $twitter['lang'] !== '' ? 'data-lang="'.$twitter['lang'].'"' : '';
+        $data_via = $twitter['via'] !== '' ? ' data-via="'.$twitter['via'].'"' : '';
+        $data_size = $twitter['size'] === 'large' ? ' data-size="large"' : '';
+        $data_related = $twitter['related'] !== '' ? ' data-related="'.$twitter['related'].'"' : '';
+        $data_hashtags = $twitter['hashtags'] !== '' ? ' data-hashtags="'.$twitter['hashtags'].'"' : '';
+        $data_dnt = $twitter['dnt'] ? ' data-dnt="true"' : '';
+        $data_lang = $twitter['lang'] !== '' ? ' data-lang="'.$twitter['lang'].'"' : '';
 
         return $this->link_raw(
             '<a href="https://twitter.com/share" class="twitter-share-button"'
             .' data-url="'.$data_url.'"'
             .' data-text="'.$data_text.'"'
-            .' '.$data_via
-            .' '.$data_size
-            .' '.$data_related
-            .' '.$data_hashtags
-            .' '.$data_dnt
-            .' '.$data_lang
+            .$data_via
+            .$data_size
+            .$data_related
+            .$data_hashtags
+            .$data_dnt
+            .$data_lang
             .'>Tweet</a>'
         );
     }
