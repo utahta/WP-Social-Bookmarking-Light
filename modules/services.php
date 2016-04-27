@@ -110,7 +110,7 @@ class WpSocialBookmarkingLight
         $data_lang = $twitter['lang'] !== '' ? 'data-lang="'.$twitter['lang'].'"' : '';
 
         return $this->link_raw(
-            '<a href="https://twitter.com/share" class="twitter-share-button"{count}'
+            '<a href="https://twitter.com/share" class="twitter-share-button"'
             .' data-url="'.$data_url.'"'
             .' data-text="'.$data_text.'"'
             .' '.$data_via
