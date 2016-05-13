@@ -123,7 +123,7 @@ function wp_social_bookmarking_light_wp_head()
  */
 function wp_social_bookmarking_light_is_enabled()
 {
-    if (is_feed() || is_404() || is_robots() || is_comments_popup() || (function_exists( 'is_ktai' ) && is_ktai())) {
+    if (is_feed() || is_404() || is_robots() || (function_exists( 'is_ktai' ) && is_ktai())) {
         return false;
     }
 
