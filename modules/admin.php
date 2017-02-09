@@ -204,13 +204,13 @@ function wsbl_update_sortable()
                 wsbl_update_services();
             });
         });
-        img.attr('src', '<?php echo WP_SOCIAL_BOOKMARKING_LIGHT_IMAGES_URL."/close_button.png"?>');
+        img.attr('src', '<?php echo wp_social_bookmarking_light_images_url("close_button.png")?>');
         img.hover(
             function(){
-                jQuery(this).attr('src', '<?php echo WP_SOCIAL_BOOKMARKING_LIGHT_IMAGES_URL."/close_button2.png"?>');
+                jQuery(this).attr('src', '<?php echo wp_social_bookmarking_light_images_url("close_button2.png")?>');
             },
             function(){
-                jQuery(this).attr('src', '<?php echo WP_SOCIAL_BOOKMARKING_LIGHT_IMAGES_URL."/close_button.png"?>');
+                jQuery(this).attr('src', '<?php echo wp_social_bookmarking_light_images_url("close_button.png")?>');
             }
         );
     });
@@ -344,7 +344,7 @@ function wp_social_bookmarking_light_options_page()
                     }
                     ?>
                     </ul>
-                    <div class="wsbl_point_left"><img src='<?php echo WP_SOCIAL_BOOKMARKING_LIGHT_IMAGES_URL."/point_left.png"?>'></div>
+                    <div class="wsbl_point_left"><img src='<?php echo wp_social_bookmarking_light_images_url("point_left.png")?>'></div>
                     <ul id="wsbl_draggable">
                     <?php
                     foreach($class_methods as $method){
@@ -378,21 +378,19 @@ function wp_social_bookmarking_light_options_page()
         <div id="tabs-1_3">
             <table class='form-table'>
                 <tr>
+                    <th></th>
+                    <td>If you want to support this project, please make a donation.</td>
+                </tr>
+                <tr>
                     <th scope="row">Amazon:</th>
                     <td>
                         <p><b>To: labs.ninxit@gmail.com</b></p>
                         <p>
-                            <a href="https://www.amazon.com/gp/product/B004LLIKVU/" target="_blank">Gift Cards - E-mail Delivery</a>
-                        </p>
-                        <p>
                             <a href="https://www.amazon.co.jp/gp/product/B005FOVUS2/" target="_blank">ギフト券 - Eメールタイプ</a>
                         </p>
-                    </td>
-                </tr>
-                <tr>
-                    <th scope="row"></th>
-                    <td>
-                        <a href="http://www.amazon.co.jp/registry/wishlist/234SVHP1HFGPR" target=_blank>Wishlist - 欲しいものリスト</a>
+                        <p>
+                            <a href="http://www.amazon.co.jp/registry/wishlist/234SVHP1HFGPR" target=_blank>Wishlist - 欲しいものリスト</a>
+                        </p>
                     </td>
                 </tr>
                 <tr>
@@ -400,7 +398,7 @@ function wp_social_bookmarking_light_options_page()
                     <td>
                         <p>Please Donate To Bitcoin Address:</p>
                         <p><b>1MLuaV3tnoDBq6ND1TvQeBfqdZ1oVmpQgc</b></p>
-                        <img src="<?php echo WP_SOCIAL_BOOKMARKING_LIGHT_IMAGES_URL ?>/bitcoin_donate.jpg">
+                        <img src="<?php echo wp_social_bookmarking_light_images_url("bitcoin_donate.jpg") ?>">
                     </td>
                 </tr>
             </table>
@@ -857,7 +855,7 @@ function wp_social_bookmarking_light_options_page()
             <tr>
                 <th scope="row">Button type:</th>
                 <td>
-                <select name='line_button_type' onchange='jQuery("#line_img").attr("src", "<?php echo WP_SOCIAL_BOOKMARKING_LIGHT_IMAGES_URL ?>/"+this.form.line_button_type.value+".png")'>
+                <select name='line_button_type' onchange='jQuery("#line_img").attr("src", "<?php echo wp_social_bookmarking_light_images_url() ?>/"+this.form.line_button_type.value+".png")'>
                 <?php
                 $button_types = array('line20x20', 'line88x20');
                 foreach($button_types as $button_type){
@@ -865,7 +863,7 @@ function wp_social_bookmarking_light_options_page()
                 }
                 ?>
                 </select>
-                <img id='line_img' style="vertical-align:middle" src='<?php echo WP_SOCIAL_BOOKMARKING_LIGHT_IMAGES_URL."/".$options['line']['button_type'] ?>.png'>
+                <img id='line_img' style="vertical-align:middle" src='<?php echo wp_social_bookmarking_light_images_url($options['line']['button_type']) ?>.png'>
                 </td>
             </tr>
             <tr>
