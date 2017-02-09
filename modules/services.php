@@ -511,7 +511,7 @@ class WpSocialBookmarkingLight
                                  ." data-url='{$this->url}'"
                                  ." data-button='{$data_button}'"
                                  ." data-key='{$data_key}'>Check</a>"
-                                 .'<script type="text/javascript" src="https://static.mixi.jp/js/share.js"></script>' );
+                                 .'<script type="text/javascript" src="//static.mixi.jp/js/share.js"></script>' );
     }
     
     /**
