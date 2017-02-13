@@ -72,7 +72,7 @@ function _el($val){
  * @param $val
  */
 function __l($val){
-    __($val, WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN);
+    return __($val, WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN);
 }
 
 // load modules
