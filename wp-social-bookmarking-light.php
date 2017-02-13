@@ -26,17 +26,53 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
 // settings
-define( "WP_SOCIAL_BOOKMARKING_LIGHT_DIR", dirname( __FILE__ ) );
-define( "WP_SOCIAL_BOOKMARKING_LIGHT_URL", WP_PLUGIN_URL."/wp-social-bookmarking-light" );
-define( "WP_SOCIAL_BOOKMARKING_LIGHT_IMAGES_URL", WP_SOCIAL_BOOKMARKING_LIGHT_URL."/images" );
-define( "WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN", "wp-social-bookmarking-light" );
+define("WP_SOCIAL_BOOKMARKING_LIGHT_DIR", dirname(__FILE__));
+define("WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN", "wp-social-bookmarking-light");
 
-// _e() local domain
+/**
+ * returns plugin url
+ *
+ * @param $path
+ * @return string
+ */
+function wp_social_bookmarking_light_url($path = "")
+{
+    if ($path && is_string($path)) {
+        $path = "/".ltrim($path, "/");
+    }
+    return plugins_url("wp-social-bookmarking-light".$path);
+}
+
+/**
+ * returns plugin images url
+ *
+ * @param $path
+ * @return string
+ */
+function wp_social_bookmarking_light_images_url($path = "")
+{
+    if ($path && is_string($path)) {
+        $path = "/".ltrim($path, "/");
+    }
+    return wp_social_bookmarking_light_url("images".$path);
+}
+
+/**
+ * _e() local domain
+ *
+ * @param $val
+ */
 function _el($val){
     _e($val, WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN);
 }
+
+/**
+ * __() local domain
+ *
+ * @param $val
+ */
 function __l($val){
-    __($val, WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN);
+    return __($val, WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN);
 }
 
 // load modules
@@ -49,7 +85,9 @@ require_once WP_SOCIAL_BOOKMARKING_LIGHT_DIR.'/modules/content.php';
 load_plugin_textdomain( WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN, false,
                         "wp-social-bookmarking-light/po" );
 
-// initialize
+/**
+ * initialize
+ */
 function wp_social_bookmarking_light_init()
 {
     add_action('wp_head', 'wp_social_bookmarking_light_wp_head');
@@ -59,4 +97,3 @@ function wp_social_bookmarking_light_init()
 }
 add_action( 'init', 'wp_social_bookmarking_light_init' );
 
-?>
