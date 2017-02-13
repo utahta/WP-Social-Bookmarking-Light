@@ -5,7 +5,7 @@ Plugin URI: https://github.com/utahta/WP-Social-Bookmarking-Light
 Description: This plugin inserts social share links at the top or bottom of each post.
 Author: utahta
 Author URI: https://github.com/utahta/WP-Social-Bookmarking-Light
-Version: 1.8.8
+Version: 1.9.0
 */
 /*
 Copyright 2010 utahta (email : labs.ninxit@gmail.com)
