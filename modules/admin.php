@@ -397,8 +397,8 @@ function wp_social_bookmarking_light_options_page()
                     <th scope="row">Bitcoin:</th>
                     <td>
                         <p>Please Donate To Bitcoin Address:</p>
-                        <p><b>1MLuaV3tnoDBq6ND1TvQeBfqdZ1oVmpQgc</b></p>
-                        <img src="<?php echo wp_social_bookmarking_light_images_url("bitcoin_donate.jpg") ?>">
+                        <p><b>16H1Q6ZaYC7jX7tBLK2Z3EV9HmQEk5QnBo</b></p>
+                        <img src="https://cloud.githubusercontent.com/assets/97572/16043856/b8e50f52-327c-11e6-8c0c-bc1f3603d9e0.png">
                     </td>
                 </tr>
             </table>
