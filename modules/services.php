@@ -28,7 +28,7 @@ class WpSocialBookmarkingLight
     var $encode_title;
     var $encode_blogname;
     
-    function WpSocialBookmarkingLight( $url, $title, $blogname )
+    function __construct( $url, $title, $blogname )
     {
         $title = $this->to_utf8( $title );
         $this->blogname = $this->to_utf8( $blogname );
