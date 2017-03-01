@@ -18,11 +18,13 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
 /**
- * default option
+ * default options
+ *
+ * @return array
  */
 function wp_social_bookmarking_light_default_options()
 {
-    $styles = <<<EOT
+    $styles = <<<CSS
 .wp_social_bookmarking_light{
     border: 0 !important;
     padding: 10px 0 20px 0 !important;
@@ -58,8 +60,8 @@ function wp_social_bookmarking_light_default_options()
 .wsbl_pinterest a{
     border: 0px !important;
 }
-EOT;
-    
+CSS;
+
     return array(
         "services" => "hatena_button,facebook_like,twitter",
         "styles" => $styles,
@@ -130,23 +132,27 @@ EOT;
 }
 
 /**
- * option
+ * current options
+ *
+ * @return array
  */
 function wp_social_bookmarking_light_options()
 {
     $options = get_option("wp_social_bookmarking_light_options", array());
-    
+
     // array merge recursive overwrite (1 depth)
     $default_options = wp_social_bookmarking_light_default_options();
-    foreach( $default_options as $key => $val ){
-        if(is_array($default_options[$key])){
-            if(!array_key_exists($key, $options) || !is_array($options[$key])){
-                $options[$key] = array();
-            }
-            $options[$key] = array_merge($default_options[$key], $options[$key]);
+    foreach ($default_options as $key => $val) {
+        if (!is_array($default_options[$key])) {
+            continue;
         }
+
+        if (!array_key_exists($key, $options) || !is_array($options[$key])) {
+            $options[$key] = array();
+        }
+        $options[$key] = array_merge($default_options[$key], $options[$key]);
     }
-    return array_merge( wp_social_bookmarking_light_default_options(), $options );
+    return array_merge(wp_social_bookmarking_light_default_options(), $options);
 }
 
 /**
@@ -231,7 +237,7 @@ function wp_social_bookmarking_light_save_options($data)
             'lang' => $data['pinterest_lang'],
         ),
     );
-    update_option( 'wp_social_bookmarking_light_options', $options );
+    update_option('wp_social_bookmarking_light_options', $options);
     return $options;
 }
 
@@ -241,6 +247,6 @@ function wp_social_bookmarking_light_save_options($data)
 function wp_social_bookmarking_light_restore_default_options()
 {
     $options = wp_social_bookmarking_light_default_options();
-    update_option( 'wp_social_bookmarking_light_options', $options );
+    update_option('wp_social_bookmarking_light_options', $options);
     return $options;
 }
