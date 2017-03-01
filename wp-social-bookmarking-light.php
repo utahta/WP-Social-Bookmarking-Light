@@ -79,7 +79,7 @@ function __l($val)
     return __($val, WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN);
 }
 
-// load modules
+// Load modules
 require_once WP_SOCIAL_BOOKMARKING_LIGHT_DIR . '/modules/options.php';
 require_once WP_SOCIAL_BOOKMARKING_LIGHT_DIR . '/modules/services.php';
 require_once WP_SOCIAL_BOOKMARKING_LIGHT_DIR . '/modules/admin.php';

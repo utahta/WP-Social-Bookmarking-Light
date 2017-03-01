@@ -260,7 +260,7 @@ function wp_social_bookmarking_light_options_page()
     else{
         $options = wp_social_bookmarking_light_options();
     }
-    $class_methods = wp_social_bookmarking_light_get_class_methods();
+    $service_types = wp_social_bookmarking_light_service_types();
 ?>
 
 <div class="wrap">
@@ -333,7 +333,7 @@ function wp_social_bookmarking_light_options_page()
                     foreach( explode(",", $options['services']) as $service ){
                         $service = trim($service);
                         if($service != ''){
-                            if(in_array($service, $class_methods)){
+                            if(in_array($service, $service_types)){
                                 echo "<li>"
                                      ."<div class='wsbl_txt_draggable'>$service</div>"
                                      ."<div class='wsbl_img_draggable'><img src=''></div>"
@@ -347,7 +347,7 @@ function wp_social_bookmarking_light_options_page()
                     <div class="wsbl_point_left"><img src='<?php echo wp_social_bookmarking_light_images_url("point_left.png")?>'></div>
                     <ul id="wsbl_draggable">
                     <?php
-                    foreach($class_methods as $method){
+                    foreach($service_types as $method){
                         echo "<li>"
                              ."<div class='wsbl_txt_draggable'>$method</div>"
                              ."<div class='wsbl_img_draggable'><img src=''></div>"

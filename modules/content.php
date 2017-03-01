@@ -28,7 +28,7 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 function wp_social_bookmarking_light_output($services, $link, $title)
 {
     $wp = new WpSocialBookmarkingLight($link, $title, get_bloginfo('name'));
-    $class_methods = wp_social_bookmarking_light_get_class_methods();
+    $service_types = wp_social_bookmarking_light_service_types();
     $out = '';
     foreach (explode(",", $services) as $service) {
         $service = trim($service);
@@ -36,8 +36,9 @@ function wp_social_bookmarking_light_output($services, $link, $title)
             continue;
         }
 
-        if (in_array($service, $class_methods)) {
-            $out .= '<div class="wsbl_' . $service . '">' . call_user_func(array(
+        if (in_array($service, $service_types)) {
+            $out .= '<div class="wsbl_' . $service . '">'
+                . call_user_func(array(
                     $wp,
                     $service
                 )) . '</div>'; // WpSocialBookmarkingLight method
