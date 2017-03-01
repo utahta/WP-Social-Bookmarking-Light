@@ -38,9 +38,9 @@ define("WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN", "wp-social-bookmarking-light");
 function wp_social_bookmarking_light_url($path = "")
 {
     if ($path && is_string($path)) {
-        $path = "/".ltrim($path, "/");
+        $path = "/" . ltrim($path, "/");
     }
-    return plugins_url("wp-social-bookmarking-light".$path);
+    return plugins_url("wp-social-bookmarking-light" . $path);
 }
 
 /**
@@ -52,17 +52,19 @@ function wp_social_bookmarking_light_url($path = "")
 function wp_social_bookmarking_light_images_url($path = "")
 {
     if ($path && is_string($path)) {
-        $path = "/".ltrim($path, "/");
+        $path = "/" . ltrim($path, "/");
     }
-    return wp_social_bookmarking_light_url("images".$path);
+    return wp_social_bookmarking_light_url("images" . $path);
 }
 
 /**
  * _e() local domain
  *
  * @param $val
+ * @return string
  */
-function _el($val){
+function _el($val)
+{
     _e($val, WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN);
 }
 
@@ -70,20 +72,21 @@ function _el($val){
  * __() local domain
  *
  * @param $val
+ * @return string
  */
-function __l($val){
+function __l($val)
+{
     return __($val, WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN);
 }
 
 // load modules
-require_once WP_SOCIAL_BOOKMARKING_LIGHT_DIR.'/modules/options.php';
-require_once WP_SOCIAL_BOOKMARKING_LIGHT_DIR.'/modules/services.php';
-require_once WP_SOCIAL_BOOKMARKING_LIGHT_DIR.'/modules/admin.php';
-require_once WP_SOCIAL_BOOKMARKING_LIGHT_DIR.'/modules/content.php';
+require_once WP_SOCIAL_BOOKMARKING_LIGHT_DIR . '/modules/options.php';
+require_once WP_SOCIAL_BOOKMARKING_LIGHT_DIR . '/modules/services.php';
+require_once WP_SOCIAL_BOOKMARKING_LIGHT_DIR . '/modules/admin.php';
+require_once WP_SOCIAL_BOOKMARKING_LIGHT_DIR . '/modules/content.php';
 
-// multilingualization
-load_plugin_textdomain( WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN, false,
-                        "wp-social-bookmarking-light/po" );
+// multi language
+load_plugin_textdomain(WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN, false, "wp-social-bookmarking-light/po");
 
 /**
  * initialize
@@ -95,5 +98,5 @@ function wp_social_bookmarking_light_init()
     add_filter('the_content', 'wp_social_bookmarking_light_the_content');
     add_action('admin_menu', 'wp_social_bookmarking_light_admin_menu');
 }
-add_action( 'init', 'wp_social_bookmarking_light_init' );
 
+add_action('init', 'wp_social_bookmarking_light_init');
