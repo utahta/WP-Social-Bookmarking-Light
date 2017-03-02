@@ -71,58 +71,12 @@ function wp_social_bookmarking_light_output_e($services = null, $link = null, $t
 
 /**
  * add_action wp_head
+ * @deprecated
  */
 function wp_social_bookmarking_light_wp_head()
 {
-    $out = "<!-- BEGIN: WP Social Bookmarking Light -->\n";
-
-    // Load options
-    $options = wp_social_bookmarking_light_options();
-    $services = explode(",", $options['services']);
-
-    // mixi-check-robots
-    if (in_array('mixi', $services)) {
-        $out .= '<meta name="mixi-check-robots" content="' . $options['mixi']['check_robots'] . '"/>' . "\n";
-    }
-
-    // tumblr
-    if (in_array('tumblr', $services)) {
-        $out .= '<script type="text/javascript" src="http://platform.tumblr.com/v1/share.js"></script>';
-    }
-
-    // facebook
-    if (in_array('facebook_like', $services) ||
-        in_array('facebook_share', $services) ||
-        in_array('facebook_send', $services)
-    ) {
-        $version = $options['facebook']['version'];
-        if ($version == "html5" || $version == "xfbml") {
-            $locale = $options['facebook']['locale'];
-            $locale = ($locale == '' ? 'en_US' : $locale);
-            $out .= <<<HTML
-<script>(function (d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s);
-    js.id = id;
-    js.src = "//connect.facebook.net/$locale/sdk.js#xfbml=1&version=v2.7";
-    fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-
-HTML;
-        }
-    }
-
-    // css
-    $out .= <<<HTML
-<style type="text/css">
-    ${options['styles']}
-</style>
-
-HTML;
-
-    $out .= "<!-- END: WP Social Bookmarking Light -->\n";
-    echo $out;
+    $content = new \WpSocialBookmarkingLight\Content(new \WpSocialBookmarkingLight\Option());
+    echo $content->head();
 }
 
 /**

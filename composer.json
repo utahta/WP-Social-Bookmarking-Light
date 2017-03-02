@@ -1,0 +1,16 @@
+{
+    "name": "utahta/wp-social-bookmarking-light",
+    "description": "Plugin for WordPress. Embed share buttons in your website.",
+    "type": "project",
+    "license": "GPLv2",
+    "authors": [
+        {
+            "name": "utahta",
+            "email": "labs.ninxit@gmail.com"
+        }
+    ],
+    "require": {},
+    "autoload": {
+        "psr-4": { "": "src/" }
+    }
+}

@@ -29,6 +29,8 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 define("WP_SOCIAL_BOOKMARKING_LIGHT_DIR", dirname(__FILE__));
 define("WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN", "wp-social-bookmarking-light");
 
+require_once WP_SOCIAL_BOOKMARKING_LIGHT_DIR . '/vendor/autoload.php';
+
 /**
  * returns plugin url
  *
