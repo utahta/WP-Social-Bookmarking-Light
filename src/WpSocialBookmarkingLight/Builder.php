@@ -3,11 +3,13 @@
 namespace WpSocialBookmarkingLight;
 
 /**
- * Class Content
+ * Class Builder
+ *
+ * build up html content
  *
  * @package WpSocialBookmarkingLight
  */
-class Content
+class Builder
 {
     /** @var Option */
     private $option;
@@ -21,7 +23,7 @@ class Content
     }
 
     /**
-     * wp_head content.
+     * wp_head HTML
      *
      * @return string
      */
@@ -79,7 +81,7 @@ HTML;
     }
 
     /**
-     * wp_footer content
+     * wp_footer HTML
      *
      * @return string
      */
@@ -138,7 +140,7 @@ HTML;
     }
 
     /**
-     * content HTML
+     * the_content HTML
      *
      * @param $services string separated like `aaa,bbb,ccc`
      * @param $link string
@@ -147,7 +149,7 @@ HTML;
      */
     public function content($services, $link, $title)
     {
-        $wp = new WpSocialBookmarkingLight($link, $title, get_bloginfo('name'));
+        $wp = new \WpSocialBookmarkingLight($link, $title, get_bloginfo('name'));
         $service_types = wp_social_bookmarking_light_service_types();
         $out = '';
         foreach (explode(",", $services) as $service) {

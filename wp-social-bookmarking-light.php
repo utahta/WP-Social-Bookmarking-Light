@@ -93,14 +93,4 @@ load_plugin_textdomain(WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN, false, "wp-social-boo
 /**
  * initialize
  */
-function wp_social_bookmarking_light_init()
-{
-    add_action('wp_head', 'wp_social_bookmarking_light_wp_head');
-    add_action('wp_footer', 'wp_social_bookmarking_light_wp_footer');
-    add_filter('the_content', 'wp_social_bookmarking_light_the_content');
-    add_action('admin_menu', 'wp_social_bookmarking_light_admin_menu');
-}
-
-//add_action('init', 'wp_social_bookmarking_light_init');
-
 (new \WpSocialBookmarkingLight\Plugin())->init();
