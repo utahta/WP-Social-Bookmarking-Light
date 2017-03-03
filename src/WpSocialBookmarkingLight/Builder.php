@@ -30,7 +30,7 @@ class Builder
     public function head()
     {
         // Load options
-        $options = wp_social_bookmarking_light_options();
+        $options = $this->option->getAll();
         $services = explode(",", $options['services']);
         $out = "";
 
@@ -88,7 +88,7 @@ HTML;
     public function footer()
     {
         // Load options
-        $options = wp_social_bookmarking_light_options();
+        $options = $this->option->getAll();
         $services = explode(",", $options['services']);
         $out = "";
 

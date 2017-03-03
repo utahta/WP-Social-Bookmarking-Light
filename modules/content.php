@@ -45,7 +45,8 @@ function wp_social_bookmarking_light_output($services, $link, $title)
 function wp_social_bookmarking_light_output_e($services = null, $link = null, $title = null)
 {
     if ($services == null) {
-        $options = wp_social_bookmarking_light_options();
+        $o = new \WpSocialBookmarkingLight\Option();
+        $options = $o->getAll();
         $services = $options['services'];
     }
     echo wp_social_bookmarking_light_output($services, $link, $title);

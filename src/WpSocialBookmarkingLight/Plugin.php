@@ -74,7 +74,7 @@ class Plugin
             return $content;
         }
 
-        $options = wp_social_bookmarking_light_options();
+        $options = $this->option->getAll();
         $out = $this->builder->content($options['services'], get_permalink(), get_the_title());
         if ($out == '') {
             return $content;
@@ -100,7 +100,7 @@ class Plugin
             return false;
         }
 
-        $options = wp_social_bookmarking_light_options();
+        $options = $this->option->getAll();
         if ($options['single_page'] && !is_singular()) {
             return false;
         }
