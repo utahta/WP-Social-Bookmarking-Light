@@ -5,5 +5,5 @@
 .svnignore
 .idea
 *.iml
-vendor/wordpress
+vendor
 
