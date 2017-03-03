@@ -15,7 +15,7 @@ class Content
     /**
      * @param Option $option
      */
-    function __construct(Option $option)
+    public function __construct(Option $option)
     {
         $this->option = $option;
     }

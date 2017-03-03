@@ -75,8 +75,8 @@ function wp_social_bookmarking_light_output_e($services = null, $link = null, $t
  */
 function wp_social_bookmarking_light_wp_head()
 {
-    $content = new \WpSocialBookmarkingLight\Content(new \WpSocialBookmarkingLight\Option());
-    echo $content->head();
+    $plugin = new \WpSocialBookmarkingLight\Plugin();
+    $plugin->head();
 }
 
 /**
@@ -140,60 +140,10 @@ function wp_social_bookmarking_light_the_content($content)
 
 /**
  * wp_footer function
+ * @deprecated
  */
 function wp_social_bookmarking_light_wp_footer()
 {
-    $out = "<!-- BEGIN: WP Social Bookmarking Light -->\n";
-
-    // load options
-    $options = wp_social_bookmarking_light_options();
-    $services = explode(",", $options['services']);
-
-    /*
-     * load javascript
-     */
-    // twitter
-    if (in_array('twitter', $services)) {
-        $out .= "<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>\n";
-    }
-
-    // evernote
-    if (in_array('evernote', $services)) {
-        $out .= '<script type="text/javascript" src="http://static.evernote.com/noteit.js"></script>' . "\n";
-    }
-
-    // Google +1
-    if (in_array('google_plus_one', $services)) {
-        $lang = $options['google_plus_one']['lang'];
-        $out .= '<script src="https://apis.google.com/js/platform.js" async defer>'
-            . '{lang: "' . $lang . '"}'
-            . "</script>\n";
-    }
-
-    // pinterest
-    if (in_array('pinterest', $services)) {
-        if ($options['pinterest']['type'] === 'all') {
-            $data_pin_hover = $data_pin_shape = $data_pin_color = $data_pin_lang = $data_pin_height = '';
-        } else {
-            $data_pin_hover = 'data-pin-hover="true"';
-            $shape = $options['pinterest']['shape'];
-            $data_pin_shape = $shape === 'round' ? 'data-pin-shape="round"' : '';
-            $data_pin_color = 'data-pin-color="' . $options['pinterest']['color'];
-            $data_pin_lang = 'data-pin-lang="' . $options['pinterest']['lang'];
-            $data_pin_height = '';
-            if ($options['pinterest']['size'] === 'large') {
-                $data_pin_height = $shape === 'round' ? 'data-pin-height="32"' : 'data-pin-height="28"';
-            }
-        }
-        $out .= '<script type="text/javascript" async defer  '
-            . $data_pin_shape . ' '
-            . $data_pin_color . ' '
-            . $data_pin_lang . ' '
-            . $data_pin_height . ' '
-            . $data_pin_hover . ' '
-            . 'src="//assets.pinterest.com/js/pinit.js"></script>' . "\n";
-    }
-
-    $out .= "<!-- END: WP Social Bookmarking Light -->\n";
-    echo $out;
+    $plugin = new \WpSocialBookmarkingLight\Plugin();
+    $plugin->footer();
 }

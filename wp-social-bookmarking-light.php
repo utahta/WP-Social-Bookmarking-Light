@@ -101,4 +101,6 @@ function wp_social_bookmarking_light_init()
     add_action('admin_menu', 'wp_social_bookmarking_light_admin_menu');
 }
 
-add_action('init', 'wp_social_bookmarking_light_init');
+//add_action('init', 'wp_social_bookmarking_light_init');
+
+(new \WpSocialBookmarkingLight\Plugin())->init();
