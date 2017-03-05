@@ -2,6 +2,8 @@
 
 namespace WpSocialBookmarkingLight;
 
+use WpSocialBookmarkingLight\Util\Url;
+
 /**
  * Class Service
  *
@@ -132,7 +134,7 @@ class Service
     {
         $url = "//b.hatena.ne.jp/add?mode=confirm&url={$this->encode_url}&title={$this->encode_title}";
         $alt = __("Bookmark this on Hatena Bookmark", WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN);
-        $icon = wp_social_bookmarking_light_images_url("hatena.gif");
+        $icon = Url::images("hatena.gif");
         return $this->link($url, $alt, $icon, 16, 12);
     }
 
@@ -245,7 +247,7 @@ class Service
     {
         $url = "http://www.google.com/bookmarks/mark?op=add&bkmk={$this->encode_url}&title={$this->encode_title}";
         $alt = __("Bookmark this on Google Bookmarks", WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN);
-        $icon = wp_social_bookmarking_light_images_url("google.png");
+        $icon = Url::images("google.png");
         return $this->link($url, $alt, $icon, 16, 16);
     }
 
@@ -273,7 +275,7 @@ class Service
     {
         $url = "//del.icio.us/save/get_bookmarklet_save??url={$this->encode_url}&title={$this->encode_title}";
         $alt = __("Bookmark this on Delicious", WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN);
-        $icon = wp_social_bookmarking_light_images_url("delicious.png");
+        $icon = Url::images("delicious.png");
         return $this->link($url, $alt, $icon, 16, 16);
     }
 
@@ -286,7 +288,7 @@ class Service
     {
         $url = "//digg.com/submit?url={$this->encode_url}&title={$this->encode_title}";
         $alt = __("Bookmark this on Digg", WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN);
-        $icon = wp_social_bookmarking_light_images_url("digg.png");
+        $icon = Url::images("digg.png");
         return $this->link($url, $alt, $icon, 16, 16);
     }
 
@@ -299,7 +301,7 @@ class Service
     {
         $url = "http://www.facebook.com/share.php?u={$this->encode_url}&t={$this->encode_title}";
         $alt = __("Share on Facebook", WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN);
-        $icon = wp_social_bookmarking_light_images_url("facebook.png");
+        $icon = Url::images("facebook.png");
         return $this->link($url, $alt, $icon, 16, 16);
     }
 
@@ -429,7 +431,7 @@ class Service
     {
         $url = "//www.reddit.com/submit?url={$this->encode_url}&title={$this->encode_title}";
         $alt = __("Share on reddit", WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN);
-        $icon = wp_social_bookmarking_light_images_url("reddit.png");
+        $icon = Url::images("reddit.png");
         return $this->link($url, $alt, $icon, 16, 16);
     }
 
@@ -442,7 +444,7 @@ class Service
     {
         $url = "//www.linkedin.com/shareArticle?mini=true&url={$this->encode_url}&title={$this->encode_title}";
         $alt = __("Share on LinkedIn", WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN);
-        $icon = wp_social_bookmarking_light_images_url("linkedin.png");
+        $icon = Url::images("linkedin.png");
         return $this->link($url, $alt, $icon, 16, 16);
     }
 
@@ -468,7 +470,7 @@ class Service
     {
         $url = "//www.stumbleupon.com/submit?url={$this->encode_url}&title={$this->encode_title}";
         $alt = __("Share on StumbleUpon", WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN);
-        $icon = wp_social_bookmarking_light_images_url("stumbleupon.png");
+        $icon = Url::images("stumbleupon.png");
         return $this->link($url, $alt, $icon, 16, 16);
     }
 
@@ -579,11 +581,11 @@ class Service
     {
         $options = $this->option->getAll();
         if ($options['line']['button_type'] == "line88x20") {
-            $icon = wp_social_bookmarking_light_images_url("line88x20.png");
+            $icon = Url::images("line88x20.png");
             $width = 88;
             $height = 20;
         } else {
-            $icon = wp_social_bookmarking_light_images_url("line20x20.png");
+            $icon = Url::images("line20x20.png");
             $width = 20;
             $height = 20;
         }

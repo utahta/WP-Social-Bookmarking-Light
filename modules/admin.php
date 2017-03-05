@@ -34,7 +34,7 @@ function wp_social_bookmarking_light_admin_print_scripts()
  */
 function wp_social_bookmarking_light_admin_print_styles()
 {
-    wp_enqueue_style('jquery-ui-tabs', wp_social_bookmarking_light_url("libs/jquery/css/pepper-grinder/jquery-ui-1.8.6.custom.css"));
+    wp_enqueue_style('jquery-ui-tabs', \WpSocialBookmarkingLight\Util\Url::css("pepper-grinder/jquery-ui-1.8.6.custom.css"));
 }
 
 /**
