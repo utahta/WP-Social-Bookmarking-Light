@@ -44,9 +44,8 @@ This is the list of used social sites:
 
 == Screenshots ==
 
-1. This is how the plugin looks in your blog.
-2. This is how the plugin looks in settings.
-3. This is how the plugin looks in manually inside your template.
+1. Embed share buttons in your website.
+2. Admin settings page.
 
 == Changelog ==
 

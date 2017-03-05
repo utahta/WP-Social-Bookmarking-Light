@@ -41,7 +41,7 @@ class Builder
 
         // tumblr
         if (in_array('tumblr', $services)) {
-            $out .= '<script type="text/javascript" src="http://platform.tumblr.com/v1/share.js"></script>';
+            $out .= '<script type="text/javascript" src="//platform.tumblr.com/v1/share.js"></script>';
         }
 
         // facebook
