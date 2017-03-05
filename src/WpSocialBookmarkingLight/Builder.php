@@ -11,14 +11,20 @@ namespace WpSocialBookmarkingLight;
  */
 class Builder
 {
+    /** @var Renderer */
+    private $renderer;
+
     /** @var Option */
     private $option;
 
     /**
+     * Builder constructor.
+     * @param Renderer $renderer
      * @param OptionInterface $option
      */
-    public function __construct(OptionInterface $option)
+    public function __construct(Renderer $renderer, OptionInterface $option)
     {
+        $this->renderer = $renderer;
         $this->option = $option;
     }
 
@@ -32,52 +38,25 @@ class Builder
         // Load options
         $options = $this->option->getAll();
         $services = explode(",", $options['services']);
-        $out = "";
 
-        // mixi-check-robots
-        if (in_array('mixi', $services)) {
-            $out .= '<meta name="mixi-check-robots" content="' . $options['mixi']['check_robots'] . '"/>' . "\n";
-        }
+        $context = array();
+        $context['mixi'] = in_array('mixi', $services) ? $options['mixi'] : null;
+        $context['tumblr'] = in_array('tumblr', $services);
 
-        // tumblr
-        if (in_array('tumblr', $services)) {
-            $out .= '<script type="text/javascript" src="//platform.tumblr.com/v1/share.js"></script>';
-        }
-
-        // facebook
+        $context['facebook'] = null;
         if (in_array('facebook_like', $services) ||
             in_array('facebook_share', $services) ||
             in_array('facebook_send', $services)
         ) {
             $version = $options['facebook']['version'];
             if ($version == "html5" || $version == "xfbml") {
-                $locale = $options['facebook']['locale'];
-                $locale = ($locale == '' ? 'en_US' : $locale);
-                $out .= <<<HTML
-<script>(function (d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s);
-    js.id = id;
-    js.src = "//connect.facebook.net/$locale/sdk.js#xfbml=1&version=v2.7";
-    fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-HTML;
-                $out .= "\n";
+                $context['facebook'] = $options['facebook'];
             }
         }
 
-        // css
-        $out .= <<<HTML
-<style type="text/css">
-    ${options['styles']}
-</style>
-HTML;
-        $out .= "\n";
+        $context['styles'] = $options['styles'];
 
-        return "<!-- BEGIN: WP Social Bookmarking Light HEAD -->\n"
-            . $out
-            . "<!-- END: WP Social Bookmarking Light HEAD -->\n";
+        return $this->renderer->render("@builder/head.html.twig", $context);
     }
 
     /**
@@ -90,48 +69,13 @@ HTML;
         // Load options
         $options = $this->option->getAll();
         $services = explode(",", $options['services']);
-        $out = "";
 
-        // Twitter
-        if (in_array('twitter', $services)) {
-            $out .= "<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>\n";
-        }
+        $context = array();
+        $context['twitter'] = in_array('twitter', $services);
+        $context['google_plus_one'] = in_array('google_plus_one', $services) ? $options['google_plus_one'] : null;
+        $context['pinterest'] = in_array('pinterest', $services) ? $options['pinterest'] : null;
 
-        // Google +1
-        if (in_array('google_plus_one', $services)) {
-            $lang = $options['google_plus_one']['lang'];
-            $out .= '<script src="https://apis.google.com/js/platform.js" async defer>'
-                . '{lang: "' . $lang . '"}'
-                . "</script>\n";
-        }
-
-        // pinterest
-        if (in_array('pinterest', $services)) {
-            if ($options['pinterest']['type'] === 'all') {
-                $data_pin_hover = $data_pin_shape = $data_pin_color = $data_pin_lang = $data_pin_height = '';
-            } else {
-                $data_pin_hover = 'data-pin-hover="true"';
-                $shape = $options['pinterest']['shape'];
-                $data_pin_shape = $shape === 'round' ? 'data-pin-shape="round"' : '';
-                $data_pin_color = 'data-pin-color="' . $options['pinterest']['color'];
-                $data_pin_lang = 'data-pin-lang="' . $options['pinterest']['lang'];
-                $data_pin_height = '';
-                if ($options['pinterest']['size'] === 'large') {
-                    $data_pin_height = $shape === 'round' ? 'data-pin-height="32"' : 'data-pin-height="28"';
-                }
-            }
-            $out .= '<script type="text/javascript" async defer  '
-                . $data_pin_shape . ' '
-                . $data_pin_color . ' '
-                . $data_pin_lang . ' '
-                . $data_pin_height . ' '
-                . $data_pin_hover . ' '
-                . 'src="//assets.pinterest.com/js/pinit.js"></script>' . "\n";
-        }
-
-        return "<!-- BEGIN: WP Social Bookmarking Light FOOTER -->\n"
-            . $out
-            . "<!-- END: WP Social Bookmarking Light FOOTER -->\n";
+        return $this->renderer->render("@builder/footer.html.twig", $context);
     }
 
     /**

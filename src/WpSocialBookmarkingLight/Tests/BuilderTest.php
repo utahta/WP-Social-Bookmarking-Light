@@ -5,9 +5,10 @@ namespace WpSocialBookmarkingLight\Tests;
 use PHPUnit\Framework\TestCase;
 use WpSocialBookmarkingLight\Builder;
 use WpSocialBookmarkingLight\OptionInterface;
+use WpSocialBookmarkingLight\Renderer;
 
 require_once __DIR__.'/Helper/setting.php';
-require_once __DIR__.'/Helper/Builder/wp_global.php';
+require_once __DIR__.'/Helper/Builder/global.php';
 
 /**
  * Class BuilderTest
@@ -27,7 +28,7 @@ class BuilderTest extends TestCase
         $stub = $this->createMock(OptionInterface::class);
         $stub->method('getAll')->willReturn($option);
 
-        $builder = new Builder($stub);
+        $builder = new Builder(new Renderer(), $stub);
         $this->assertContains($expectHtml, $builder->head());
     }
 
@@ -76,7 +77,7 @@ class BuilderTest extends TestCase
         $stub = $this->createMock(OptionInterface::class);
         $stub->method('getAll')->willReturn($option);
 
-        $builder = new Builder($stub);
+        $builder = new Builder(new Renderer(), $stub);
         $this->assertContains($expectHtml, $builder->footer());
     }
 
@@ -130,7 +131,7 @@ class BuilderTest extends TestCase
             ],
             'pocket' => ['button_type' => 'none']
         ]);
-        $builder = new Builder($stub);
+        $builder = new Builder(new Renderer(), $stub);
         $services = 'hatena_button,twitter,facebook_like,pocket';
 
         $this->assertContains('wsbl_hatena_button', $builder->content($services, '', ''));

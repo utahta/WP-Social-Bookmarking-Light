@@ -20,8 +20,9 @@ class Plugin
      */
     public function __construct()
     {
+        $renderer = new Renderer();
         $this->option = new Option();
-        $this->builder = new Builder($this->option);
+        $this->builder = new Builder($renderer, $this->option);
     }
 
     /**

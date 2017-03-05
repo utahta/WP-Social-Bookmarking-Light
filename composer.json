@@ -9,7 +9,9 @@
             "email": "labs.ninxit@gmail.com"
         }
     ],
-    "require": {},
+    "require": {
+        "twig/twig": "^1.0"
+    },
     "autoload": {
         "psr-4": { "": "src/" }
     },

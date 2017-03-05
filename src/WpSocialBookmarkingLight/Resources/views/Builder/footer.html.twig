@@ -1,0 +1,30 @@
+
+<!-- BEGIN: WP Social Bookmarking Light FOOTER -->
+{% if twitter %}
+    <script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>
+{% endif %}
+
+{% if google_plus_one %}
+    <script src="https://apis.google.com/js/platform.js" async defer>
+        {lang: "{{ google_plus_one.lang }}"}
+    </script>
+{% endif %}
+
+{% if pinterest %}
+    {% set data_pin_shape = pinterest.shape == 'round' ? 'data-pin-shape=true' : '' %}
+
+    {% if pinterest.size == 'large' %}
+        {% set data_pin_height = pinterest.shape == 'round' ? 'data-pin-height="32"' : 'data-pin-height="28"' %}
+    {% else %}
+        {% set data_pin_height = '' %}
+    {% endif %}
+
+    <script type="text/javascript" async defer
+            data-pin-hover=true
+            {{ data_pin_shape }}
+            data-pin-color="{{ pinterest.color }}"
+            data-pin-lang="{{ pinterest.lang }}"
+            {{ data_pin_height | raw }}
+            src="//assets.pinterest.com/js/pinit.js"></script>
+{% endif %}
+<!-- END: WP Social Bookmarking Light FOOTER -->

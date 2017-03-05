@@ -245,7 +245,7 @@ CSS;
             'pinterest' => array(
                 'type' => 'all',
                 'shape' => 'rect',
-                'size' => 'large',
+                'size' => 'small',
                 'color' => 'gray',
                 'lang' => 'en',
             ),
