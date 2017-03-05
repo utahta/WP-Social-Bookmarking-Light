@@ -2,6 +2,7 @@
 
 namespace WpSocialBookmarkingLight\Tests;
 
+use PHPUnit\Framework\TestCase;
 use WpSocialBookmarkingLight\Builder;
 use WpSocialBookmarkingLight\OptionInterface;
 use WpSocialBookmarkingLight\Renderer;
@@ -13,7 +14,7 @@ require_once __DIR__.'/Helper/Builder/global.php';
  * Class BuilderTest
  * @package WpSocialBookmarkingLight\Tests
  */
-class BuilderTest extends \PHPUnit_Framework_TestCase
+class BuilderTest extends TestCase
 {
     /**
      * @test
@@ -24,7 +25,7 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
      */
     public function headContains(array $option, $expectHtml)
     {
-        $stub = $this->getMock(OptionInterface::class);
+        $stub = $this->createMock(OptionInterface::class);
         $stub->method('getAll')->willReturn($option);
 
         $builder = new Builder(new Renderer(), $stub);
@@ -73,7 +74,7 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
      */
     public function footerContains(array $option, $expectHtml)
     {
-        $stub = $this->getMock(OptionInterface::class);
+        $stub = $this->createMock(OptionInterface::class);
         $stub->method('getAll')->willReturn($option);
 
         $builder = new Builder(new Renderer(), $stub);
@@ -106,7 +107,7 @@ class BuilderTest extends \PHPUnit_Framework_TestCase
      */
     public function contentContains()
     {
-        $stub = $this->getMock(OptionInterface::class);
+        $stub = $this->createMock(OptionInterface::class);
         $stub->method('getAll')->willReturn([
             "hatena_button" => ['layout' => 'simple-balloon'],
             "twitter" => [
