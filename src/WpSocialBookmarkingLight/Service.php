@@ -2,6 +2,7 @@
 
 namespace WpSocialBookmarkingLight;
 
+use WpSocialBookmarkingLight\Util\Text;
 use WpSocialBookmarkingLight\Util\Url;
 
 /**
@@ -15,7 +16,7 @@ use WpSocialBookmarkingLight\Util\Url;
  */
 class Service
 {
-    /** @var  Option */
+    /** @var  OptionInterface */
     private $option;
 
     /** @var  string */
@@ -35,11 +36,11 @@ class Service
 
     /**
      * Service constructor.
-     * @param Option $option
+     * @param OptionInterface $option
      * @param $url string
      * @param $title string
      */
-    public function __construct(Option $option, $url, $title)
+    public function __construct(OptionInterface $option, $url, $title)
     {
         $this->option = $option;
         $this->blogname = $this->toUTF8(get_bloginfo('name'));
@@ -133,7 +134,7 @@ class Service
     public function hatena()
     {
         $url = "//b.hatena.ne.jp/add?mode=confirm&url={$this->encode_url}&title={$this->encode_title}";
-        $alt = __("Bookmark this on Hatena Bookmark", WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN);
+        $alt = Text::locale("Bookmark this on Hatena Bookmark");
         $icon = Url::images("hatena.gif");
         return $this->link($url, $alt, $icon, 16, 12);
     }
@@ -146,7 +147,7 @@ class Service
     public function hatenaUsers()
     {
         $url = "//b.hatena.ne.jp/entry/{$this->url}";
-        $alt = sprintf(__("Hatena Bookmark - %s", WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN), $this->title);
+        $alt = sprintf(Text::locale("Hatena Bookmark - %s"), $this->title);
         $icon = "//b.hatena.ne.jp/entry/image/{$this->url}";
         return $this->link($url, $alt, $icon, null, null);
     }
@@ -161,7 +162,7 @@ class Service
         $options = $this->option->getAll();
         $url = "//b.hatena.ne.jp/entry/{$this->url}";
         $title = $this->title;
-        $alt = __("Bookmark this on Hatena Bookmark", WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN);
+        $alt = Text::locale("Bookmark this on Hatena Bookmark");
         return $this->linkRaw('<a href="' . $url . '"'
             . ' class="hatena-bookmark-button"'
             . ' data-hatena-bookmark-title="' . $title . '"'
@@ -229,12 +230,12 @@ class Service
                 break;
         }
         return $this->linkRaw('<a href="//www.tumblr.com/share?v=3&u=' . $this->encode_url . '&t=' . $this->encode_title . '" '
-            . 'title="' . __l("Share on Tumblr") . '" '
+            . 'title="' . Text::locale("Share on Tumblr") . '" '
             . 'style="display:inline-block; text-indent:-9999px; overflow:hidden; '
             . $width . ' height:20px; '
             . 'background:url(\'//platform.tumblr.com/v1/share_' . $type . '.png\')'
             . ' top left no-repeat transparent;">'
-            . __l("Share on Tumblr")
+            . Text::locale("Share on Tumblr")
             . '</a>');
     }
 
@@ -246,7 +247,7 @@ class Service
     public function google()
     {
         $url = "http://www.google.com/bookmarks/mark?op=add&bkmk={$this->encode_url}&title={$this->encode_title}";
-        $alt = __("Bookmark this on Google Bookmarks", WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN);
+        $alt = Text::locale("Bookmark this on Google Bookmarks");
         $icon = Url::images("google.png");
         return $this->link($url, $alt, $icon, 16, 16);
     }
@@ -274,7 +275,7 @@ class Service
     public function delicious()
     {
         $url = "//del.icio.us/save/get_bookmarklet_save??url={$this->encode_url}&title={$this->encode_title}";
-        $alt = __("Bookmark this on Delicious", WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN);
+        $alt = Text::locale("Bookmark this on Delicious");
         $icon = Url::images("delicious.png");
         return $this->link($url, $alt, $icon, 16, 16);
     }
@@ -287,7 +288,7 @@ class Service
     public function digg()
     {
         $url = "//digg.com/submit?url={$this->encode_url}&title={$this->encode_title}";
-        $alt = __("Bookmark this on Digg", WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN);
+        $alt = Text::locale("Bookmark this on Digg");
         $icon = Url::images("digg.png");
         return $this->link($url, $alt, $icon, 16, 16);
     }
@@ -300,7 +301,7 @@ class Service
     public function facebook()
     {
         $url = "http://www.facebook.com/share.php?u={$this->encode_url}&t={$this->encode_title}";
-        $alt = __("Share on Facebook", WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN);
+        $alt = Text::locale("Share on Facebook");
         $icon = Url::images("facebook.png");
         return $this->link($url, $alt, $icon, 16, 16);
     }
@@ -430,7 +431,7 @@ class Service
     public function reddit()
     {
         $url = "//www.reddit.com/submit?url={$this->encode_url}&title={$this->encode_title}";
-        $alt = __("Share on reddit", WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN);
+        $alt = Text::locale("Share on reddit");
         $icon = Url::images("reddit.png");
         return $this->link($url, $alt, $icon, 16, 16);
     }
@@ -443,7 +444,7 @@ class Service
     public function linkedin()
     {
         $url = "//www.linkedin.com/shareArticle?mini=true&url={$this->encode_url}&title={$this->encode_title}";
-        $alt = __("Share on LinkedIn", WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN);
+        $alt = Text::locale("Share on LinkedIn");
         $icon = Url::images("linkedin.png");
         return $this->link($url, $alt, $icon, 16, 16);
     }
@@ -469,7 +470,7 @@ class Service
     public function stumbleupon()
     {
         $url = "//www.stumbleupon.com/submit?url={$this->encode_url}&title={$this->encode_title}";
-        $alt = __("Share on StumbleUpon", WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN);
+        $alt = Text::locale("Share on StumbleUpon");
         $icon = Url::images("stumbleupon.png");
         return $this->link($url, $alt, $icon, 16, 16);
     }
@@ -540,7 +541,7 @@ class Service
             default:
                 $btn_type = 'btn_logo';
         }
-        $alt = __("Share on GREE", WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN);
+        $alt = Text::locale("Share on GREE");
         return $this->linkRaw('<a href="http://gree.jp/?mode=share&act=write'
             . '&url=' . $url
             . '&button_type=' . $type

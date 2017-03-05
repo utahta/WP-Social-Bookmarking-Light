@@ -6,7 +6,7 @@ namespace WpSocialBookmarkingLight;
  * Class Option
  * @package WpSocialBookmarkingLight
  */
-class Option
+class Option implements OptionInterface
 {
     /** @var array */
     private $cache;
@@ -17,116 +17,6 @@ class Option
     public function __construct()
     {
         $this->cache = null;
-    }
-
-    /**
-     * Returns default option
-     *
-     * @return array
-     */
-    public function defaultOption()
-    {
-        $styles = <<<CSS
-.wp_social_bookmarking_light{
-    border: 0 !important;
-    padding: 10px 0 20px 0 !important;
-    margin: 0 !important;
-}
-.wp_social_bookmarking_light div{
-    float: left !important;
-    border: 0 !important;
-    padding: 0 !important;
-    margin: 0 5px 0px 0 !important;
-    min-height: 30px !important;
-    line-height: 18px !important;
-    text-indent: 0 !important;
-}
-.wp_social_bookmarking_light img{
-    border: 0 !important;
-    padding: 0;
-    margin: 0;
-    vertical-align: top !important;
-}
-.wp_social_bookmarking_light_clear{
-    clear: both !important;
-}
-#fb-root{
-    display: none;
-}
-.wsbl_facebook_like iframe{
-    max-width: none !important;
-}
-.wsbl_pinterest a{
-    border: 0px !important;
-}
-CSS;
-        return array(
-            "services" => "hatena_button,facebook_like,twitter,pocket",
-            "styles" => $styles,
-            "position" => "top",
-            "single_page" => true,
-            "is_page" => true,
-            "mixi" => array(
-                'check_key' => '',
-                'check_robots' => 'noimage',
-                'button' => 'button-3'
-            ),
-            'mixi_like' => array('width' => '65'),
-            "twitter" => array(
-                'via' => "",
-                'lang' => "",
-                'size' => "",
-                'related' => "",
-                'hashtags' => "",
-                "dnt" => false
-            ),
-            "hatena_button" => array('layout' => 'simple-balloon'),
-            'facebook' => array(
-                'locale' => 'en_US',
-                'version' => 'xfbml',
-                'fb_root' => true
-            ),
-            'facebook_like' => array(
-                'layout' => 'button_count',
-                'action' => 'like',
-                'share' => false,
-                'width' => '100'
-            ),
-            'facebook_share' => array(
-                'type' => 'button_count',
-                'width' => ''
-            ),
-            'facebook_send' => array(
-                'colorscheme' => 'light',
-                'width' => '',
-                'height' => ''
-            ),
-            'gree' => array(
-                'button_type' => '4',
-                'button_size' => '16'
-            ),
-            'evernote' => array('button_type' => 'article-clipper'),
-            'tumblr' => array('button_type' => '1'),
-            'atode' => array('button_type' => 'iconsja'),
-            'google_plus_one' => array(
-                'button_size' => 'medium',
-                'lang' => 'en-US',
-                'annotation' => 'none',
-                'inline_size' => '250'
-            ),
-            'line' => array(
-                'button_type' => 'line88x20',
-                'protocol' => 'http'
-            ),
-            'pocket' => array('button_type' => 'none'),
-            'pinterest' => array(
-                'type' => 'all',
-                'shape' => 'rect',
-                'size' => 'large',
-                'color' => 'gray',
-                'lang' => 'en',
-            ),
-        );
     }
 
     /**
@@ -250,5 +140,115 @@ CSS;
         $options = $this->defaultOption();
         update_option('wp_social_bookmarking_light_options', $options);
         return $options;
+    }
+
+    /**
+     * Returns default option
+     *
+     * @return array
+     */
+    private function defaultOption()
+    {
+        $styles = <<<CSS
+.wp_social_bookmarking_light{
+    border: 0 !important;
+    padding: 10px 0 20px 0 !important;
+    margin: 0 !important;
+}
+.wp_social_bookmarking_light div{
+    float: left !important;
+    border: 0 !important;
+    padding: 0 !important;
+    margin: 0 5px 0px 0 !important;
+    min-height: 30px !important;
+    line-height: 18px !important;
+    text-indent: 0 !important;
+}
+.wp_social_bookmarking_light img{
+    border: 0 !important;
+    padding: 0;
+    margin: 0;
+    vertical-align: top !important;
+}
+.wp_social_bookmarking_light_clear{
+    clear: both !important;
+}
+#fb-root{
+    display: none;
+}
+.wsbl_facebook_like iframe{
+    max-width: none !important;
+}
+.wsbl_pinterest a{
+    border: 0px !important;
+}
+CSS;
+        return array(
+            "services" => "hatena_button,facebook_like,twitter,pocket",
+            "styles" => $styles,
+            "position" => "top",
+            "single_page" => true,
+            "is_page" => true,
+            "mixi" => array(
+                'check_key' => '',
+                'check_robots' => 'noimage',
+                'button' => 'button-3'
+            ),
+            'mixi_like' => array('width' => '65'),
+            "twitter" => array(
+                'via' => "",
+                'lang' => "",
+                'size' => "",
+                'related' => "",
+                'hashtags' => "",
+                "dnt" => false
+            ),
+            "hatena_button" => array('layout' => 'simple-balloon'),
+            'facebook' => array(
+                'locale' => 'en_US',
+                'version' => 'xfbml',
+                'fb_root' => true
+            ),
+            'facebook_like' => array(
+                'layout' => 'button_count',
+                'action' => 'like',
+                'share' => false,
+                'width' => '100'
+            ),
+            'facebook_share' => array(
+                'type' => 'button_count',
+                'width' => ''
+            ),
+            'facebook_send' => array(
+                'colorscheme' => 'light',
+                'width' => '',
+                'height' => ''
+            ),
+            'gree' => array(
+                'button_type' => '4',
+                'button_size' => '16'
+            ),
+            'evernote' => array('button_type' => 'article-clipper'),
+            'tumblr' => array('button_type' => '1'),
+            'atode' => array('button_type' => 'iconsja'),
+            'google_plus_one' => array(
+                'button_size' => 'medium',
+                'lang' => 'en-US',
+                'annotation' => 'none',
+                'inline_size' => '250'
+            ),
+            'line' => array(
+                'button_type' => 'line88x20',
+                'protocol' => 'http'
+            ),
+            'pocket' => array('button_type' => 'none'),
+            'pinterest' => array(
+                'type' => 'all',
+                'shape' => 'rect',
+                'size' => 'large',
+                'color' => 'gray',
+                'lang' => 'en',
+            ),
+        );
     }
 }

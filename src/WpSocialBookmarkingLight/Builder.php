@@ -15,9 +15,9 @@ class Builder
     private $option;
 
     /**
-     * @param Option $option
+     * @param OptionInterface $option
      */
-    public function __construct(Option $option)
+    public function __construct(OptionInterface $option)
     {
         $this->option = $option;
     }
