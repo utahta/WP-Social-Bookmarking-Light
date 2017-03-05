@@ -182,7 +182,7 @@ function wsbl_update_services(is_simply)
     
     is_simply = is_simply || false;
     var services = ['mixi', 'twitter', 'hatena_button', 'facebook_general', 'facebook_like', 'facebook_share', 'facebook_send',
-                    'gree', 'evernote', 'tumblr', 'atode', 'google_plus_one', 'line', 'pocket', 'pinterest'];
+                    'gree', 'tumblr', 'atode', 'google_plus_one', 'line', 'pocket', 'pinterest'];
     for(var i in services){
         wsbl_tab_toggle(services[i], is_simply);
     }
@@ -260,7 +260,7 @@ function wp_social_bookmarking_light_options_page()
     else{
         $options = wp_social_bookmarking_light_options();
     }
-    $service_types = wp_social_bookmarking_light_service_types();
+    $service_types = \WpSocialBookmarkingLight\Service::getServiceTypes();
 ?>
 
 <div class="wrap">
@@ -271,7 +271,7 @@ function wp_social_bookmarking_light_options_page()
     <div id="tabs">
         <ul>
             <li><a href="#tabs-1"><span><?php _e("General Settings") ?></span></a></li>
-            <li><a href="#tabs-1_2"><span><?php _e("Styles") ?></span></a></li>
+            <li><a href="#tabs-1_2"><span><?php _e("CSS") ?></span></a></li>
             <li><a href="#tabs-1_3"><span><?php _e("Donate") ?></span></a></li>
             <li id='mixi_settings'><a href="#tabs-2"><span><?php _el("Mixi") ?></span></a></li>
             <li id='twitter_settings'><a href="#tabs-3"><span><?php _el("Twitter") ?></span></a></li>
@@ -281,7 +281,6 @@ function wp_social_bookmarking_light_options_page()
             <li id='facebook_share_settings'><a href="#tabs-6"><span><?php _el("FB Share") ?></span></a></li>
             <li id='facebook_send_settings'><a href="#tabs-14"><span><?php _el("FB Send") ?></span></a></li>
             <li id='gree_settings'><a href="#tabs-7"><span><?php _el("GREE") ?></span></a></li>
-            <li id='evernote_settings'><a href="#tabs-8"><span><?php _el("Evernote") ?></span></a></li>
             <li id='tumblr_settings'><a href="#tabs-9"><span><?php _el("tumblr") ?></span></a></li>
             <li id='atode_settings'><a href="#tabs-10"><span><?php _el("atode") ?></span></a></li>
             <li id='google_plus_one_settings'><a href="#tabs-11"><span><?php _el("Google Plus One") ?></span></a></li>
@@ -362,7 +361,7 @@ function wp_social_bookmarking_light_options_page()
             </table>
         </div>
         
-        <!-- Styles -->
+        <!-- CSS -->
         <div id="tabs-1_2">
             <table class='form-table'>
             <tr>
@@ -696,26 +695,6 @@ function wp_social_bookmarking_light_options_page()
             </table>
         </div>
 
-        <!-- evernote -->
-        <div id="tabs-8">
-            <table class='form-table'>
-            <tr>
-                <th scope="row">Button type:</th>
-                <td>
-                <select name='evernote_button_type' onchange='jQuery("#evernote_img").attr("src", "http://static.evernote.com/"+this.form.evernote_button_type.value+".png")'>
-                <?php
-                $button_types = array('article-clipper', 'article-clipper-remember', 'article-clipper-fr', 'article-clipper-es', 'article-clipper-jp', 'article-clipper-rus', 'site-mem-16');
-                foreach($button_types as $button_type){
-                    ?><option value='<?php echo $button_type ?>' <?php if( $options['evernote']['button_type'] == $button_type ) echo 'selected'; ?>><?php echo $button_type?></option><?php
-                }
-                ?>
-                </select>
-                <img id='evernote_img' style="vertical-align:middle" src='http://static.evernote.com/<?php echo $options['evernote']['button_type'] ?>.png'>
-                </td>
-            </tr>
-            </table>
-        </div>
-
         <!-- tumblr -->
         <div id="tabs-9">
             <table class='form-table'>
@@ -959,31 +938,17 @@ function wp_social_bookmarking_light_options_page()
     <tr><td>hatena_users</td><td>Hatena Bookmark Users</td></tr>
     <tr><td>hatena_button</td><td>Hatena Bookmark Button</td></tr>
     <tr><td>twitter</td><td>Tweet Button - Twitter</td></tr>
-    <tr><td>livedoor</td><td>Livedoor Clip</td></tr>
-    <tr><td>livedoor_users</td><td>Livedoor Clip Users</td></tr>
-    <tr><td>yahoo</td><td>Yahoo!JAPAN Bookmark</td></tr>
-    <tr><td>yahoo_users</td><td>Yahoo!JAPAN Bookmark Users</td></tr>
-    <tr><td>yahoo_buzz</td><td>Yahoo!Buzz</td></tr>
-    <tr><td>nifty</td><td>@nifty Clip</td></tr>
-    <tr><td>nifty_users</td><td>@nifty Clip Users</td></tr>
     <tr><td>tumblr</td><td>Tumblr</td></tr>
-    <tr><td>fc2</td><td>FC2 Bookmark</td></tr>
-    <tr><td>fc2_users</td><td>FC2 Bookmark Users</td></tr>
-    <tr><td>newsing</td><td>newsing</td></tr>
-    <tr><td>choix</td><td>Choix</td></tr>
     <tr><td>google</td><td>Google Bookmarks</td></tr>
-    <tr><td>google_buzz</td><td>Google Buzz</td></tr>
     <tr><td>google_plus_one</td><td>Google +1</td></tr>
     <tr><td>delicious</td><td>Delicious</td></tr>
     <tr><td>digg</td><td>Digg</td></tr>
-    <tr><td>friendfeed</td><td>FriendFeed</td></tr>
     <tr><td>facebook</td><td>Facebook Share</td></tr>
     <tr><td>facebook_like</td><td>Facebook Like Button</td></tr>
     <tr><td>facebook_share</td><td>Facebook Share Button</td></tr>
     <tr><td>facebook_send</td><td>Facebook Send Button</td></tr>
     <tr><td>reddit</td><td>reddit</td></tr>
     <tr><td>linkedin</td><td>LinkedIn</td></tr>
-    <tr><td>evernote</td><td>Evernote</td></tr>
     <tr><td>instapaper</td><td>Instapaper</td></tr>
     <tr><td>stumbleupon</td><td>StumbleUpon</td></tr>
     <tr><td>mixi</td><td>mixi Check (require <a href="http://developer.mixi.co.jp/connect/mixi_plugin/mixi_check/mixicheck" onclick="window.open('http://developer.mixi.co.jp/connect/mixi_plugin/mixi_check/mixicheck'); return false;" >mixi check key</a>)</td></tr>

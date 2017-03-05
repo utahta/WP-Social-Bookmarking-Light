@@ -97,11 +97,6 @@ HTML;
             $out .= "<script>!function(d,s,id){var js,fjs=d.getElementsByTagName(s)[0],p=/^http:/.test(d.location)?'http':'https';if(!d.getElementById(id)){js=d.createElement(s);js.id=id;js.src=p+'://platform.twitter.com/widgets.js';fjs.parentNode.insertBefore(js,fjs);}}(document, 'script', 'twitter-wjs');</script>\n";
         }
 
-        // Evernote
-        if (in_array('evernote', $services)) {
-            $out .= '<script type="text/javascript" src="http://static.evernote.com/noteit.js"></script>' . "\n";
-        }
-
         // Google +1
         if (in_array('google_plus_one', $services)) {
             $lang = $options['google_plus_one']['lang'];
@@ -149,8 +144,8 @@ HTML;
      */
     public function content($services, $link, $title)
     {
-        $wp = new \WpSocialBookmarkingLight($link, $title, get_bloginfo('name'));
-        $service_types = wp_social_bookmarking_light_service_types();
+        $wp = new Service($this->option, $link, $title);
+        $service_types = Service::getServiceTypes();
         $out = '';
         foreach (explode(",", $services) as $service) {
             $service = trim($service);
@@ -160,10 +155,8 @@ HTML;
 
             if (in_array($service, $service_types)) {
                 $out .= '<div class="wsbl_' . $service . '">'
-                    . call_user_func(array(
-                        $wp,
-                        $service
-                    )) . '</div>'; // WpSocialBookmarkingLight method
+                    . $wp->invokeService($service) // invoke Service method
+                    . '</div>';
             } else {
                 $out .= "<div>[`$service` not found]</div>";
             }

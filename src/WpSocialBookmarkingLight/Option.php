@@ -11,6 +11,9 @@ class Option
     /** @var array */
     private $cache;
 
+    /**
+     * Option constructor.
+     */
     public function __construct()
     {
         $this->cache = null;
@@ -50,9 +53,6 @@ class Option
 #fb-root{
     display: none;
 }
-.wsbl_twitter{
-    width: 100px;
-}
 .wsbl_facebook_like iframe{
     max-width: none !important;
 }
@@ -61,7 +61,7 @@ class Option
 }
 CSS;
         return array(
-            "services" => "hatena_button,facebook_like,twitter",
+            "services" => "hatena_button,facebook_like,twitter,pocket",
             "styles" => $styles,
             "position" => "top",
             "single_page" => true,

@@ -1,44 +1,57 @@
 <?php
-/*
-Copyright 2010 utahta (email : labs.ninxit@gmail.com)
 
-This program is free software; you can redistribute it and/or modify
-it under the terms of the GNU General Public License as published by
-the Free Software Foundation; either version 2 of the License, or
-(at your option) any later version.
-
-This program is distributed in the hope that it will be useful,
-but WITHOUT ANY WARRANTY; without even the implied warranty of
-MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
-GNU General Public License for more details.
-
-You should have received a copy of the GNU General Public License
-along with this program; if not, write to the Free Software
-Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
-*/
+namespace WpSocialBookmarkingLight;
 
 /**
- * Services
+ * Class Service
+ *
+ * public method name is service type
+ * e.g.
+ *   facebookLike() -> facebook_like
+ *
+ * @package WpSocialBookmarkingLight
  */
-class WpSocialBookmarkingLight
+class Service
 {
+    /** @var  Option */
+    private $option;
+
+    /** @var  string */
     private $url;
+
+    /** @var  string */
     private $title;
+
+    /** @var  string */
     private $encode_url;
+
+    /** @var  string */
     private $encode_title;
+
+    /** @var  string */
     private $encode_blogname;
 
-    public function __construct($url, $title, $blogname)
+    /**
+     * Service constructor.
+     * @param Option $option
+     * @param $url string
+     * @param $title string
+     */
+    public function __construct(Option $option, $url, $title)
     {
-        $title = $this->toUTF8($title);
-        $this->blogname = $this->toUTF8($blogname);
+        $this->option = $option;
+        $this->blogname = $this->toUTF8(get_bloginfo('name'));
         $this->url = $url;
-        $this->title = $title;
+        $this->title = $this->toUTF8($title);
         $this->encode_url = rawurlencode($url);
-        $this->encode_title = rawurlencode($title);
+        $this->encode_title = rawurlencode($this->title);
         $this->encode_blogname = rawurlencode($this->blogname);
     }
 
+    /**
+     * @param $str
+     * @return string
+     */
     private function toUTF8($str)
     {
         $charset = get_option('blog_charset');
@@ -48,11 +61,26 @@ class WpSocialBookmarkingLight
         return $str;
     }
 
+    /**
+     * @param $url string
+     * @return string
+     */
     private function linkRaw($url)
     {
         return $url;
     }
 
+    /**
+     * build <a> and <img> tag
+     *
+     * @param $url
+     * @param $alt
+     * @param $icon
+     * @param $width
+     * @param $height
+     * @param bool $blank
+     * @return string
+     */
     private function link($url, $alt, $icon, $width, $height, $blank = true)
     {
         $width = $width ? "width='$width'" : "";
@@ -64,7 +92,41 @@ class WpSocialBookmarkingLight
     }
 
     /**
-     * @brief Hatena Bookmark
+     * Invoke service method
+     *
+     * @param $service string
+     * @return string
+     */
+    public function invokeService($service)
+    {
+        $method = str_replace('_', '', ucwords($service, '_')); // snake_case to camelCase
+        return $this->$method();
+    }
+
+    /**
+     * Returns service types
+     *
+     * @return array
+     */
+    public static function getServiceTypes()
+    {
+        $class_methods = get_class_methods(__CLASS__);
+        $excepts = array('__construct', 'toUTF8', 'linkRaw', 'link', 'invokeService', 'getServiceTypes'); // except not service type function.
+
+        $methods = array();
+        foreach ($class_methods as $method) {
+            if (in_array($method, $excepts)) {
+                continue;
+            }
+            $methods[] = strtolower(preg_replace('/[a-z]+(?=[A-Z])|[A-Z]+(?=[A-Z][a-z])/', '\0_', $method)); // camelCase to snake_case.
+        }
+        return $methods;
+    }
+
+    /**
+     * Hatena bookmark button (old type)
+     *
+     * @return string
      */
     public function hatena()
     {
@@ -74,7 +136,12 @@ class WpSocialBookmarkingLight
         return $this->link($url, $alt, $icon, 16, 12);
     }
 
-    public function hatena_users()
+    /**
+     * Hatena bookmark users (old type)
+     *
+     * @return string
+     */
+    public function hatenaUsers()
     {
         $url = "//b.hatena.ne.jp/entry/{$this->url}";
         $alt = sprintf(__("Hatena Bookmark - %s", WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN), $this->title);
@@ -82,9 +149,14 @@ class WpSocialBookmarkingLight
         return $this->link($url, $alt, $icon, null, null);
     }
 
-    public function hatena_button()
+    /**
+     * Hatena bookmark button
+     *
+     * @return string
+     */
+    public function hatenaButton()
     {
-        $options = wp_social_bookmarking_light_options();
+        $options = $this->option->getAll();
         $url = "//b.hatena.ne.jp/entry/{$this->url}";
         $title = $this->title;
         $alt = __("Bookmark this on Hatena Bookmark", WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN);
@@ -99,11 +171,13 @@ class WpSocialBookmarkingLight
     }
 
     /**
-     * @brief twitter
+     * Twitter button
+     *
+     * @return string
      */
     public function twitter()
     {
-        $options = wp_social_bookmarking_light_options();
+        $options = $this->option->getAll();;
         $twitter = $options['twitter'];
         $data_url = $this->url;
         $data_text = $this->title;
@@ -129,76 +203,13 @@ class WpSocialBookmarkingLight
     }
 
     /**
-     * @brief Livedoor Clip
-     */
-    public function livedoor()
-    {
-        $url = "http://clip.livedoor.com/redirect?link={$this->encode_url}&title={$this->encode_blogname}%20-%20{$this->encode_title}&ie=utf-8";
-        $alt = __("Bookmark this on Livedoor Clip", WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN);
-        $icon = wp_social_bookmarking_light_images_url("livedoor.gif");
-        return $this->link($url, $alt, $icon, 16, 16);
-    }
-
-    public function livedoor_users()
-    {
-        $url = "http://clip.livedoor.com/page/{$this->url}";
-        $alt = sprintf(__("Livedoor Clip - %s", WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN), $this->title);
-        $icon = "http://image.clip.livedoor.com/counter/{$this->url}";
-        return $this->link($url, $alt, $icon, null, null);
-    }
-
-    /**
-     * @brief Yahoo!JAPAN Bookmark
-     */
-    public function yahoo()
-    {
-        $url = "http://bookmarks.yahoo.co.jp/bookmarklet/showpopup?t={$this->encode_title}&u={$this->encode_url}&ei=UTF-8";
-        $alt = __("Bookmark this on Yahoo Bookmark", WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN);
-        $icon = wp_social_bookmarking_light_images_url("yahoo.gif");
-        return $this->link($url, $alt, $icon, 16, 16);
-    }
-
-    public function yahoo_users()
-    {
-        return $this->linkRaw("<script src='http://num.bookmarks.yahoo.co.jp/numimage.js?disptype=small'></script>");
-    }
-
-    /**
-     * @brief Yahoo Buzz
-     */
-    public function yahoo_buzz()
-    {
-        $url = "http://buzz.yahoo.com/buzz?targetUrl={$this->encode_url}&headline={$this->encode_title}";
-        $alt = __("Buzz This", WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN);
-        $icon = wp_social_bookmarking_light_images_url("yahoo_buzz.png");
-        return $this->link($url, $alt, $icon, 16, 16);
-    }
-
-    /**
-     * @brief nifty clip
-     */
-    public function nifty()
-    {
-        $url = "http://clip.nifty.com/create?url={$this->encode_url}&title={$this->encode_title}";
-        $alt = __("Bookmark this on @nifty clip", WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN);
-        $icon = wp_social_bookmarking_light_images_url("nifty.gif");
-        return $this->link($url, $alt, $icon, 16, 16);
-    }
-
-    public function nifty_users()
-    {
-        $url = '#';
-        $alt = sprintf(__("@nifty clip - %s", WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN), $this->title);
-        $icon = "http://api.clip.nifty.com/api/v1/image/counter/{$this->url}";
-        return $this->link($url, $alt, $icon, null, null);
-    }
-
-    /**
-     * @brief Tumblr
+     * Tumblr
+     *
+     * @deprecated
      */
     public function tumblr()
     {
-        $options = wp_social_bookmarking_light_options();
+        $options = $this->option->getAll();
         $type = $options['tumblr']['button_type'];
         $width = 'width:81px;';
         switch ($type) {
@@ -215,59 +226,20 @@ class WpSocialBookmarkingLight
                 $width = 'width:20px;';
                 break;
         }
-        return $this->linkRaw('<a href="http://www.tumblr.com/share?v=3&u=' . $this->encode_url . '&t=' . $this->encode_title . '" '
+        return $this->linkRaw('<a href="//www.tumblr.com/share?v=3&u=' . $this->encode_url . '&t=' . $this->encode_title . '" '
             . 'title="' . __l("Share on Tumblr") . '" '
             . 'style="display:inline-block; text-indent:-9999px; overflow:hidden; '
             . $width . ' height:20px; '
-            . 'background:url(\'http://platform.tumblr.com/v1/share_' . $type . '.png\')'
+            . 'background:url(\'//platform.tumblr.com/v1/share_' . $type . '.png\')'
             . ' top left no-repeat transparent;">'
             . __l("Share on Tumblr")
             . '</a>');
     }
 
     /**
-     * @brief FC2 Bookmark
-     */
-    public function fc2()
-    {
-        $url = "http://bookmark.fc2.com/user/post?url={$this->encode_url}&title={$this->encode_title}";
-        $alt = __("Bookmark this on FC2 Bookmark", WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN);
-        $icon = wp_social_bookmarking_light_images_url("fc2.gif");
-        return $this->link($url, $alt, $icon, 16, 16);
-    }
-
-    public function fc2_users()
-    {
-        $url = "http://bookmark.fc2.com/search/detail?url={$this->encode_url}";
-        $alt = sprintf(__("FC2 Bookmark - %s", WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN), $this->title);
-        $icon = "http://bookmark.fc2.com/image/users/{$this->url}";
-        return $this->link($url, $alt, $icon, null, null);
-    }
-
-    /**
-     * @brief newsing
-     */
-    public function newsing()
-    {
-        $url = "http://newsing.jp/nbutton?url={$this->encode_url}&title={$this->encode_title}";
-        $alt = __("Newsing it!", WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN);
-        $icon = wp_social_bookmarking_light_images_url("newsing.gif");
-        return $this->link($url, $alt, $icon, 16, 16);
-    }
-
-    /**
-     * @brief Choix
-     */
-    public function choix()
-    {
-        $url = "http://www.choix.jp/bloglink/{$this->url}";
-        $alt = __("Choix it!", WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN);
-        $icon = wp_social_bookmarking_light_images_url("choix.gif");
-        return $this->link($url, $alt, $icon, 16, 16);
-    }
-
-    /**
-     * @brief Google Bookmarks
+     * Google Bookmarks
+     *
+     * @return string
      */
     public function google()
     {
@@ -278,22 +250,13 @@ class WpSocialBookmarkingLight
     }
 
     /**
-     * @brief Google Buzz
+     * Google +1
+     *
+     * @return string
      */
-    public function google_buzz()
+    public function googlePlusOne()
     {
-        $url = "http://www.google.com/buzz/post?url={$this->encode_url}&message={$this->encode_title}";
-        $alt = __("Post to Google Buzz", WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN);
-        $icon = wp_social_bookmarking_light_images_url("google-buzz.png");
-        return $this->link($url, $alt, $icon, 16, 16);
-    }
-
-    /**
-     * @brief Google +1
-     */
-    public function google_plus_one()
-    {
-        $options = wp_social_bookmarking_light_options();
+        $options = $this->option->getAll();
         $button_size = $options['google_plus_one']['button_size'];
         $annotation = $options['google_plus_one']['annotation'];
         $width = $annotation == 'inline' ? 'width="' . $options['google_plus_one']['inline_size'] . '"' : "";
@@ -302,40 +265,35 @@ class WpSocialBookmarkingLight
     }
 
     /**
-     * @brief Delicious
+     * Delicious
+     *
+     * @return string
      */
     public function delicious()
     {
-        $url = "http://delicious.com/save?url={$this->encode_url}&title={$this->encode_title}";
+        $url = "//del.icio.us/save/get_bookmarklet_save??url={$this->encode_url}&title={$this->encode_title}";
         $alt = __("Bookmark this on Delicious", WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN);
         $icon = wp_social_bookmarking_light_images_url("delicious.png");
         return $this->link($url, $alt, $icon, 16, 16);
     }
 
     /**
-     * @brief Digg
+     * Digg
+     *
+     * @return string
      */
     public function digg()
     {
-        $url = "http://digg.com/submit?url={$this->encode_url}&title={$this->encode_title}";
+        $url = "//digg.com/submit?url={$this->encode_url}&title={$this->encode_title}";
         $alt = __("Bookmark this on Digg", WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN);
         $icon = wp_social_bookmarking_light_images_url("digg.png");
         return $this->link($url, $alt, $icon, 16, 16);
     }
 
     /**
-     * @brief Friend feed
-     */
-    public function friendfeed()
-    {
-        $url = "http://friendfeed.com/?url={$this->encode_url}&title={$this->encode_title}";
-        $alt = __("Share on FriendFeed", WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN);
-        $icon = wp_social_bookmarking_light_images_url("friendfeed.png");
-        return $this->link($url, $alt, $icon, 16, 16);
-    }
-
-    /**
-     * @brief Facebook
+     * Facebook
+     *
+     * @return string
      */
     public function facebook()
     {
@@ -346,11 +304,13 @@ class WpSocialBookmarkingLight
     }
 
     /**
-     * @brief Facebook Like Button
+     * Facebook Like Button
+     *
+     * @return string
      */
-    public function facebook_like()
+    public function facebookLike()
     {
-        $options = wp_social_bookmarking_light_options();
+        $options = $this->option->getAll();
         $layout = $options['facebook_like']['layout'];
         $action = $options['facebook_like']['action'];
         $share = $options['facebook_like']['share'] ? 'true' : 'false';
@@ -396,11 +356,13 @@ class WpSocialBookmarkingLight
     }
 
     /**
-     * @brief Facebook Share
+     * Facebook Share
+     *
+     * @return string
      */
-    public function facebook_share()
+    public function facebookShare()
     {
-        $options = wp_social_bookmarking_light_options();
+        $options = $this->option->getAll();
         $url = $this->url;
         $version = $options['facebook']['version'];
         $fb_root = $options['facebook']['fb_root'] ? '<div id="fb-root"></div>' : '';
@@ -425,11 +387,13 @@ class WpSocialBookmarkingLight
     }
 
     /**
-     * @brief Facebook Send
+     * Facebook Send
+     *
+     * @return string
      */
-    public function facebook_send()
+    public function facebookSend()
     {
-        $options = wp_social_bookmarking_light_options();
+        $options = $this->option->getAll();
         $url = $this->url;
         $version = $options['facebook']['version'];
         $fb_root = $options['facebook']['fb_root'] ? '<div id="fb-root"></div>' : '';
@@ -457,68 +421,65 @@ class WpSocialBookmarkingLight
     }
 
     /**
-     * @brief reddit
+     * reddit
+     *
+     * @return string
      */
     public function reddit()
     {
-        $url = "http://www.reddit.com/submit?url={$this->encode_url}&title={$this->encode_title}";
+        $url = "//www.reddit.com/submit?url={$this->encode_url}&title={$this->encode_title}";
         $alt = __("Share on reddit", WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN);
         $icon = wp_social_bookmarking_light_images_url("reddit.png");
         return $this->link($url, $alt, $icon, 16, 16);
     }
 
     /**
-     * @brief LinkedIn
+     * LinkedIn
+     *
+     * @return string
      */
     public function linkedin()
     {
-        $url = "http://www.linkedin.com/shareArticle?mini=true&url={$this->encode_url}&title={$this->encode_title}";
+        $url = "//www.linkedin.com/shareArticle?mini=true&url={$this->encode_url}&title={$this->encode_title}";
         $alt = __("Share on LinkedIn", WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN);
         $icon = wp_social_bookmarking_light_images_url("linkedin.png");
         return $this->link($url, $alt, $icon, 16, 16);
     }
 
     /**
-     * @brief Evernote
-     */
-    public function evernote()
-    {
-        $options = wp_social_bookmarking_light_options();
-        $type = $options['evernote']['button_type'];
-
-        return $this->linkRaw('<a href="#" onclick="Evernote.doClip({ title:\'' . $this->title . '\', url:\'' . $this->url . '\' });return false;">'
-            . '<img src="http://static.evernote.com/' . $type . '.png" />'
-            . '</a>');
-    }
-
-    /**
-     * @brief Instapaper
+     * Instapaper
+     *
+     * @return string
      */
     public function instapaper()
     {
         return $this->linkRaw('<iframe border="0" scrolling="no" width="78" height="17" allowtransparency="true" frameborder="0" '
             . 'style="margin-bottom: -3px; z-index: 1338; border: 0px; background-color: transparent; overflow: hidden;" '
-            . 'src="http://www.instapaper.com/e2?url=' . $this->encode_url . '&title=' . $this->encode_title . '&description="'
+            . 'src="//www.instapaper.com/e2?url=' . $this->encode_url . '&title=' . $this->encode_title . '&description="'
             . '></iframe>');
     }
 
     /**
-     * @brief StumbleUpon
+     * StumbleUpon
+     *
+     * @return string
      */
     public function stumbleupon()
     {
-        $url = "http://www.stumbleupon.com/submit?url={$this->encode_url}&title={$this->encode_title}";
+        $url = "//www.stumbleupon.com/submit?url={$this->encode_url}&title={$this->encode_title}";
         $alt = __("Share on StumbleUpon", WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN);
         $icon = wp_social_bookmarking_light_images_url("stumbleupon.png");
         return $this->link($url, $alt, $icon, 16, 16);
     }
 
     /**
-     * @brief mixi Check
+     * mixi Check
+     *
+     * @return string
      */
     public function mixi()
     {
-        $options = wp_social_bookmarking_light_options();
+        $options = $this->option->getAll();
         $data_button = $options['mixi']['button'];
         $data_key = $options['mixi']['check_key'];
 
@@ -530,11 +491,13 @@ class WpSocialBookmarkingLight
     }
 
     /**
-     * @brief mixi Like
+     * mixi Like
+     *
+     * @return string
      */
-    public function mixi_like()
+    public function mixiLike()
     {
-        $options = wp_social_bookmarking_light_options();
+        $options = $this->option->getAll();
         $data_key = $options['mixi']['check_key'];
         $width = $options['mixi_like']['width'];
 
@@ -546,11 +509,13 @@ class WpSocialBookmarkingLight
     }
 
     /**
-     * @brief GREE Social Feedback
+     * GREE Social Feedback
+     *
+     * @return string
      */
     public function gree()
     {
-        $options = wp_social_bookmarking_light_options();
+        $options = $this->option->getAll();
         $url = $this->encode_url;
         $type = $options['gree']['button_type'];
         $size = $options['gree']['button_size'];
@@ -586,11 +551,13 @@ class WpSocialBookmarkingLight
     }
 
     /**
-     * @brief atode
+     * atode
+     *
+     * @return string
      */
     public function atode()
     {
-        $options = wp_social_bookmarking_light_options();
+        $options = $this->option->getAll();
         $type = $options['atode']['button_type'];
         switch ($type) {
             case 'iconsja':
@@ -604,11 +571,13 @@ class WpSocialBookmarkingLight
     }
 
     /**
-     * @brief LINE
+     * LINE
+     *
+     * @return string
      */
     public function line()
     {
-        $options = wp_social_bookmarking_light_options();
+        $options = $this->option->getAll();
         if ($options['line']['button_type'] == "line88x20") {
             $icon = wp_social_bookmarking_light_images_url("line88x20.png");
             $width = 88;
@@ -628,21 +597,25 @@ class WpSocialBookmarkingLight
     }
 
     /**
-     * @brief Pocket
+     * Pocket
+     *
+     * @return string
      */
     public function pocket()
     {
-        $options = wp_social_bookmarking_light_options();
+        $options = $this->option->getAll();
         return $this->linkRaw('<a href="https://getpocket.com/save" class="pocket-btn" data-lang="en" data-save-url="' . $this->url . '" data-pocket-count="' . $options['pocket']['button_type'] . '" data-pocket-align="left" >Pocket</a><script type="text/javascript">!function(d,i){if(!d.getElementById(i)){var j=d.createElement("script");j.id=i;j.src="https://widgets.getpocket.com/v1/j/btn.js?v=1";var w=d.getElementById(i);d.body.appendChild(j);}}(document,"pocket-btn-js");</script>');
     }
 
 
     /**
-     * @brief pinterest
+     * pinterest
+     *
+     * @return string
      */
     public function pinterest()
     {
-        $options = wp_social_bookmarking_light_options();
+        $options = $this->option->getAll();
         $pinterest = $options['pinterest'];
         if ($pinterest['type'] === 'hover') {
             return '';
@@ -689,24 +662,4 @@ class WpSocialBookmarkingLight
             . '<img src="' . $img_src . '" /></a>'
         );
     }
-}
-
-/**
- * Returns service types (snake case)
- *
- * @return array
- */
-function wp_social_bookmarking_light_service_types()
-{
-    $class_methods = get_class_methods('WpSocialBookmarkingLight');
-    $except_methods = array('__construct');
-
-    $methods = array();
-    foreach ($class_methods as $method) {
-        if (in_array($method, $except_methods)) {
-            continue;
-        }
-        $methods[] = $method;
-    }
-    return $methods;
 }
