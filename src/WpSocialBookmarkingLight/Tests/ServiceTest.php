@@ -16,6 +16,9 @@ class ServiceTest extends TestCase
     /**
      * @test
      * @dataProvider testCaseServiceType
+     *
+     * @param $service
+     * @param $expectedFlag
      */
     public function testGetServiceTypes($service, $expectedFlag)
     {

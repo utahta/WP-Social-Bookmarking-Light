@@ -1,0 +1,10 @@
+<div class='wp_social_bookmarking_light'>
+    {% for service in services %}
+        {% if service.valid %}
+            <div class="wsbl_{{ service.name }}">{{ service.content | raw }}</div>
+        {% else %}
+            <div>{{ service.content }}</div>
+        {% endif %}
+    {% endfor %}
+</div>
+<br class='wp_social_bookmarking_light_clear' />

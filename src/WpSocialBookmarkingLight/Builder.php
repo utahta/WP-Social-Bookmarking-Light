@@ -90,7 +90,8 @@ class Builder
     {
         $wp = new Service($this->option, $link, $title);
         $service_types = Service::getServiceTypes();
-        $out = '';
+
+        $context = array();
         foreach (explode(",", $services) as $service) {
             $service = trim($service);
             if ($service === '') {
@@ -98,17 +99,20 @@ class Builder
             }
 
             if (in_array($service, $service_types)) {
-                $out .= '<div class="wsbl_' . $service . '">'
-                    . $wp->invokeService($service) // invoke Service method
-                    . '</div>';
+                $context['services'][] = array(
+                    'valid' => true,
+                    'name' => $service,
+                    'content' => $wp->invokeService($service)
+                );
             } else {
-                $out .= "<div>[`$service` not found]</div>";
+                $context['services'][] = array(
+                    'valid' => false,
+                    'name' => $service,
+                    'content' => "[`$service` not found]"
+                );
             }
         }
 
-        if ($out == '') {
-            return $out;
-        }
-        return "<div class='wp_social_bookmarking_light'>{$out}</div><br class='wp_social_bookmarking_light_clear' />";
+        return $this->renderer->render("@builder/content.html.twig", $context);
     }
 }
