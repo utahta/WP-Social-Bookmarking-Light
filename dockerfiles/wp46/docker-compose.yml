@@ -1,0 +1,25 @@
+version: '2'
+
+services:
+  db46:
+    extends:
+      file: ../common.yml
+      service: db
+    volumes:
+      - db_data_wp46:/var/lib/mysql
+  
+  wordpress46:
+    depends_on:
+      - db46
+    extends:
+      file: ../common.yml
+      service: wordpress
+    image: wordpress:4.6
+    ports:
+      - 8002:80
+    environment:
+      WORDPRESS_DB_HOST: db46:3306
+
+volumes:
+  db_data_wp46:
+

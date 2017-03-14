@@ -964,20 +964,20 @@ function wp_social_bookmarking_light_options_page()
 <?php
 }
 
-/**
- * admin menu
- */
-function wp_social_bookmarking_light_admin_menu()
-{
-    if( function_exists('add_options_page') ){
-        $page = add_options_page( 'WP Social Bookmarking Light', 
-                          'WP Social Bookmarking Light', 
-                          'manage_options', 
-                          __FILE__, 
-                          'wp_social_bookmarking_light_options_page' );
-                          
-        add_action('admin_print_styles-'.$page, 'wp_social_bookmarking_light_admin_print_styles');
-        add_action('admin_print_scripts-'.$page, 'wp_social_bookmarking_light_admin_print_scripts');
-        add_action('admin_head-'.$page, 'wp_social_bookmarking_light_admin_head');
-    }
-}
+///**
+// * admin menu
+// */
+//function wp_social_bookmarking_light_admin_menu()
+//{
+//    if( function_exists('add_options_page') ){
+//        $page = add_options_page( 'WP Social Bookmarking Light',
+//                          'WP Social Bookmarking Light',
+//                          'manage_options',
+//                          __FILE__,
+//                          'wp_social_bookmarking_light_options_page' );
+//
+//        add_action('admin_print_styles-'.$page, 'wp_social_bookmarking_light_admin_print_styles');
+//        add_action('admin_print_scripts-'.$page, 'wp_social_bookmarking_light_admin_print_scripts');
+//        add_action('admin_head-'.$page, 'wp_social_bookmarking_light_admin_head');
+//    }
+//}

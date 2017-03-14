@@ -2,6 +2,9 @@
 
 namespace WpSocialBookmarkingLight;
 
+use WpSocialBookmarkingLight\Util\Text;
+use WpSocialBookmarkingLight\Util\Url;
+
 /**
  * Class Renderer
  * @package WpSocialBookmarkingLight
@@ -17,8 +20,17 @@ class Renderer
     public function __construct()
     {
         $loader = new \Twig_Loader_Filesystem();
-        $loader->addPath(WP_SOCIAL_BOOKMARKING_LIGHT_DIR."/src/WpSocialBookmarkingLight/Resources/views/Builder", "builder");
-        $this->twig = new \Twig_Environment($loader, array('debug' => true));
+        $loader->addPath(WP_SOCIAL_BOOKMARKING_LIGHT_DIR . "/src/WpSocialBookmarkingLight/Resources/views/Builder", "builder");
+        $loader->addPath(WP_SOCIAL_BOOKMARKING_LIGHT_DIR . "/src/WpSocialBookmarkingLight/Resources/views/Admin", "admin");
+        $this->twig = new \Twig_Environment($loader, array('debug' => false));
+
+        $this->twig->addFilter(new \Twig_SimpleFilter("__", function ($val) {
+            return Text::locale($val);
+        }));
+
+        $this->twig->addFilter(new \Twig_SimpleFilter("images", function ($path) {
+            return Url::images($path);
+        }));
     }
 
     /**

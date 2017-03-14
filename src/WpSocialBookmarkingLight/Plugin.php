@@ -15,6 +15,9 @@ class Plugin
     /** @var Builder */
     private $builder;
 
+    /** @var Admin */
+    private $admin;
+
     /**
      * Plugin constructor.
      */
@@ -23,6 +26,7 @@ class Plugin
         $renderer = new Renderer();
         $this->option = new Option();
         $this->builder = new Builder($renderer, $this->option);
+        $this->admin = new Admin($this->option);
     }
 
     /**
@@ -42,7 +46,7 @@ class Plugin
             add_action('wp_head', array($this, 'head'));
             add_action('wp_footer', array($this, 'footer'));
             add_filter('the_content', array($this, 'theContent'));
-            add_action('admin_menu', 'wp_social_bookmarking_light_admin_menu');
+            add_action('admin_menu', array($this, 'adminMenu'));
         });
     }
 
@@ -88,6 +92,25 @@ class Plugin
             return "{$out}{$content}{$out}";
         }
         return $content;
+    }
+
+    /**
+     * called by admin_menu action
+     */
+    public function adminMenu()
+    {
+        if( function_exists('add_options_page') ){
+            $page = add_options_page('WP Social Bookmarking Light',
+                'WP Social Bookmarking Light',
+                'manage_options',
+                __FILE__,
+                function () {
+                    echo $this->admin->page();
+                });
+            add_action('admin_print_styles-' . $page, 'wp_social_bookmarking_light_admin_print_styles');
+            add_action('admin_print_scripts-' . $page, 'wp_social_bookmarking_light_admin_print_scripts');
+            add_action('admin_head-' . $page, 'wp_social_bookmarking_light_admin_head');
+        }
     }
 
     /**
