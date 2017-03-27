@@ -136,6 +136,11 @@ class Plugin
         if (in_array('get_the_excerpt', (array)$wp_current_filter)) {
             return false;
         }
+
+        if (get_query_var('amp', false) !== false) {
+            return false;
+        }
+
         return true;
     }
 }
