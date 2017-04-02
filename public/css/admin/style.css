@@ -1,0 +1,61 @@
+.wsbl_options{
+    border: 1px solid #CCCCCC;
+    background-color: #F8F8EB;
+    vertical-align: top;
+    margin: 0px 10px 10px 0px;
+    padding: 0px;
+}
+.wsbl_options th{
+    background-color: #E8E8DB;
+    text-align: center;
+    margin: 0px;
+    padding: 3px;
+}
+.wsbl_options td{
+    text-align: left;
+    margin: 0px;
+    padding: 3px;
+}
+
+#wsbl_sortable, #wsbl_draggable {
+    list-style-type: none;
+    margin: 0;
+    padding: 5px;
+    overflow: auto;
+    width: 165px;
+    height: 240px;
+    float: left;
+    border: 1px solid #999;
+    background-color: #FFF;
+}
+#wsbl_sortable li, #wsbl_draggable li{
+    width: 135px;
+    height: 20px;
+    font-size: 12px;
+    margin: 0px auto;
+    padding: 3px;
+    border: 1px solid #999;
+    background-color: #F8F8EB;
+    cursor: pointer;
+}
+.wsbl_sortable_highlight {
+    border: 1px dashed #333 !important;
+    background-color: transparent !important;
+}
+.wsbl_txt_draggable{
+    float:left;
+}
+.wsbl_img_draggable{
+    margin-left: auto;
+    margin-right: 0;
+    text-align: right;
+    display: none;
+}
+.wsbl_point_left{
+    float: left;
+    height : 240px ;
+    margin: 0 20px;
+}
+.wsbl_point_left img{
+    margin-top: 90px;
+}

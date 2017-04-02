@@ -2,6 +2,8 @@
 
 namespace WpSocialBookmarkingLight;
 
+use WpSocialBookmarkingLight\Util\Url;
+
 /**
  * Class Admin
  * @package WpSocialBookmarkingLight
@@ -22,6 +24,15 @@ class Admin
     {
         $this->renderer = new Renderer();
         $this->option = $option;
+    }
+
+    /**
+     * enqueue admin styles
+     */
+    public function enqueueStyles()
+    {
+        wp_enqueue_style('wsbl-admin', Url::css("admin/style.css"));
+        wp_enqueue_style('wsbl-admin-jquery-ui-tabs', Url::css("admin/pepper-grinder/jquery-ui-1.8.6.custom.css"));
     }
 
     /**
