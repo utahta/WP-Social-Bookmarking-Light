@@ -18,19 +18,6 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 */
 
 /**
- * use jquery in admin page
- */
-function wp_social_bookmarking_light_admin_print_scripts()
-{
-    wp_enqueue_script('jquery');
-    wp_enqueue_script('jquery-ui-core');
-    wp_enqueue_script('jquery-ui-tabs');
-    wp_enqueue_script('jquery-ui-sortable');
-    wp_enqueue_script('jquery-ui-draggable');
-}
-
-
-/**
  * admin header
  */
 function wp_social_bookmarking_light_admin_head()
