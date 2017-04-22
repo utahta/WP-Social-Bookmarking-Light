@@ -98,19 +98,10 @@ class Builder
                 continue;
             }
 
-            if (in_array($service, $service_types)) {
-                $context['services'][] = array(
-                    'valid' => true,
-                    'name' => $service,
-                    'content' => $wp->invokeService($service)
-                );
-            } else {
-                $context['services'][] = array(
-                    'valid' => false,
-                    'name' => $service,
-                    'content' => "[`$service` not found]"
-                );
-            }
+            $context['services'][] = array(
+                'name' => $service,
+                'content' => in_array($service, $service_types) ? $wp->invokeService($service) : "[`$service` not found]"
+            );
         }
 
         return $this->renderer->render("@builder/content.html.twig", $context);
