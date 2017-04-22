@@ -1,10 +1,10 @@
 === WP Social Bookmarking Light ===
 Contributors: utahvich
-Donate link: https://github.com/utahta/WP-Social-Bookmarking-Light/wiki/Donate
+Donate link: https://gumroad.com/l/rWLrL
 Tags: social, bookmarks, bookmarking, Hatena, Twitter, Facebook, Tumblr, Google Bookmark, Delicious, Digg, reddit, LinkedIn, Instapaper, StumbleUpon, mixi, gree, atode, toread, line, pocket, Pinterest
 Requires at least: 2.9.0
 Tested up to: 4.7
-Stable tag: 1.9.2
+Stable tag: 2.0.0
 
 This plugin inserts social share links at the top or bottom of each post.
 
