@@ -109,7 +109,9 @@ class Plugin
                 });
             add_action('admin_print_styles-' . $page, array($this->admin, 'enqueueStyles'));
             add_action('admin_print_scripts-' . $page, array($this->admin, 'enqueueScripts'));
-            add_action('admin_head-' . $page, 'wp_social_bookmarking_light_admin_head');
+            add_action('admin_head-' . $page, function () {
+                echo $this->admin->head();
+            });
         }
     }
 

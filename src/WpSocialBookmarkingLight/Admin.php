@@ -48,6 +48,16 @@ class Admin
     }
 
     /**
+     * admin header
+     *
+     * @return string
+     */
+    public function head()
+    {
+        return $this->renderer->render("@admin/head.html.twig", array());
+    }
+
+    /**
      * admin page content
      *
      * @return string
