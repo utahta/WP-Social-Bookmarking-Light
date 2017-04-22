@@ -31,42 +31,7 @@ define("WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN", "wp-social-bookmarking-light");
 
 require_once WP_SOCIAL_BOOKMARKING_LIGHT_DIR . '/vendor/autoload.php';
 
-/**
- * returns plugin images url
- *
- * @deprecated
- *
- * @param $path
- * @return string
- */
-function wp_social_bookmarking_light_images_url($path = "")
-{
-    return \WpSocialBookmarkingLight\Util\Url::images($path);
-}
-
-/**
- * _e() local domain
- *
- * @param $val
- * @return string
- */
-function _el($val)
-{
-    _e($val, WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN);
-}
-
-/**
- * __() local domain
- *
- * @param $val
- * @return string
- */
-function __l($val)
-{
-    return __($val, WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN);
-}
-
-// Load modules
+// Load modules (deprecated and will be removed on the next minor update)
 require_once WP_SOCIAL_BOOKMARKING_LIGHT_DIR . '/modules/options.php';
 require_once WP_SOCIAL_BOOKMARKING_LIGHT_DIR . '/modules/content.php';
 
