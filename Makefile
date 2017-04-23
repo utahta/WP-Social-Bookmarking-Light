@@ -1,5 +1,5 @@
-.PHONY: dev
-dev:
+.PHONY: install
+install:
 	composer install
 
 .PHONY: build
