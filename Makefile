@@ -1,6 +1,14 @@
-.PHONY: install
-install:
+.PHONY: dev
+dev:
 	composer install
+
+.PHONY: build
+build:
+	@rm -rf vendor build
+	@mkdir build
+	@git archive --worktree-attributes --format=tar --prefix=wp-social-bookmarking-light/ HEAD | (cd build && tar xf -)
+	@composer install --no-dev
+	@cp -r ./vendor ./build/wp-social-bookmarking-light/vendor
 
 .PHONY: test
 test:
