@@ -14,7 +14,7 @@ services:
     extends:
       file: ../common.yml
       service: wordpress
-    image: wordpress:4.6
+    image: wordpress:4.6-php5.6
     ports:
       - 8002:80
     environment:
