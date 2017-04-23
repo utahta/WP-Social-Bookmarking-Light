@@ -49,6 +49,10 @@ This is the list of used social sites:
 
 == Changelog ==
 
+= 2.0.0 =
+* Breaking Changes: Drop support for PHP 5.5 or lower, Require PHP 5.6 or higher [#46](https://github.com/utahta/WP-Social-Bookmarking-Light/pull/46)
+* Breaking Changes: Remove terminated services
+
 = 1.9.2 =
 * Workaround: disable social buttons on AMP [#47](https://github.com/utahta/WP-Social-Bookmarking-Light/pull/47)
 
