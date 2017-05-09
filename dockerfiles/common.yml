@@ -12,7 +12,7 @@ services:
   wordpress:
     image: wordpress:latest
     volumes:
-      - ~/repos/WP-Social-Bookmarking-Light:/var/www/html/wp-content/plugins/wp-social-bookmarking-light
+      - ~/repos/WP-Social-Bookmarking-Light/build/wp-social-bookmarking-light:/var/www/html/wp-content/plugins/wp-social-bookmarking-light
     environment:
       WORDPRESS_DB_HOST: db:3306
       WORDPRESS_DB_PASSWORD: wordpress
