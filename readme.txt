@@ -2,7 +2,7 @@
 Contributors: utahvich
 Donate link: https://gumroad.com/l/rWLrL
 Tags: social, bookmarks, bookmarking, Hatena, Twitter, Facebook, Tumblr, Google Bookmark, Delicious, Digg, reddit, LinkedIn, Instapaper, StumbleUpon, mixi, gree, atode, toread, line, pocket, Pinterest
-Requires at least: 2.9.0
+Requires at least: 4.0.0
 Tested up to: 4.7
 Stable tag: 2.0.0
 
