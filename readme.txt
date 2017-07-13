@@ -1,10 +1,10 @@
 === WP Social Bookmarking Light ===
 Contributors: utahvich
-Donate link: https://github.com/utahta/WP-Social-Bookmarking-Light/wiki/Donate
-Tags: links, social, bookmarks, bookmarking, Hatena, Livedoor Clip, @nifty clip, Twitter, Tumblr, FC2 Bookmark, newsing, Choix, Yahoo!JAPAN Bookmark, Yahoo!Buzz, Google Bookmark, Delicious, Digg, FriendFeed, Google Buzz, Facebook, reddit, LinkedIn, Evernote, Instapaper, StumbleUpon, mixi, gree, atode, toread, line, pocket, Pinterest
-Requires at least: 2.9.0
+Donate link: https://gumroad.com/l/rWLrL
+Tags: social, bookmarks, bookmarking, Hatena, Twitter, Facebook, Tumblr, Google Bookmark, Delicious, Digg, reddit, LinkedIn, Instapaper, StumbleUpon, mixi, gree, atode, toread, line, pocket, Pinterest
+Requires at least: 4.0.0
 Tested up to: 4.7
-Stable tag: 1.9.2
+Stable tag: 2.0.0
 
 This plugin inserts social share links at the top or bottom of each post.
 
@@ -15,28 +15,17 @@ This plugin inserts social share links at the top or bottom of each post.
 This is the list of used social sites:
 
 *  Hatena
-*  Facebook
 *  Facebook Like Button
 *  Facebook Share Button
 *  Facebook Send Button
 *  Twitter
-*  Livedoor Clip
-*  @nifty clip
 *  Tumblr
-*  FC2 Bookmark
-*  newsing
-*  Choix
-*  Yahoo!JAPAN Bookmark
-*  Yahoo!Buzz
 *  Google Bookmark
-*  Google Buzz
 *  Google +1
 *  Delicious
 *  Digg
-*  FriendFeed
 *  reddit
 *  LinkedIn
-*  Evernote
 *  Instapaper
 *  StumbleUpon
 *  mixi Check
@@ -55,11 +44,15 @@ This is the list of used social sites:
 
 == Screenshots ==
 
-1. This is how the plugin looks in your blog.
-2. This is how the plugin looks in settings.
-3. This is how the plugin looks in manually inside your template.
+1. Embed share buttons in your website.
+2. Admin settings page.
 
 == Changelog ==
+
+= 2.0.0 =
+* Breaking Changes: Drop support for PHP 5.5 or lower, Require PHP 5.6 or higher [#46](https://github.com/utahta/WP-Social-Bookmarking-Light/pull/46)
+* Breaking Changes: Remove terminated some services
+* Important: If your WordPress site working on PHP 5.5 or lower, please continue to use v1.9.2 version
 
 = 1.9.2 =
 * Workaround: disable social buttons on AMP [#47](https://github.com/utahta/WP-Social-Bookmarking-Light/pull/47)

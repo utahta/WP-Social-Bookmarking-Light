@@ -1,0 +1,6 @@
+<div class='wp_social_bookmarking_light'>
+    {% for service in services %}
+        <div class="wsbl_{{ service.name }}">{{ service.content | raw }}</div>
+    {% endfor %}
+</div>
+<br class='wp_social_bookmarking_light_clear' />

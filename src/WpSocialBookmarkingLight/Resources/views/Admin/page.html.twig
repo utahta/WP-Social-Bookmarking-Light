@@ -1,0 +1,676 @@
+{% if saved %}
+    <div class="updated">
+        <p><strong>{{ 'Options saved.' | __ }}</strong></p>
+    </div>
+{% endif %}
+
+{% if restored %}
+    <div class="updated">
+        <p><strong>{{ 'Restore defaults.' | __ }}</strong></p>
+    </div>
+{% endif %}
+
+
+<div class="wrap">
+    <h2>WP Social Bookmarking Light</h2>
+
+    <form method='POST' action="{{ request_uri }}">
+
+        <div id="tabs">
+            <ul>
+                <li><a href="#tabs-1"><span>{{ 'General Settings' | __ }}</span></a></li>
+                <li><a href="#tabs-1_2"><span>{{ 'CSS' | __ }}</span></a></li>
+                <li><a href="#tabs-1_3"><span>{{ 'Donate' | __ }}</span></a></li>
+                <li id='mixi_settings'><a href="#tabs-2"><span>{{ 'Mixi' | __ }}</span></a></li>
+                <li id='twitter_settings'><a href="#tabs-3"><span>{{ 'Twitter' | __ }}</span></a></li>
+                <li id='hatena_button_settings'><a href="#tabs-4"><span>{{ 'Hatena' | __ }}</span></a></li>
+                <li id='facebook_general_settings'><a href="#tabs-15"><span>{{ 'FB' | __ }}</span></a></li>
+                <li id='facebook_like_settings'><a href="#tabs-5"><span>{{ 'FB Like' | __ }}</span></a></li>
+                <li id='facebook_share_settings'><a href="#tabs-6"><span>{{ 'FB Share' | __ }}</span></a></li>
+                <li id='facebook_send_settings'><a href="#tabs-14"><span>{{ 'FB Send' | __ }}</span></a></li>
+                <li id='gree_settings'><a href="#tabs-7"><span>{{ 'GREE' | __ }}</span></a></li>
+                <li id='tumblr_settings'><a href="#tabs-9"><span>{{ 'tumblr' | __ }}</span></a></li>
+                <li id='atode_settings'><a href="#tabs-10"><span>{{ 'atode' | __ }}</span></a></li>
+                <li id='google_plus_one_settings'><a href="#tabs-11"><span>{{ 'Google Plus One' | __ }}</span></a></li>
+                <li id='line_settings'><a href="#tabs-12"><span>{{ 'LINE' | __ }}</span></a></li>
+                <li id='pocket_settings'><a href="#tabs-13"><span>{{ 'Pocket' | __ }}</span></a></li>
+                <li id='pinterest_settings'><a href="#tabs-16"><span>{{ 'Pinterest' | __ }}</span></a></li>
+            </ul>
+
+            <!-- General -->
+            <div id="tabs-1">
+                <table class='form-table'>
+                    <tr>
+                        <th scope="row">{{ 'Position' | __ }}:</th>
+                        <td>
+                            <select name='position'>
+                                <option value='top' {{ option.position == 'top' ? 'selected' : '' }}>Top</option>
+                                <option value='bottom' {{ option.position == 'bottom' ? 'selected' : '' }}>Bottom</option>
+                                <option value='both' {{ option.position == 'both' ? 'selected' : '' }}>Both</option>
+                                <option value='none' {{ option.position == 'none' ? 'selected' : '' }}>None</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">{{ 'Singular' | __ }}:</th>
+                        <td>
+                            <select name='single_page'>
+                                <option value='true' {{ option.single_page == true ? 'selected' : '' }}>Yes</option>
+                                <option value='false' {{ option.single_page == false ? 'selected' : '' }}>No</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">{{ 'Page' | __ }}:</th>
+                        <td>
+                            <select name='is_page'>
+                                <option value='true' {{ option.is_page == true ? 'selected' : '' }}>Yes</option>
+                                <option value='false' {{ option.is_page == false ? 'selected' : '' }}>No</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">{{ 'Services' | __ }}: <br/> <span style="font-size:10px">(drag-and-drop)</span></th>
+                        <td>
+                            <input type="text" id='services_id' name='services' value="{{ option.services }}"size=120 style="font-size:12px;" onclick="this.select(0, this.value.length)" readonly/>
+                            <br />
+                            <br />
+                            <ul id="wsbl_sortable">
+                                {% for service in option.services | split(',') %}
+                                    {% if service in service_types %}
+                                        <li>
+                                            <div class='wsbl_txt_draggable'>{{ service }}</div>
+                                            <div class='wsbl_img_draggable'><img src=''></div>
+                                            <br clear='both'>
+                                        </li>
+                                    {% endif %}
+                                {% endfor %}
+                            </ul>
+                            <div class="wsbl_point_left"><img src='{{ 'point_left.png' | images }}'></div>
+                            <ul id="wsbl_draggable">
+                                {% for service in service_types %}
+                                    <li>
+                                        <div class='wsbl_txt_draggable'>{{ service }}</div>
+                                        <div class='wsbl_img_draggable'><img src=''></div>
+                                        <br clear='both'>
+                                    </li>
+                                {% endfor %}
+                            </ul>
+                            <br clear="both"/>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- CSS -->
+            <div id="tabs-1_2">
+                <table class='form-table'>
+                    <tr>
+                        <th scope="row">Custom CSS:</th>
+                        <td>
+                            <textarea name="styles" rows="20" cols="80">{{ option.styles }}</textarea>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- Donate -->
+            <div id="tabs-1_3">
+                <table class='form-table'>
+                    <tr>
+                        <td>
+                            <script src="https://gumroad.com/js/gumroad-embed.js"></script>
+                            <div class="gumroad-product-embed" data-gumroad-product-id="rWLrL"><a href="https://gumroad.com/l/rWLrL">Loading...</a></div>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- mixi -->
+            <div id="tabs-2">
+                <!-- General -->
+                <strong>General</strong>
+                <table class='form-table'>
+                    <tr>
+                        <th scope="row">Check Key:</th>
+                        <td>
+                            <input type="text" name='mixi_check_key' value="{{ option.mixi.check_key }}" size=50 />
+                        </td>
+                    </tr>
+                </table>
+                <br/>
+
+                <!-- mixi Check -->
+                <strong>mixi Check</strong>
+                <table class='form-table'>
+                    <tr>
+                        <th scope="row">Check Robots:</th>
+                        <td>
+                            <input type="text" name='mixi_check_robots' value="{{ option.mixi.check_robots }}" size=50 />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Layout:</th>
+                        <td>
+                            <select name='mixi_button'>
+                                <option value='button-1' {{ option.mixi.button == 'button-1' ? 'selected' : '' }}>button-1</option>
+                                <option value='button-2' {{ option.mixi.button == 'button-2' ? 'selected' : '' }}>button-2</option>
+                                <option value='button-3' {{ option.mixi.button == 'button-3' ? 'selected' : '' }}>button-3</option>
+                                <option value='button-4' {{ option.mixi.button == 'button-4' ? 'selected' : '' }}>button-4</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+                <br/>
+
+                <!-- mixi Like -->
+                <strong>mixi Like</strong>
+                <table class='form-table'>
+                    <tr>
+                        <th scope="row">Width:</th>
+                        <td>
+                            <input type="text" name='mixi_like_width' value="{{ option.mixi_like.width }}"/>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- Twitter -->
+            <div id="tabs-3">
+                <table class='form-table'>
+                    <tr>
+                        <th scope="row">Via: <br> <span style="font-size:10px">(your twitter account)</span></th>
+                        <td>
+                            <input type="text" name='twitter_via' value="{{ option.twitter.via }}" size=50 />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Related: <br> <span style="font-size:10px">(related twitter account)</span></th>
+                        <td>
+                            <input type="text" name='twitter_related' value="{{ option.twitter.related }}" size=50 />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Hashtags: <br> <span style="font-size:10px"></span></th>
+                        <td>
+                            <input type="text" name='twitter_hashtags' value="{{ option.twitter.hashtags }}" size=50 />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Dnt: <br> <span style="font-size:10px">(Opt-out of tailoring Twitter)</span></th>
+                        <td>
+                            <select name='twitter_dnt'>
+                                <option value='true' {{ option.twitter.dnt == true ? 'selected' : '' }}>Yes</option>
+                                <option value='false' {{ option.twitter.dnt == false ? 'selected' : '' }}>No</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Language:</th>
+                        <td>
+                            <select name='twitter_lang'>
+                                <option value="" {{ option.twitter.lang == '' ? 'selected' : '' }}>---</option>
+                                <option value="fr" {{ option.twitter.lang == 'fr' ? 'selected' : '' }}>French - français</option>
+                                <option value="en" {{ option.twitter.lang == 'en' ? 'selected' : '' }}>English</option>
+                                <option value="ar" {{ option.twitter.lang == 'ar' ? 'selected' : '' }}>Arabic - العربية</option>
+                                <option value="ja" {{ option.twitter.lang == 'ja' ? 'selected' : '' }}>Japanese - 日本語</option>
+                                <option value="es" {{ option.twitter.lang == 'es' ? 'selected' : '' }}>Spanish - Español</option>
+                                <option value="de" {{ option.twitter.lang == 'de' ? 'selected' : '' }}>German - Deutsch</option>
+                                <option value="it" {{ option.twitter.lang == 'it' ? 'selected' : '' }}>Italian - Italiano</option>
+                                <option value="id" {{ option.twitter.lang == 'id' ? 'selected' : '' }}>Indonesian - Bahasa Indonesia</option>
+                                <option value="pt" {{ option.twitter.lang == 'pt' ? 'selected' : '' }}>Portuguese - Português</option>
+                                <option value="ko" {{ option.twitter.lang == 'ko' ? 'selected' : '' }}>Korean - 한국어</option>
+                                <option value="tr" {{ option.twitter.lang == 'tr' ? 'selected' : '' }}>Turkish - Türkçe</option>
+                                <option value="ru" {{ option.twitter.lang == 'ru' ? 'selected' : '' }}>Russian - Русский</option>
+                                <option value="nl" {{ option.twitter.lang == 'nl' ? 'selected' : '' }}>Dutch - Nederlands</option>
+                                <option value="fil" {{ option.twitter.lang == 'fil' ? 'selected' : '' }}>Filipino - Filipino</option>
+                                <option value="msa" {{ option.twitter.lang == 'msa' ? 'selected' : '' }}>Malay - Bahasa Melayu</option>
+                                <option value="zh-tw" {{ option.twitter.lang == 'zh-tw' ? 'selected' : '' }}>Traditional Chinese - 繁體中文</option>
+                                <option value="zh-cn" {{ option.twitter.lang == 'zh-cn' ? 'selected' : '' }}>Simplified Chinese - 简体中文</option>
+                                <option value="hi" {{ option.twitter.lang == 'hi' ? 'selected' : '' }}>Hindi - हिन्दी</option>
+                                <option value="no" {{ option.twitter.lang == 'no' ? 'selected' : '' }}>Norwegian - Norsk</option>
+                                <option value="sv" {{ option.twitter.lang == 'sv' ? 'selected' : '' }}>Swedish - Svenska</option>
+                                <option value="fi" {{ option.twitter.lang == 'fi' ? 'selected' : '' }}>Finnish - Suomi</option>
+                                <option value="da" {{ option.twitter.lang == 'da' ? 'selected' : '' }}>Danish - Dansk</option>
+                                <option value="pl" {{ option.twitter.lang == 'pl' ? 'selected' : '' }}>Polish - Polski</option>
+                                <option value="hu" {{ option.twitter.lang == 'hu' ? 'selected' : '' }}>Hungarian - Magyar</option>
+                                <option value="fa" {{ option.twitter.lang == 'fa' ? 'selected' : '' }}>Farsi - فارسی</option>
+                                <option value="he" {{ option.twitter.lang == 'he' ? 'selected' : '' }}>Hebrew - עִבְרִית</option>
+                                <option value="ur" {{ option.twitter.lang == 'ur' ? 'selected' : '' }}>Urdu - اردو</option>
+                                <option value="th" {{ option.twitter.lang == 'th' ? 'selected' : '' }}>Thai - ภาษาไทย</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Size:</th>
+                        <td>
+                            <select name='twitter_size'>
+                                <option value='' {{ option.twitter.size == '' ? 'selected' : '' }}>normal</option>
+                                <option value='large' {{ option.twitter.size == 'large' ? 'selected' : '' }}>large</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- hatena button -->
+            <div id="tabs-4">
+                <table class='form-table'>
+                    <tr>
+                        <th scope="row">Layout:</th>
+                        <td>
+                            <select name='hatena_button_layout'>
+                                <option value='standard-balloon' {{  option.hatena_button.layout == 'standard-balloon' ? 'selected' : '' }}>standard-balloon</option>
+                                <option value='standard-noballoon' {{  option.hatena_button.layout == 'standard-noballoon' ? 'selected' : '' }}>standard-noballoon</option>
+                                <option value='standard' {{  option.hatena_button.layout == 'standard' ? 'selected' : '' }}>standard</option>
+                                <option value='simple' {{  option.hatena_button.layout == 'simple' ? 'selected' : '' }}>simple</option>
+                                <option value='simple-balloon' {{  option.hatena_button.layout == 'simple-balloon' ? 'selected' : '' }}>simple-balloon</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- Facebook General -->
+            <div id="tabs-15">
+                <table class='form-table'>
+                    <tr>
+                        <th scope="row">Locale:</th>
+                        <td>
+                            <input type="text" name='facebook_locale' value="{{ option.facebook.locale }}" /><br/>
+                            <span>en_US, ja_JP, fr_FR ...</span> see more <a href='http://developers.facebook.com/docs/internationalization/' target=_blank>facebook docs</a>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Version:</th>
+                        <td>
+                            <select name='facebook_version'>
+                                <option value='html5' {{ option.facebook.version == 'html5' ? 'selected' : '' }}>html5</option>
+                                <option value='xfbml' {{ option.facebook.version == 'xfbml' ? 'selected' : '' }}>xfbml</option>
+                                <option value='iframe' {{ option.facebook.version == 'iframe' ? 'selected' : '' }}>iframe</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Add fb-root:</th>
+                        <td>
+                            <select name='facebook_fb_root'>
+                                <option value='true' {{ option.facebook.fb_root == true ? 'selected' : '' }}>Yes</option>
+                                <option value='false' {{ option.facebook.fb_root == false ? 'selected' : '' }}>No</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- Facebook Like Button -->
+            <div id="tabs-5">
+                <!-- Like Button -->
+                <table class='form-table'>
+                    <tr>
+                        <th scope="row">Layout:</th>
+                        <td>
+                            <select name='facebook_like_layout'>
+                                <option value='button' {{ option.facebook_like.layout == 'button' ? 'selected' : '' }}>button</option>
+                                <option value='button_count' {{ option.facebook_like.layout == 'button_count' ? 'selected' : '' }}>button_count</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Action:</th>
+                        <td>
+                            <select name='facebook_like_action'>
+                                <option value='like' {{ option.facebook_like.action == 'like' ? 'selected' : '' }}>like</option>
+                                <option value='recommend' {{ option.facebook_like.action == 'recommend' ? 'selected' : '' }}>recommend</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Share:</th>
+                        <td>
+                            <select name='facebook_like_share'>
+                                <option value='true' {{ option.facebook_like.share == true ? 'selected' : '' }}>Yes</option>
+                                <option value='false' {{ option.facebook_like.share == false ? 'selected' : ''  }}>No</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Width:</th>
+                        <td>
+                            <input type="text" name='facebook_like_width' value="{{ option.facebook_like.width }}" size=20 />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- Facebook Share Button -->
+            <div id="tabs-6">
+                <table class='form-table'>
+                    <tr>
+                        <th scope="row">Layout:</th>
+                        <td>
+                            <select name='facebook_share_type'>
+                                <option value='button' {{ option.facebook_share.type == 'button' ? 'selected' : '' }}>button</option>
+                                <option value='button_count' {{ option.facebook_share.type == 'button_count' ? 'selected' : '' }}>button_count</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Width:</th>
+                        <td>
+                            <input type="text" name='facebook_share_width' value="{{ option.facebook_share.width }}" size=20 />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- Facebook Send Button -->
+            <div id="tabs-14">
+                <table class='form-table'>
+                    <tr>
+                        <th scope="row">Color Scheme:</th>
+                        <td>
+                            <select name='facebook_send_colorscheme'>
+                                <option value='light' {{ option.facebook_send.colorscheme == 'light' ? 'selected' : '' }}>light</option>
+                                <option value='dark' {{ option.facebook_send.colorscheme == 'dark' ? 'selected' : '' }}>dark</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Width:</th>
+                        <td>
+                            <input type="text" name='facebook_send_width' value="{{ option.facebook_send.width }}" size=20 />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Height:</th>
+                        <td>
+                            <input type="text" name='facebook_send_height' value="{{ option.facebook_send.height }}" size=20 />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- gree -->
+            <div id="tabs-7">
+                <table class='form-table'>
+                    <tr>
+                        <th scope="row">Button type:</th>
+                        <td>
+                            <select name='gree_button_type'>
+                                <option value='0' {{ option.gree.button_type == '0' ? 'selected' : '' }}>{{ 'iine' | __ }}</option>
+                                <option value='1' {{ option.gree.button_type == '1' ? 'selected' : '' }}>{{ 'kininaru' | __ }}</option>
+                                <option value='2' {{ option.gree.button_type == '2' ? 'selected' : '' }}>{{ 'osusume' | __ }}</option>
+                                <option value='3' {{ option.gree.button_type == '3' ? 'selected' : '' }}>{{ 'share' | __ }}</option>
+                                <option value='4' {{ option.gree.button_type == '4' ? 'selected' : '' }}>{{ 'logo' | __ }}</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Button size:</th>
+                        <td>
+                            <select name='gree_button_size'>
+                                <option value='16' {{ option.gree.button_size == '16' ? 'selected' : '' }}>16</option>
+                                <option value='20' {{ option.gree.button_size == '20' ? 'selected' : '' }}>20</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- tumblr -->
+            <div id="tabs-9">
+                <table class='form-table'>
+                    <tr>
+                        <th scope="row">Button type:</th>
+                        <td>
+                            <select name='tumblr_button_type' onchange='jQuery("#tumblr_img").attr("src", "http://platform.tumblr.com/v1/share_"+this.form.tumblr_button_type.value+".png")'>
+                                {% set tumblr_button_types = ['1', '2', '3', '4'] %}
+                                {% for button_type in tumblr_button_types %}
+                                    <option value='{{ button_type }}' {{ option.tumblr.button_type == button_type ? 'selected' : '' }}>share_{{ button_type }}</option>
+                                {% endfor %}
+                            </select>
+                            <img id='tumblr_img' style="vertical-align:middle" src='http://platform.tumblr.com/v1/share_{{ option.tumblr.button_type }}.png'>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- atode -->
+            <div id="tabs-10">
+                <table class='form-table'>
+                    <tr>
+                        <th scope="row">Button type:</th>
+                        <td>
+                            <select name='atode_button_type' onchange='jQuery("#atode_img").attr("src", "http://atode.cc/img/"+this.form.atode_button_type.value+".gif")'>
+                                {% set atode_button_types = ['iconsja', 'iconnja', 'iconnen'] %}
+                                {% for button_type in atode_button_types %}
+                                    <option value='{{ button_type }}' {{ option.atode.button_type == button_type ? 'selected' : '' }}>{{ button_type }}</option>
+                                {% endfor %}
+                            </select>
+                            <img id='atode_img' style="vertical-align:middle" src='http://atode.cc/img/{{ option.atode.button_type }}.gif'>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- google +1 -->
+            <div id="tabs-11">
+                <table class='form-table'>
+                    <tr>
+                        <th scope="row">Button size:</th>
+                        <td>
+                            <select name='google_plus_one_button_size'>
+                                <option value='small' {{ option.google_plus_one.button_size == 'small' ? 'selected' : '' }}>small</option>
+                                <option value='medium' {{ option.google_plus_one.button_size == 'medium' ? 'selected' : '' }}>medium</option>
+                                <option value='standard' {{ option.google_plus_one.button_size == 'standard' ? 'selected' : '' }}>standard</option>
+                                <option value='tall' {{ option.google_plus_one.button_size == 'tall' ? 'selected' : '' }}>tall</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Language:</th>
+                        <td>
+                            <select name='google_plus_one_lang'>
+                                {% set google_langs = {
+                                    "ar": "Arabic",
+                                    "ar": "Arabic",
+                                    "bg": "Bulgarian",
+                                    "ca": "Catalan",
+                                    "zh-CN": "Chinese (Simplified)",
+                                    "zh-TW": "Chinese (Traditional)",
+                                    "hr": "Croatian",
+                                    "cs": "Czech",
+                                    "da": "Danish",
+                                    "nl": "Dutch",
+                                    "en-US": "English (US)",
+                                    "en-GB": "English (UK)",
+                                    "et": "Estonian",
+                                    "fil": "Filipino",
+                                    "fi": "Finnish",
+                                    "fr": "French",
+                                    "de": "German",
+                                    "el": "Greek",
+                                    "iw": "Hebrew",
+                                    "hi": "Hindi",
+                                    "hu": "Hungarian",
+                                    "id": "Indonesian",
+                                    "it": "Italian",
+                                    "ja": "Japanese",
+                                    "ko": "Korean",
+                                    "lv": "Latvian",
+                                    "lt": "Lithuanian",
+                                    "ms": "Malay",
+                                    "no": "Norwegian",
+                                    "fa": "Persian",
+                                    "pl": "Polish",
+                                    "pt-BR": "Portuguese (Brazil)",
+                                    "pt-PT": "Portuguese (Portugal)",
+                                    "ro": "Romanian",
+                                    "ru": "Russian",
+                                    "sr": "Serbian",
+                                    "sv": "Swedish",
+                                    "sk": "Slovak",
+                                    "sl": "Slovenian",
+                                    "es": "Spanish",
+                                    "es-419": "Spanish (Latin America)",
+                                    "th": "Thai",
+                                    "tr": "Turkish",
+                                    "uk": "Ukrainian",
+                                    "vi": "Vietnamese",
+                                } %}
+                                {% for key, value in google_langs %}
+                                    <option {{ option.google_plus_one.lang == key ? "selected" : "" }} value='{{ key }}'>{{ val }}</option>
+                                {% endfor %}
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Annotation:</th>
+                        <td>
+                            <select name='google_plus_one_annotation'>
+                                <option value='none' {{ option.google_plus_one.annotation == "none" ? 'selected' : '' }}>none</option>
+                                <option value='bubble' {{ option.google_plus_one.annotation == "bubble" ? 'selected' : '' }}>bubble</option>
+                                <option value='inline' {{ option.google_plus_one.annotation == "inline" ? 'selected' : '' }}>inline</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Inline size:</th>
+                        <td>
+                            <input type="text" name='google_plus_one_inline_size' value="{{ option.google_plus_one.inline_size }}" />
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- line -->
+            <div id="tabs-12">
+                <table class='form-table'>
+                    <tr>
+                        <th scope="row">Button type:</th>
+                        <td>
+                            <select name='line_button_type' onchange='jQuery("#line_img").attr("src", "{{ "" | images }}/"+this.form.line_button_type.value+".png")'>
+                                {% set line_button_types = ['line20x20', 'line88x20'] %}
+                                {% for button_type in line_button_types %}
+                                    <option value='{{ button_type }}' {{ option.line.button_type == button_type ? 'selected' : '' }}>{{ button_type }}</option>
+                                {% endfor %}
+                            </select>
+                            <img id='line_img' style="vertical-align:middle" src='{{ option.line.button_type | images }}.png'>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Protocol:</th>
+                        <td>
+                            <select name='line_protocol'>
+                                <option value='http' {{ option.line.protocol == 'http' ? 'selected' : '' }}>http://</option>
+                                <option value='line' {{ option.line.protocol == 'line' ? 'selected' : '' }}>line://</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- pocket -->
+            <div id="tabs-13">
+                <table class='form-table'>
+                    <tr>
+                        <th scope="row">Button type:</th>
+                        <td>
+                            <select name='pocket_button_type'>
+                                <option value='none' {{ option.pocket.button_type == 'none' ? 'selected' : '' }}>none</option>
+                                <option value='horizontal' {{ option.pocket.button_type == 'horizontal' ? 'selected' : '' }}>horizontal</option>
+                                <option value='vertical' {{ option.pocket.button_type == 'vertical' ? 'selected' : '' }}>vertical</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+            <!-- Pinterest -->
+            <div id="tabs-16">
+                <table class='form-table'>
+                    <tr>
+                        <th scope="row">Type: <br> <span style="font-size:10px"></span></th>
+                        <td>
+                            <select name='pinterest_type'>
+                                <option value='all' {{ option.pinterest.type == 'all' ? 'selected' : '' }}>All</option>
+                                <option value='hover' {{ option.pinterest.type == 'hover' ? 'selected' : '' }}>Hover</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Shape: <br> <span style="font-size:10px"></span></th>
+                        <td>
+                            <select name='pinterest_shape'>
+                                <option value='rect' {{ option.pinterest.shape == 'rect' ? 'selected' : '' }}>Rectangle</option>
+                                <option value='round' {{ option.pinterest.shape == 'round' ? 'selected' : '' }}>Round</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Size: <br> <span style="font-size:10px"></span></th>
+                        <td>
+                            <select name='pinterest_size'>
+                                <option value='large' {{ option.pinterest.size == 'large' ? 'selected' : '' }}>Large</option>
+                                <option value='small' {{ option.pinterest.size == 'small' ? 'selected' : '' }}>Small</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Color: <br> <span style="font-size:10px"></span></th>
+                        <td>
+                            <select name='pinterest_color'>
+                                <option value='red' {{ option.pinterest.color == 'red' ? 'selected' : '' }}>Red</option>
+                                <option value='gray' {{ option.pinterest.color == 'gray' ? 'selected' : '' }}>Gray</option>
+                                <option value='white' {{ option.pinterest.color == 'white' ? 'selected' : '' }}>White</option>
+                            </select>
+                        </td>
+                    </tr>
+                    <tr>
+                        <th scope="row">Language:</th>
+                        <td>
+                            <select name='pinterest_lang'>
+                                <option value="en" {{ option.pinterest.lang == 'en' ? 'selected' : '' }}>English</option>
+                                <option value="ja" {{ option.pinterest.lang == 'ja' ? 'selected' : '' }}>Japanese - 日本語</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+
+        </div>
+        <p class="submit">
+            <input class="button-primary" type="submit" name='save' value='{{ 'Save Changes' | __ }}' />
+            <input type="submit" name='restore' value='{{ 'Restore defaults' | __ }}' />
+        </p>
+    </form>
+
+    <table class='wsbl_options'>
+        <tr><th>{{ 'Service Code' | __ }}</th><th>{{ 'Explain' | __ }}</th></tr>
+        <tr><td>hatena</td><td>Hatena Bookmark</td></tr>
+        <tr><td>hatena_users</td><td>Hatena Bookmark Users</td></tr>
+        <tr><td>hatena_button</td><td>Hatena Bookmark Button</td></tr>
+        <tr><td>twitter</td><td>Tweet Button - Twitter</td></tr>
+        <tr><td>tumblr</td><td>Tumblr</td></tr>
+        <tr><td>google</td><td>Google Bookmarks</td></tr>
+        <tr><td>google_plus_one</td><td>Google +1</td></tr>
+        <tr><td>delicious</td><td>Delicious</td></tr>
+        <tr><td>digg</td><td>Digg</td></tr>
+        <tr><td>facebook</td><td>Facebook Share</td></tr>
+        <tr><td>facebook_like</td><td>Facebook Like Button</td></tr>
+        <tr><td>facebook_share</td><td>Facebook Share Button</td></tr>
+        <tr><td>facebook_send</td><td>Facebook Send Button</td></tr>
+        <tr><td>reddit</td><td>reddit</td></tr>
+        <tr><td>linkedin</td><td>LinkedIn</td></tr>
+        <tr><td>instapaper</td><td>Instapaper</td></tr>
+        <tr><td>stumbleupon</td><td>StumbleUpon</td></tr>
+        <tr><td>mixi</td><td>mixi Check (require <a href="http://developer.mixi.co.jp/connect/mixi_plugin/mixi_check/mixicheck" onclick="window.open('http://developer.mixi.co.jp/connect/mixi_plugin/mixi_check/mixicheck'); return false;" >mixi check key</a>)</td></tr>
+        <tr><td>mixi_like</td><td>mixi Like (require <a href="http://developer.mixi.co.jp/connect/mixi_plugin/mixi_check/mixicheck" onclick="window.open('http://developer.mixi.co.jp/connect/mixi_plugin/mixi_check/mixicheck'); return false;" >mixi check key</a>)</td></tr>
+        <tr><td>gree</td><td>GREE Social Feedback</td></tr>
+        <tr><td>atode</td><td>atode (toread)</td></tr>
+        <tr><td>line</td><td>LINE Button</td></tr>
+        <tr><td>pocket</td><td>Pocket Button</td></tr>
+        <tr><td>pinterest</td><td>Pinterest Button</td></tr>
+    </table>
+</div>

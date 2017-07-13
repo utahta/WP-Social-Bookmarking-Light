@@ -1,0 +1,25 @@
+version: '2'
+
+services:
+  db47:
+    extends:
+      file: ../common.yml
+      service: db
+    volumes:
+      - db_data_wp47:/var/lib/mysql
+  
+  wordpress47:
+    depends_on:
+      - db47
+    extends:
+      file: ../common.yml
+      service: wordpress
+    image: wordpress:4.7-php5.6
+    ports:
+      - 8001:80
+    environment:
+      WORDPRESS_DB_HOST: db47:3306
+    
+volumes:
+  db_data_wp47:
+
