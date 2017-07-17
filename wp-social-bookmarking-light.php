@@ -41,5 +41,4 @@ load_plugin_textdomain(WP_SOCIAL_BOOKMARKING_LIGHT_DOMAIN, false, "wp-social-boo
 /**
  * initialize
  */
-$wpSocialBookmarkingLight = new \WpSocialBookmarkingLight\Plugin();
-$wpSocialBookmarkingLight->init();
+\WpSocialBookmarkingLight\Plugin::init();
