@@ -106,7 +106,6 @@ class Option implements OptionInterface
                 'button_type' => $data['gree_button_type'],
                 'button_size' => $data['gree_button_size']
             ),
-            'evernote' => array('button_type' => $data['evernote_button_type']),
             'tumblr' => array('button_type' => $data['tumblr_button_type']),
             'atode' => array('button_type' => $data['atode_button_type']),
             'google_plus_one' => array(
@@ -228,7 +227,6 @@ CSS;
                 'button_type' => '4',
                 'button_size' => '16'
             ),
-            'evernote' => array('button_type' => 'article-clipper'),
             'tumblr' => array('button_type' => '1'),
             'atode' => array('button_type' => 'iconsja'),
             'google_plus_one' => array(

@@ -37,3 +37,10 @@ docker/up-wp46-php56: build
 
 docker/stop-wp46-php56:
 	@make -s -C ./dockerfiles stop-wp46-php56
+
+docker/up-wp48-php53:
+	@make -s -C ./dockerfiles/php53 up
+
+docker/stop-wp48-php53:
+	@make -s -C ./dockerfiles/php53 stop
+

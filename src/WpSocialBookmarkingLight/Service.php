@@ -102,7 +102,10 @@ class Service
      */
     public function invokeService($service)
     {
-        $method = str_replace('_', '', ucwords($service, '_')); // snake_case to camelCase
+        // snake_case to camelCase
+        $method = str_replace('_', "\t", $service);
+        $method = ucwords($method); // for php 5.3
+        $method = str_replace("\t", '', $method);
         return $this->$method();
     }
 

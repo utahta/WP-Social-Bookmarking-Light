@@ -40,13 +40,14 @@ class Plugin
     /**
      * Initialize wp actions
      */
-    public function init()
+    public static function init()
     {
         add_action('init', function() {
-            add_action('wp_head', array($this, 'head'));
-            add_action('wp_footer', array($this, 'footer'));
-            add_filter('the_content', array($this, 'theContent'));
-            add_action('admin_menu', array($this, 'adminMenu'));
+            $plugin = new Plugin();
+            add_action('wp_head', array($plugin, 'head'));
+            add_action('wp_footer', array($plugin, 'footer'));
+            add_filter('the_content', array($plugin, 'theContent'));
+            add_action('admin_menu', array($plugin, 'adminMenu'));
         });
     }
 
@@ -100,17 +101,18 @@ class Plugin
     public function adminMenu()
     {
         if( function_exists('add_options_page') ){
+            $admin = $this->admin;
             $page = add_options_page('WP Social Bookmarking Light',
                 'WP Social Bookmarking Light',
                 'manage_options',
                 __FILE__,
-                function () {
-                    echo $this->admin->page();
+                function () use($admin) {
+                    echo $admin->page();
                 });
             add_action('admin_print_styles-' . $page, array($this->admin, 'enqueueStyles'));
             add_action('admin_print_scripts-' . $page, array($this->admin, 'enqueueScripts'));
-            add_action('admin_head-' . $page, function () {
-                echo $this->admin->head();
+            add_action('admin_head-' . $page, function () use($admin) {
+                echo $admin->head();
             });
         }
     }

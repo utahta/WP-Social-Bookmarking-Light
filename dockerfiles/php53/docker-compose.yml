@@ -1,0 +1,28 @@
+version: '2'
+
+services:
+  db:
+    image: mysql:5.7
+    environment:
+      MYSQL_ROOT_PASSWORD: wordpress
+      MYSQL_DATABASE: wordpress
+      MYSQL_USER: wordpress
+      MYSQL_PASSWORD: wordpress
+    volumes:
+      - db_data_php53:/var/lib/mysql
+
+  wordpress:
+    depends_on:
+      - db
+    build: .
+    ports:
+      - 8005:80
+    volumes:
+      - ~/repos/WP-Social-Bookmarking-Light/build/wp-social-bookmarking-light:/var/www/html/wp-content/plugins/wp-social-bookmarking-light
+    environment:
+      WORDPRESS_DB_HOST: db:3306
+      WORDPRESS_DB_PASSWORD: wordpress
+      WORDPRESS_DEBUG: 1
+
+volumes:
+  db_data_php53:
