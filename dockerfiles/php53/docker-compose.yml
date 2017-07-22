@@ -14,7 +14,7 @@ services:
   wordpress:
     depends_on:
       - db
-    build: .
+    image: utahta/wordpress-php53
     ports:
       - 8005:80
     volumes:
