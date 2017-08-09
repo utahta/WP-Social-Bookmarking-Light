@@ -78,6 +78,7 @@ class Option implements OptionInterface
                 'related' => $data['twitter_related'],
                 'hashtags' => $data['twitter_hashtags'],
                 'dnt' => $data['twitter_dnt'] == 'true',
+                'version' => $data['twitter_version'],
             ),
             'hatena_button' => array(
                 'layout' => $data['hatena_button_layout']
@@ -200,7 +201,8 @@ CSS;
                 'size' => "",
                 'related' => "",
                 'hashtags' => "",
-                "dnt" => false
+                "dnt" => false,
+                'version' => "html"
             ),
             "hatena_button" => array('layout' => 'simple-balloon'),
             'facebook' => array(

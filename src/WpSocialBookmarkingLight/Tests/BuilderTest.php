@@ -111,12 +111,13 @@ class BuilderTest extends TestCase
         $stub->method('getAll')->willReturn([
             "hatena_button" => ['layout' => 'simple-balloon'],
             "twitter" => [
-                'via' => "",
-                'lang' => "",
-                'size' => "",
-                'related' => "",
-                'hashtags' => "",
-                "dnt" => false
+                'via' => "a",
+                'lang' => "ja",
+                'size' => "large",
+                'related' => "b",
+                'hashtags' => "c",
+                "dnt" => true,
+                "version" => "iframe"
             ],
             'facebook' => [
                 'locale' => 'en_US',
