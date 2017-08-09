@@ -187,25 +187,41 @@ class Service
         $twitter = $options['twitter'];
         $data_url = $this->url;
         $data_text = $this->title;
-        $data_via = $twitter['via'] !== '' ? ' data-via="' . $twitter['via'] . '"' : '';
-        $data_size = $twitter['size'] === 'large' ? ' data-size="large"' : '';
-        $data_related = $twitter['related'] !== '' ? ' data-related="' . $twitter['related'] . '"' : '';
-        $data_hashtags = $twitter['hashtags'] !== '' ? ' data-hashtags="' . $twitter['hashtags'] . '"' : '';
-        $data_dnt = $twitter['dnt'] ? ' data-dnt="true"' : '';
-        $data_lang = $twitter['lang'] !== '' ? ' data-lang="' . $twitter['lang'] . '"' : '';
 
-        return $this->linkRaw(
-            '<a href="https://twitter.com/share" class="twitter-share-button"'
-            . ' data-url="' . $data_url . '"'
-            . ' data-text="' . $data_text . '"'
-            . $data_via
-            . $data_size
-            . $data_related
-            . $data_hashtags
-            . $data_dnt
-            . $data_lang
-            . '>Tweet</a>'
-        );
+        if ($twitter['version'] === 'iframe') {
+            // if you want to change width length, please edit wsbl_twitter style at Settings
+            return $this->linkRaw(
+                '<iframe '
+                . 'src="https://platform.twitter.com/widgets/tweet_button.html?'
+                . 'url='.$data_url
+                . '&text='.$data_text
+                . ($twitter['via'] !== '' ? '&via='.$twitter['via'] : '')
+                . ($twitter['size'] === 'large' ? '&size=l' : '')
+                . ($twitter['related'] !== '' ? '&related='.$twitter['related'] : '')
+                . ($twitter['hashtags'] !== '' ? '&hashtags='.$twitter['hashtags'] : '')
+                . ($twitter['dnt'] ? '&dnt=true' : '')
+                . ($twitter['lang'] !== '' ? '&lang='.$twitter['lang'] : '')
+                . '"'
+                . ' width="140"'
+                . ' height="28"'
+                . ' title="Tweet"'
+                . ' style="border: 0; overflow: hidden;"'
+                . '></iframe>'
+            );
+        } else {
+            return $this->linkRaw(
+                '<a href="https://twitter.com/share" class="twitter-share-button"'
+                . ' data-url="' . $data_url . '"'
+                . ' data-text="' . $data_text . '"'
+                . ($twitter['via'] !== '' ? ' data-via="' . $twitter['via'] . '"' : '')
+                . ($twitter['size'] === 'large' ? ' data-size="large"' : '')
+                . ($twitter['related'] !== '' ? ' data-related="' . $twitter['related'] . '"' : '')
+                . ($twitter['hashtags'] !== '' ? ' data-hashtags="' . $twitter['hashtags'] . '"' : '')
+                . ($twitter['dnt'] ? ' data-dnt="true"' : '')
+                . ($twitter['lang'] !== '' ? ' data-lang="' . $twitter['lang'] . '"' : '')
+                . '>Tweet</a>'
+            );
+        }
     }
 
     /**

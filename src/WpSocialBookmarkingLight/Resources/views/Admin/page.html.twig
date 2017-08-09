@@ -250,6 +250,15 @@
                             </select>
                         </td>
                     </tr>
+                    <tr>
+                        <th scope="row">Version:</th>
+                        <td>
+                            <select name='twitter_version'>
+                                <option value='html' {{ option.twitter.version == 'html' ? 'selected' : '' }}>html</option>
+                                <option value='iframe' {{ option.twitter.version == 'iframe' ? 'selected' : '' }}>iframe</option>
+                            </select>
+                        </td>
+                    </tr>
                 </table>
             </div>
 
