@@ -1,0 +1,25 @@
+version: '2'
+
+services:
+  db48:
+    extends:
+      file: ../common.yml
+      service: db
+    volumes:
+      - db_data_wp48:/var/lib/mysql
+  
+  wordpress48:
+    depends_on:
+      - db48
+    extends:
+      file: ../common.yml
+      service: wordpress
+    image: wordpress:4.8-php5.6
+    ports:
+      - 8001:80
+    environment:
+      WORDPRESS_DB_HOST: db48:3306
+    
+volumes:
+  db_data_wp48:
+
