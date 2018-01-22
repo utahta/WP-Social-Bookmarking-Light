@@ -560,7 +560,7 @@
                         <th scope="row">Button type:</th>
                         <td>
                             <select name='line_button_type' onchange='jQuery("#line_img").attr("src", "{{ "" | images }}/"+this.form.line_button_type.value+".png")'>
-                                {% set line_button_types = ['line20x20', 'line88x20'] %}
+                                {% set line_button_types = ['line20x20', 'line88x20', 'line80x20'] %}
                                 {% for button_type in line_button_types %}
                                     <option value='{{ button_type }}' {{ option.line.button_type == button_type ? 'selected' : '' }}>{{ button_type }}</option>
                                 {% endfor %}
