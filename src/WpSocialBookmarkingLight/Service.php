@@ -604,6 +604,10 @@ class Service
             $icon = Url::images("line88x20.png");
             $width = 88;
             $height = 20;
+        } elseif ($options['line']['button_type'] == "line80x20") {
+            $icon = Url::images("line80x20.png");
+            $width = 80;
+            $height = 20;
         } else {
             $icon = Url::images("line20x20.png");
             $width = 20;
