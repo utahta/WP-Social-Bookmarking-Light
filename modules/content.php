@@ -38,6 +38,8 @@ function wp_social_bookmarking_light_output($services, $link, $title)
  *
  * @deprecated
  *
+ * Use [wsbl_embed] shortcode instead.
+ *
  * @param string $services
  * @param string $link
  * @param string $title
