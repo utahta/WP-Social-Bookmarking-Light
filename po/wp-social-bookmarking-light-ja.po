@@ -167,16 +167,16 @@ msgid "Position"
 msgstr "位置"
 
 #: wp-social-bookmarking-light\trunk/wp-social-bookmarking-light.php:795
-msgid "Singular"
+msgid "Individual Article"
 msgstr "個別記事のみ"
 
 #: wp-social-bookmarking-light\trunk/wp-social-bookmarking-light.php:804
-msgid "Page"
+msgid "Pages"
 msgstr "ページ"
 
 #: wp-social-bookmarking-light\trunk/wp-social-bookmarking-light.php:813
-msgid "Services"
-msgstr "サービス"
+msgid "Enable Services"
+msgstr "有効なサービス"
 
 #: wp-social-bookmarking-light\trunk/wp-social-bookmarking-light.php:938
 msgid "Save Changes"
