@@ -12,6 +12,8 @@ This plugin inserts social share links at the top or bottom of each post.
 
 This plugin inserts social share links at the top or bottom of each post.
 
+This plugin documentation can be found [here](https://github.com/utahta/WP-Social-Bookmarking-Light/wiki).
+
 This is the list of used social sites:
 
 *  Hatena
