@@ -38,6 +38,14 @@ class Plugin
     }
 
     /**
+     * @return Option
+     */
+    public function getOption()
+    {
+        return $this->option;
+    }
+
+    /**
      * Initialize wp actions
      */
     public static function init()
@@ -48,6 +56,16 @@ class Plugin
             add_action('wp_footer', array($plugin, 'footer'));
             add_filter('the_content', array($plugin, 'theContent'));
             add_action('admin_menu', array($plugin, 'adminMenu'));
+
+            add_shortcode('wsbl_embed', function ($attrs) use ($plugin) {
+                $options = $plugin->getOption()->getAll();
+                $v = shortcode_atts(array(
+                    'services' => $options['services'],
+                    'link' => get_permalink(),
+                    'title' => get_the_title(),
+                ), $attrs);
+                return $plugin->getBuilder()->content($v['services'], $v['link'], $v['title']);
+            });
         });
     }
 
