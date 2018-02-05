@@ -10,7 +10,8 @@ This plugin inserts social share links at the top or bottom of each post.
 
 == Description ==
 
-This plugin inserts social share links at the top or bottom of each post.
+This plugin inserts social share links at the top or bottom of each post. 
+For theme developers, social share links can be added by PHP code or by using shortcode. Check documentation for this use-case.
 
 This plugin documentation can be found [here](https://github.com/utahta/WP-Social-Bookmarking-Light/wiki).
 
