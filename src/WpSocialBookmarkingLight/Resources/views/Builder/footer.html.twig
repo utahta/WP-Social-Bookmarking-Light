@@ -11,20 +11,16 @@
 {% endif %}
 
 {% if pinterest %}
-    {% set data_pin_shape = pinterest.shape == 'round' ? 'data-pin-shape=true' : '' %}
-
-    {% if pinterest.size == 'large' %}
-        {% set data_pin_height = pinterest.shape == 'round' ? 'data-pin-height="32"' : 'data-pin-height="28"' %}
-    {% else %}
-        {% set data_pin_height = '' %}
-    {% endif %}
+    {% set data_pin_hover = pinterest.type == 'all' or pinterest.type == 'hover' ? 'data-pin-hover="true"' : '' %}
+    {% set data_pin_round = pinterest.shape == 'round' ? 'data-pin-round="true"' : '' %}
+    {% set data_pin_lang = pinterest.lang != '' ? 'data-pin-lang="'+pinterest.lang+'"' : '' %}
+    {% set data_pin_tall = pinterest.size == 'large' ? 'data-pin-tall="true"' : '' %}
 
     <script type="text/javascript" async defer
-            data-pin-hover=true
-            {{ data_pin_shape }}
-            data-pin-color="{{ pinterest.color }}"
-            data-pin-lang="{{ pinterest.lang }}"
-            {{ data_pin_height | raw }}
+            {{ data_pin_hover }}
+            {{ data_pin_round }}
+            {{ data_pin_lang }}
+            {{ data_pin_tall }}
             src="//assets.pinterest.com/js/pinit.js"></script>
 {% endif %}
 <!-- END: WP Social Bookmarking Light FOOTER -->

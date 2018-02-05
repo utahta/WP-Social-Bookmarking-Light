@@ -646,46 +646,40 @@ class Service
         if ($pinterest['type'] === 'hover') {
             return '';
         }
-        $data_pin_shape = '';
-        $data_pin_color = '';
+        $data_pin_round = '';
+        $data_pin_tall = '';
         $data_pin_lang = '';
+        $img = '';
 
         if ($pinterest['shape'] === 'round') {
-            // 円形ボタン
-            $data_pin_shape = 'data-pin-shape="round"';
+            $data_pin_round = 'data-pin-round="true"';
 
             if ($pinterest['size'] === 'large') {
-                $data_pin_height = 'data-pin-height="32"';
-                $img_src = "//assets.pinterest.com/images/pidgets/pinit_fg_en_round_red_32.png";
+                $data_pin_tall = 'data-pin-tall="true"';
+                $img = "<img src='//assets.pinterest.com/images/pidgets/pinit_fg_en_round_red_32.png' />";
             } else {
-                $data_pin_height = '';
-                $img_src = '//assets.pinterest.com/images/pidgets/pinit_fg_en_round_red_16.png';
+                $img = "<img src='//assets.pinterest.com/images/pidgets/pinit_fg_en_round_red_16.png' />";
             }
         } else {
-            // 長方形ボタン
-            $color = $pinterest['color'];
-            $lang = $pinterest['lang'];
-            $data_pin_color = 'data-pin-color="' . $color . '"';
-            $data_pin_lang = 'data-pin-lang="' . $lang . '"';
+            // rectangle button
+            if ($pinterest['lang'] !== '') {
+                $data_pin_lang = 'data-pin-lang="' . $pinterest['lang'] . '"';
+            }
 
             if ($pinterest['size'] === 'large') {
-                $data_pin_height = 'data-pin-height="28"';
-                $img_src = "//assets.pinterest.com/images/pidgets/pinit_fg_${lang}_rect_${color}_28.png";
-            } else {
-                $data_pin_height = '';
-                $img_src = "//assets.pinterest.com/images/pidgets/pinit_fg_${lang}_round_${$color}_16.png";
+                $data_pin_tall = 'data-pin-tall="true"';
             }
         }
 
         return $this->linkRaw(
-            '<a href="//jp.pinterest.com/pin/create/button/"'
+            '<a href="//www.pinterest.com/pin/create/button/"'
             . ' data-pin-do="buttonBookmark"'
-            . ' ' . $data_pin_color
             . ' ' . $data_pin_lang
-            . ' ' . $data_pin_shape
-            . ' ' . $data_pin_height
+            . ' ' . $data_pin_tall
+            . ' ' . $data_pin_round
             . '>'
-            . '<img src="' . $img_src . '" /></a>'
+            . $img
+            . '</a>'
         );
     }
 }
