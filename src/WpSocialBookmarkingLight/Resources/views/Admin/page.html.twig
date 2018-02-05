@@ -603,8 +603,8 @@
                         <th scope="row">Type: <br> <span style="font-size:10px"></span></th>
                         <td>
                             <select name='pinterest_type'>
-                                <option value='all' {{ option.pinterest.type == 'all' ? 'selected' : '' }}>All</option>
-                                <option value='hover' {{ option.pinterest.type == 'hover' ? 'selected' : '' }}>Hover</option>
+                                <option value='any' {{ option.pinterest.type == 'any' ? 'selected' : '' }}>Any Image</option>
+                                <option value='hover' {{ option.pinterest.type == 'hover' ? 'selected' : '' }}>Image Hover</option>
                             </select>
                         </td>
                     </tr>
@@ -623,16 +623,6 @@
                             <select name='pinterest_size'>
                                 <option value='large' {{ option.pinterest.size == 'large' ? 'selected' : '' }}>Large</option>
                                 <option value='small' {{ option.pinterest.size == 'small' ? 'selected' : '' }}>Small</option>
-                            </select>
-                        </td>
-                    </tr>
-                    <tr>
-                        <th scope="row">Color: <br> <span style="font-size:10px"></span></th>
-                        <td>
-                            <select name='pinterest_color'>
-                                <option value='red' {{ option.pinterest.color == 'red' ? 'selected' : '' }}>Red</option>
-                                <option value='gray' {{ option.pinterest.color == 'gray' ? 'selected' : '' }}>Gray</option>
-                                <option value='white' {{ option.pinterest.color == 'white' ? 'selected' : '' }}>White</option>
                             </select>
                         </td>
                     </tr>

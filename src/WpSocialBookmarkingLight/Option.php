@@ -124,7 +124,6 @@ class Option implements OptionInterface
                 'type' => $data['pinterest_type'],
                 'shape' => $data['pinterest_shape'],
                 'size' => $data['pinterest_size'],
-                'color' => $data['pinterest_color'],
                 'lang' => $data['pinterest_lang'],
             ),
         );
@@ -243,10 +242,9 @@ CSS;
             ),
             'pocket' => array('button_type' => 'none'),
             'pinterest' => array(
-                'type' => 'all',
+                'type' => 'any',
                 'shape' => 'rect',
                 'size' => 'small',
-                'color' => 'gray',
                 'lang' => 'en',
             ),
         );
