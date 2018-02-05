@@ -11,7 +11,7 @@
 {% endif %}
 
 {% if pinterest %}
-    {% set data_pin_hover = pinterest.type == 'hover' ? 'data-pin-hover="true"' : '' %}
+    {% set data_pin_hover = pinterest.type == 'all' or pinterest.type == 'hover' ? 'data-pin-hover="true"' : '' %}
     {% set data_pin_round = pinterest.shape == 'round' ? 'data-pin-round="true"' : '' %}
     {% set data_pin_lang = pinterest.lang != '' ? 'data-pin-lang="'+pinterest.lang+'"' : '' %}
     {% set data_pin_tall = pinterest.size == 'large' ? 'data-pin-tall="true"' : '' %}

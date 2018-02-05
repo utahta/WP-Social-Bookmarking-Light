@@ -603,6 +603,7 @@
                         <th scope="row">Type: <br> <span style="font-size:10px"></span></th>
                         <td>
                             <select name='pinterest_type'>
+                                <option value='all' {{ option.pinterest.type == 'all' ? 'selected' : '' }}>Any Image & Hover</option>
                                 <option value='any' {{ option.pinterest.type == 'any' ? 'selected' : '' }}>Any Image</option>
                                 <option value='hover' {{ option.pinterest.type == 'hover' ? 'selected' : '' }}>Image Hover</option>
                             </select>
