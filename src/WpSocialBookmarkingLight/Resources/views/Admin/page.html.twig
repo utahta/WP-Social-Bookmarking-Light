@@ -529,7 +529,7 @@
                                     "vi": "Vietnamese",
                                 } %}
                                 {% for key, value in google_langs %}
-                                    <option {{ option.google_plus_one.lang == key ? "selected" : "" }} value='{{ key }}'>{{ val }}</option>
+                                    <option {{ option.google_plus_one.lang == key ? "selected" : "" }} value='{{ key }}'>{{ value }}</option>
                                 {% endfor %}
                             </select>
                         </td>
